@@ -1,8 +1,11 @@
 <mat-toolbar>
-  <img src="../../assets/images/revature-navbar-logo.png" class="navbar-logo">
+  <span routerLink="profile" class="navbar-logo">
+    <img src="../../assets/images/revature-navbar-logo.png" class="navbar-logo">
+  </span>
 
   <span class="fill-remaining-space"></span>
 
+  <button mat-button routerLink="quizzes">Quizzes</button>
   <button mat-button routerLink="admin">Admin</button>
   <button mat-button routerLink="profile">Profile</button>
   <button mat-button>Logout</button>

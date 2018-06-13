@@ -11,13 +11,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { AppRoutingModule } from './/app-routing.module';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { QuizzesComponent } from './components/quizzes/quizzes.component';
+import { AccountService } from './services/account.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     ProfileComponent,
-    AdminComponent
+    AdminComponent,
+    QuizzesComponent
   ],
   imports: [
     BrowserModule,
@@ -25,9 +29,10 @@ import { AdminComponent } from './components/admin/admin.component';
     // NoopAnimationsModule,
     MatToolbarModule,
     MatButtonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AccountService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
