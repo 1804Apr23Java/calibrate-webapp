@@ -16,7 +16,6 @@ export class AccountService {
 
   public getAccountById(id: number): Observable<Account> {
     this.fullURL = `${this.accountUrl}/${id}`;
-    console.log(this.fullURL);
     return this.httpClient.get<Account>(this.fullURL);
   }
 }

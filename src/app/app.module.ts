@@ -14,6 +14,10 @@ import { AdminComponent } from './components/admin/admin.component';
 import { QuizzesComponent } from './components/quizzes/quizzes.component';
 import { AccountService } from './services/account.service';
 import { HttpClientModule } from '@angular/common/http';
+import { LibraryListComponent } from './components/library-list/library-list.component';
+import { LibraryComponent } from './components/library/library.component';
+import { QuestionComponent } from './components/question/question.component';
+import { AttemptComponent } from './components/attempt/attempt.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,11 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     ProfileComponent,
     AdminComponent,
-    QuizzesComponent
+    QuizzesComponent,
+    LibraryListComponent,
+    LibraryComponent,
+    QuestionComponent,
+    AttemptComponent
   ],
   imports: [
     BrowserModule,

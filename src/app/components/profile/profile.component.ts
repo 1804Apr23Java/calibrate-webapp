@@ -11,7 +11,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(private accountService: AccountService) { }
 
-  public account: Account;
+  public account: Account = new Account();
   public acString: string;
 
   getAccountById(id: number): void {
