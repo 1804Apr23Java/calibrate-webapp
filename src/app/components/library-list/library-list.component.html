@@ -1,3 +1,9 @@
-<p>
+
   library-list works!
-</p>
+  <ul id="menu">
+    <li *ngFor="let it of libraryList" class="list-group-item">
+      Library name: {{ it.name }}
+      <br>
+
+    </li>
+  </ul>
