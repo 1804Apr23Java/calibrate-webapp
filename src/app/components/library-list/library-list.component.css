@@ -1,14 +1,4 @@
-.example-margin{
-    padding: 5px;
-   
-   
-}
-
-.example-section{
-    padding-left: 100px;
-}
-
 mat-card {
-    width: calc(100% - 70px);
-    height: calc(100% - 70px);
-  }
+  width: calc(100% - 70px);
+  height: calc(100% - 70px);
+}
