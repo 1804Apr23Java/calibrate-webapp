@@ -1,14 +1,32 @@
-<div *ngIf="this.attempts">
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Date</th>
-      <th>Score</th>
-    </tr>
-    <tr *ngFor="let attempt of attempts">
-      <td>{{attempt.name}}</td>
-      <td>{{attempt.createdDate | date:'short'}}</td>
-      <td>{{attempt.numCorrect}} / {{attempt.numberOfQuestions}}</td>
-    </tr>
+<mat-toolbar color="primary" class="mat-elevation-z8">
+  Review Previous Quizzes
+</mat-toolbar>
+
+<div *ngIf="dataSource">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 attemptTable">
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Quiz Name </th>
+      <td mat-cell *matCellDef="let attempt"> {{attempt.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Date Taken </th>
+      <td mat-cell *matCellDef="let attempt"> {{attempt.createdDate | date:'short'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="score">
+      <th mat-header-cell *matHeaderCellDef> Score </th>
+      <td mat-cell *matCellDef="let attempt"> {{attempt.numCorrect}} / {{attempt.numberOfQuestions}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="view">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let attempt"> View Attempt </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
   </table>
 </div>
