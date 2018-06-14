@@ -13,8 +13,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRadioModule } from '@angular/material/radio';
-import { MatTabsModule } from '@angular/material/tabs';
+import { MatTabsModule, MatTab } from '@angular/material/tabs';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatTableModule } from '@angular/material/table';
 import { AppRoutingModule } from './/app-routing.module';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AdminComponent } from './components/admin/admin.component';
@@ -48,6 +49,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     // NoopAnimationsModule,
     MatExpansionModule,
     MatToolbarModule,
+    MatTableModule,
     MatButtonModule,
     MatListModule,
     MatIconModule,
