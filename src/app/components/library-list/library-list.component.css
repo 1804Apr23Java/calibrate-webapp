@@ -1,4 +1,9 @@
 .example-margin{
     padding: 5px;
-    margin: 5px;
+   
+   
+}
+
+.example-section{
+    padding-left: 100px;
 }
