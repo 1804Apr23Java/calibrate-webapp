@@ -1,0 +1,14 @@
+<div *ngIf="this.attempts">
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Date</th>
+      <th>Score</th>
+    </tr>
+    <tr *ngFor="let attempt of attempts">
+      <td>{{attempt.name}}</td>
+      <td>{{attempt.createdDate | date:'short'}}</td>
+      <td>{{attempt.numCorrect}} / {{attempt.numberOfQuestions}}</td>
+    </tr>
+  </table>
+</div>
