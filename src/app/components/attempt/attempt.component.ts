@@ -13,7 +13,7 @@ export class AttemptComponent implements OnInit {
   constructor(private attemptService: AttemptService) { }
 
   public attempts: Attempt[];
-  displayedColumns = ['name', 'date', 'score'];
+  displayedColumns = ['name', 'date', 'score', 'view'];
   dataSource: MatTableDataSource<Attempt>;
 
   getAttemptsById(id: number): void {
