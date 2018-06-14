@@ -53,7 +53,6 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     MatIconModule,
     MatRadioModule,
     MatTabsModule,
-    MatGridListModule,
     AppRoutingModule,
     MatCardModule,
     MatGridListModule,
