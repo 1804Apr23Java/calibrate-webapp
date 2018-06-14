@@ -1,5 +1,4 @@
-
-    <!--
+<!--
     Library name: {{library.name}}.
     Library status: {{library.status}}.
     Library id: {{library.accountId}}.
@@ -8,17 +7,16 @@
       {{question.value}}
     </p> -->
 
-    <mat-accordion>
-        <mat-expansion-panel *ngFor="let question of library.questions">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Question Number:
-              </mat-panel-title>
-              <mat-panel-description>
-                {{question.value}}
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <p>I'm visible because I am open</p>
-          </mat-expansion-panel>
-      </mat-accordion>
-
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let question of library.questions">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Question Number:
+      </mat-panel-title>
+      <mat-panel-description>
+        {{question.value}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p *ngFor="let answer of question.answers">{{answer.value}}</p>
+  </mat-expansion-panel>
+</mat-accordion>
