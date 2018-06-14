@@ -8,7 +8,10 @@
   <mat-list-option checkboxPosition="before" *ngFor="let answer of question.answers">
     <p>
       <span>{{answer.value}}</span>
-      <span *ngIf = "answer.isCorrect"> <mat-icon>check_box</mat-icon></span><br>
+      <span *ngIf="answer.isCorrect">
+        <mat-icon>check_box</mat-icon>
+      </span>
+      <br>
     </p>
   </mat-list-option>
 </mat-selection-list>

@@ -10,6 +10,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { AppRoutingModule } from './/app-routing.module';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AdminComponent } from './components/admin/admin.component';
@@ -20,6 +23,7 @@ import { LibraryListComponent } from './components/library-list/library-list.com
 import { LibraryComponent } from './components/library/library.component';
 import { QuestionComponent } from './components/question/question.component';
 import { AttemptComponent } from './components/attempt/attempt.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 
 @NgModule({
@@ -32,7 +36,8 @@ import { AttemptComponent } from './components/attempt/attempt.component';
     LibraryListComponent,
     LibraryComponent,
     QuestionComponent,
-    AttemptComponent
+    AttemptComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +47,9 @@ import { AttemptComponent } from './components/attempt/attempt.component';
     MatButtonModule,
     MatListModule,
     MatIconModule,
+    MatRadioModule,
+    MatTabsModule,
+    MatGridListModule,
     AppRoutingModule,
     HttpClientModule
   ],
