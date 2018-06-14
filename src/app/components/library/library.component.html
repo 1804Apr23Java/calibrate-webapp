@@ -7,7 +7,7 @@
     <button mat-button (click)="accordion.openAll()" [disabled]="!multi">Expand All</button>
     <button mat-button (click)="accordion.closeAll()" [disabled]="!multi">Collapse All</button>
   </div>
-
+-->
 <mat-accordion class="headers-align">
   <mat-expansion-panel *ngFor="let question of library.questions; let i = index" [attr.data-index]="i" [expanded]="step === i + 1" (opened)="setStep(i + 1)" hideToggle="true">
     <mat-expansion-panel-header>
@@ -35,31 +35,46 @@
       </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>
--->
+
+<!--
 <div *ngIf="dataSource">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 libraryTable">
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8 libraryTable">
 
-      <ng-container matColumnDef="number">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let question"> 420 </td>
+    <ng-container matColumnDef="number">
+      <mat-header-cell *matHeaderCellDef> Question Id </mat-header-cell>
+      <mat-cell *matCellDef="let question"> id </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="question">
+      <mat-header-cell *matHeaderCellDef> Question </mat-header-cell>
+      <mat-cell *matCellDef="let question"> {{question.value}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="difficulty">
+      <mat-header-cell *matHeaderCellDef> Difficulty </mat-header-cell>
+      <mat-cell *matCellDef="let question"> {{question.difficulty}} </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="expandedDetail">
+        <mat-cell *matCellDef="let detail">
+          The symbol for
+        </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="question">
-        <th mat-header-cell *matHeaderCellDef> Weight </th>
-        <td mat-cell *matCellDef="let question"> {{question.value}} </td>
-      </ng-container>
 
-      <ng-container matColumnDef="difficulty">
-        <th mat-header-cell *matHeaderCellDef> Symbol </th>
-        <td mat-cell *matCellDef="let question"> {{question.difficulty}} </td>
-      </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-    <!--
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
-  </div>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" matRipple class="element-row" [class.expanded]="expandedElement == row"
+      (click)="expandedElement = row"></mat-row>
+    <mat-row *matRowDef="let row; columns: ['expandedDetail']; when: isExpansionDetailRow" [@detailExpand]="row.element == expandedElement ? 'expanded' : 'collapsed'"
+      style="overflow: hidden">
+    </mat-row>
+
+  </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
+-->
 <!--
 
       <mat-list *ngFor="let answer of question.answers; let j = index" [attr.data-index]="i">
