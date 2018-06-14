@@ -1,11 +1,15 @@
+<mat-toolbar color="primary">
+  Review Previous Quizzes
+</mat-toolbar>
+
 <div *ngIf="dataSource">
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 attemptTable">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Quiz Name </th>
       <td mat-cell *matCellDef="let attempt"> {{attempt.name}} </td>
     </ng-container>
-  
+
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef> Date Taken </th>
       <td mat-cell *matCellDef="let attempt"> {{attempt.createdDate | date:'short'}} </td>
