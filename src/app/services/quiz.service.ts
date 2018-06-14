@@ -13,7 +13,7 @@ export class QuizService {
 
   private accountUrl = 'http://ec2-184-72-131-208.compute-1.amazonaws.com:8080/CalibrateBackend/quiz/5';
 
-  public getPublicLibraries(): Observable<Quiz> {
+  public getQuizById(): Observable<Quiz> {
     return this.httpClient.get<Quiz>(this.accountUrl);
   }
 }

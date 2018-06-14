@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { QuizService } from '../../services/quiz.service';
+import { Quiz } from '../../classes/quiz';
 
 @Component({
   selector: 'app-quiz-session',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./quiz-session.component.css']
 })
 export class QuizSessionComponent implements OnInit {
+  public quiz: Quiz;
 
-  constructor() { }
+  constructor(private quizService: QuizService) { }
 
   ngOnInit() {
+    this.getQuizById();
   }
 
+  getQuizById(): void {
+    this.quizService.getQuizById().subscribe(
+      (quiz: Quiz) => {
+        this.quiz = quiz;
+      },
+      error => console.log(`Error: ${error}`)
+    );
+  }
 }

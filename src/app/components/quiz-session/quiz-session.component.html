@@ -1,5 +1,17 @@
 <!--This is where you view the current quiz you are taking-->
 
-<p>
-  quiz-session works!
-</p>
+
+<mat-toolbar color="primary">
+  {{quiz.name}}: {{quiz.questions.length}}
+</mat-toolbar>
+
+<mat-grid-list cols="1" rowHeight="10:2">
+<mat-grid-tile *ngFor="let tile of quiz.questions">
+  <mat-card class="questionCard">
+    <mat-card-title color="primary-gray">{{tile.value}}</mat-card-title>
+    <mat-card-content *ngFor="let i of tile.answers">{{i.value}}</mat-card-content>
+  </mat-card>
+</mat-grid-tile>
+
+</mat-grid-list>
+
