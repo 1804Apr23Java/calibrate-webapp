@@ -46,7 +46,7 @@ import { QuizSessionComponent } from './components/quiz-session/quiz-session.com
     AttemptComponent,
     SidebarComponent,
     TakeAQuizComponent,
-    QuizSessionComponent
+    QuizSessionComponent,
   ],
   imports: [
     BrowserModule,
