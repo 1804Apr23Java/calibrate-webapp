@@ -10,10 +10,12 @@ import { LibraryListComponent } from './components/library-list/library-list.com
 import { QuestionComponent } from './components/question/question.component';
 import { TakeAQuizComponent } from './components/take-a-quiz/take-a-quiz.component';
 import { QuizSessionComponent } from './components/quiz-session/quiz-session.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 const routes: Routes = [
   { path: 'attempt', component: AttemptComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'library', component: LibraryComponent },
   { path: 'library-list', component: LibraryListComponent },
   { path: 'question', component: QuestionComponent },

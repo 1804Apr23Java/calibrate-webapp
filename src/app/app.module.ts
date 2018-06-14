@@ -32,6 +32,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TakeAQuizComponent } from './components/take-a-quiz/take-a-quiz.component';
 import { QuizSessionComponent } from './components/quiz-session/quiz-session.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { QuizSessionComponent } from './components/quiz-session/quiz-session.com
     SidebarComponent,
     TakeAQuizComponent,
     QuizSessionComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
