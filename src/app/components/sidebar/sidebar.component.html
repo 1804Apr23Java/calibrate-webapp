@@ -4,12 +4,26 @@
         <mat-icon>help</mat-icon>
       Quizzes
     </ng-template>
-    <h1>Quiz Menu Content</h1>
+    <!-- START QUIZ OPTIONS -->
+    <mat-nav-list>
+      <a mat-list-item routerLink="take-a-quiz">Take a Quiz</a>
+    </mat-nav-list>
+    <mat-nav-list>
+      <a mat-list-item routerLink="quiz-attempts">Review Previous Quizzes</a>
+    </mat-nav-list>
+    <!-- END QUIZ OPTIONS -->
   </mat-tab>
   <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon>library_books</mat-icon> Libraries
     </ng-template>
-    <h1>Library Menu Content</h1>
+    <!-- START QUIZ OPTIONS -->
+    <mat-nav-list>
+      <a mat-list-item routerLink="my-libraries">My Libraries</a>
+    </mat-nav-list>
+    <mat-nav-list>
+      <a mat-list-item routerLink="public-libraries">Public Libraries</a>
+    </mat-nav-list>
+    <!-- END QUIZ OPTIONS -->
   </mat-tab>
 </mat-tab-group>
