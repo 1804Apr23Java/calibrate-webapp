@@ -8,6 +8,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
 import { AppRoutingModule } from './/app-routing.module';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AdminComponent } from './components/admin/admin.component';
@@ -18,6 +20,7 @@ import { LibraryListComponent } from './components/library-list/library-list.com
 import { LibraryComponent } from './components/library/library.component';
 import { QuestionComponent } from './components/question/question.component';
 import { AttemptComponent } from './components/attempt/attempt.component';
+
 
 @NgModule({
   declarations: [
@@ -37,6 +40,8 @@ import { AttemptComponent } from './components/attempt/attempt.component';
     // NoopAnimationsModule,
     MatToolbarModule,
     MatButtonModule,
+    MatListModule,
+    MatIconModule,
     AppRoutingModule,
     HttpClientModule
   ],
