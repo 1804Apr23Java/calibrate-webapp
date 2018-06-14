@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
+import {MatDividerModule} from '@angular/material/divider';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatCardModule } from '@angular/material/card';
@@ -65,6 +66,7 @@ import { QuizSessionComponent } from './components/quiz-session/quiz-session.com
     MatCardModule,
     MatGridListModule,
     MatCheckboxModule,
+    MatDividerModule,
     HttpClientModule
   ],
   providers: [AccountService],
