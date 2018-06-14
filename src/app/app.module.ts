@@ -20,6 +20,7 @@ import { LibraryListComponent } from './components/library-list/library-list.com
 import { LibraryComponent } from './components/library/library.component';
 import { QuestionComponent } from './components/question/question.component';
 import { AttemptComponent } from './components/attempt/attempt.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { AttemptComponent } from './components/attempt/attempt.component';
     BrowserModule,
     BrowserAnimationsModule,
     // NoopAnimationsModule,
+    MatExpansionModule,
     MatToolbarModule,
     MatButtonModule,
     MatListModule,
