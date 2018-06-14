@@ -1,8 +1,8 @@
-<p>
+
     Library name: {{library.name}}.
     Library status: {{library.status}}.
     Library id: {{library.accountId}}.
     First answer of first question of library: {{library.questions[1].answers[1].value | uppercase }}
-</p>
-
-
+    <p *ngFor="let question of library.questions">
+      {{question.value}}
+    </p>
