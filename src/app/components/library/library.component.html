@@ -1,22 +1,69 @@
 <!--
-    Library name: {{library.name}}.
-    Library status: {{library.status}}.
-    Library id: {{library.accountId}}.
-    First answer of first question of library: {{library.questions[1].answers[1].value | uppercase }}
-    <p *ngFor="let question of library.questions">
-      {{question.value}}
-    </p> -->
+<div>
+    <mat-slide-toggle [(ngModel)]="multi">Allow Multi Expansion</mat-slide-toggle>
+  </div>
+  <p>Accordion Actions <sup>('Multi Expansion' mode only)</sup></p>
+  <div>
+    <button mat-button (click)="accordion.openAll()" [disabled]="!multi">Expand All</button>
+    <button mat-button (click)="accordion.closeAll()" [disabled]="!multi">Collapse All</button>
+  </div>
 
-<mat-accordion>
-  <mat-expansion-panel *ngFor="let question of library.questions">
+<mat-accordion class="headers-align">
+  <mat-expansion-panel *ngFor="let question of library.questions; let i = index" [attr.data-index]="i" [expanded]="step === i + 1" (opened)="setStep(i + 1)" hideToggle="true">
     <mat-expansion-panel-header>
-      <mat-panel-title>
-        Question Number:
+      <mat-panel-title class="shrinkMe" >
+        Question Number: {{i + 1}}
       </mat-panel-title>
       <mat-panel-description>
         {{question.value}}
       </mat-panel-description>
+      <mat-panel-description>
+          Question Difficulty: {{question.difficulty}}
+        </mat-panel-description>
+        <mat-icon>arrow_downward</mat-icon>
     </mat-expansion-panel-header>
-    <p *ngFor="let answer of question.answers">{{answer.value}}</p>
+
+    <mat-selection-list>
+        <mat-list-option *ngFor="let answer of question.answers; let j = index" [attr.data-index]="i">
+            Answer {{j + 1}}: {{answer.value}} Right Answer: {{answer.isCorrect}}
+        </mat-list-option>
+      </mat-selection-list>
+
+    <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>
+-->
+<div *ngIf="dataSource">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 libraryTable">
+
+      <ng-container matColumnDef="number">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let question"> 420 </td>
+      </ng-container>
+
+      <ng-container matColumnDef="question">
+        <th mat-header-cell *matHeaderCellDef> Weight </th>
+        <td mat-cell *matCellDef="let question"> {{question.value}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="difficulty">
+        <th mat-header-cell *matHeaderCellDef> Symbol </th>
+        <td mat-cell *matCellDef="let question"> {{question.difficulty}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <!--
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
+  </div>
+<!--
+
+      <mat-list *ngFor="let answer of question.answers; let j = index" [attr.data-index]="i">
+          <mat-list-item >Answer {{j + 1}}: {{answer.value}} Right Answer: {{answer.isCorrect}}</mat-list-item>
+          <mat-divider></mat-divider>
+        </mat-list>
+-->
