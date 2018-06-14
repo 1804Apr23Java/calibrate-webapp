@@ -8,16 +8,25 @@ import { AttemptComponent } from './components/attempt/attempt.component';
 import { LibraryComponent } from './components/library/library.component';
 import { LibraryListComponent } from './components/library-list/library-list.component';
 import { QuestionComponent } from './components/question/question.component';
+import { TakeAQuizComponent } from './components/take-a-quiz/take-a-quiz.component';
 
 
 const routes: Routes = [
   { path: 'attempt', component: AttemptComponent },
   { path: 'library', component: LibraryComponent },
-  { path: 'libraryList', component: LibraryListComponent },
+  { path: 'library-list', component: LibraryListComponent },
   { path: 'question', component: QuestionComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'admin', component: AdminComponent },
-  { path: 'quizzes', component: QuizzesComponent },
+  { path: 'quizzes',
+    component: QuizzesComponent,
+    children: [
+      { path: 'my-libraries', component: LibraryListComponent },
+      { path: 'public-libraries', component: LibraryListComponent },
+      { path: 'pending-libraries', component: LibraryListComponent },
+      { path: 'take-a-quiz', component: TakeAQuizComponent },
+      { path: 'quiz-attempts', component: AttemptComponent }
+    ]  },
   { path: '**', redirectTo: 'profile' }
 ];
 
