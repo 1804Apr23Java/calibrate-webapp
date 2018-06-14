@@ -25,6 +25,7 @@ import { LibraryListComponent } from './components/library-list/library-list.com
 import { LibraryComponent } from './components/library/library.component';
 import { QuestionComponent } from './components/question/question.component';
 import { AttemptComponent } from './components/attempt/attempt.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 
@@ -45,6 +46,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     BrowserModule,
     BrowserAnimationsModule,
     // NoopAnimationsModule,
+    MatExpansionModule,
     MatToolbarModule,
     MatButtonModule,
     MatListModule,
