@@ -29,6 +29,7 @@ import { AttemptComponent } from './components/attempt/attempt.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TakeAQuizComponent } from './components/take-a-quiz/take-a-quiz.component';
+import { QuizSessionComponent } from './components/quiz-session/quiz-session.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { TakeAQuizComponent } from './components/take-a-quiz/take-a-quiz.compone
     QuestionComponent,
     AttemptComponent,
     SidebarComponent,
-    TakeAQuizComponent
+    TakeAQuizComponent,
+    QuizSessionComponent
   ],
   imports: [
     BrowserModule,
