@@ -6,7 +6,7 @@ export class Library {
     name: string;
     status: Status;
     accountId: number;
-    question: Question[];
+    questions: Question[];
 }
 
 enum Status {
