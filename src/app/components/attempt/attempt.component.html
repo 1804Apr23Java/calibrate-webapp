@@ -1,9 +1,9 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="mat-elevation-z8">
   Review Previous Quizzes
 </mat-toolbar>
 
 <div *ngIf="dataSource">
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 attemptTable">
 
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Quiz Name </th>
