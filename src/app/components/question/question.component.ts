@@ -12,13 +12,11 @@ export class QuestionComponent implements OnInit {
   constructor(private questionService: QuestionService) { }
 
   public question: Question = new Question();
-  public questionString: string;
 
   getQuestionById(id: number): void {
     this.questionService.getQuestionById(id).subscribe(
       (question: Question) => {
         this.question = question;
-        this.questionString = JSON.stringify(this.question);
       },
       error => console.log(`Error: ${error}`)
     );

@@ -10,27 +10,17 @@ import { Library } from '../../classes/library';
 export class LibraryListComponent implements OnInit {
   public libraryList: Library[];
 
-  constructor(private libraryService: LibraryListService) { }
+  constructor(private libraryService: LibraryListService) {}
 
   ngOnInit() {
-    this.getAllLibrary();
+    this.getPublicLibraries();
   }
-  getAllLibrary(): void {
-  this.libraryService.getLibrary().subscribe(
-    (libraryList: Library[]) => {
-      this.libraryList = libraryList;
-    },
-    error => console.log(`Error: ${error}`)
-  );
-}
-
-}
-/*  getAccountById(id: number): void {
-    this.accountService.getAccountById(id).subscribe(
-      (account: Account) => {
-        this.account = account;
-        this.acString = JSON.stringify(this.account);
+  getPublicLibraries(): void {
+    this.libraryService.getPublicLibraries().subscribe(
+      (libraryList: Library[]) => {
+        this.libraryList = libraryList;
       },
       error => console.log(`Error: ${error}`)
     );
-  }*/
+  }
+}

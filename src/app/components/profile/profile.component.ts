@@ -12,13 +12,11 @@ export class ProfileComponent implements OnInit {
   constructor(private accountService: AccountService) { }
 
   public account: Account = new Account();
-  public acString: string;
 
   getAccountById(id: number): void {
     this.accountService.getAccountById(id).subscribe(
       (account: Account) => {
         this.account = account;
-        this.acString = JSON.stringify(this.account);
       },
       error => console.log(`Error: ${error}`)
     );

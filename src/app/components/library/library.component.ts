@@ -25,5 +25,4 @@ export class LibraryComponent implements OnInit {
   ngOnInit() {
     this.getLibraryById(61);
   }
-
 }

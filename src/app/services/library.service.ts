@@ -12,10 +12,8 @@ export class LibraryService {
   constructor(private httpClient: HttpClient) { }
 
   private libraryUrl = 'http://ec2-184-72-131-208.compute-1.amazonaws.com:8080/CalibrateBackend/library';
-  private fullURL: string;
 
   public getLibraryById(libraryId: number): Observable<Library> {
-    this.fullURL = `${this.libraryUrl}/${libraryId}`;
-    return this.httpClient.get<Library>(this.fullURL);
+    return this.httpClient.get<Library>(`${this.libraryUrl}/${libraryId}`);
   }
 }

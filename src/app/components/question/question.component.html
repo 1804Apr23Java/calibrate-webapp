@@ -5,7 +5,7 @@
   <mat-list-item>
     {{question.value}}
   </mat-list-item>
-  <mat-list-option checkboxPosition="before" *ngFor="let answer of question.answers; let i = index">
+  <mat-list-option checkboxPosition="before" *ngFor="let answer of question.answers">
     <p>
       <span>{{answer.value}}</span>
       <span *ngIf = "answer.isCorrect"> <mat-icon>check_box</mat-icon></span><br>
