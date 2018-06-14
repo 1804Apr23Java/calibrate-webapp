@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -52,7 +51,6 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     MatIconModule,
     MatRadioModule,
     MatTabsModule,
-    MatGridListModule,
     AppRoutingModule,
     MatCardModule,
     MatGridListModule,
