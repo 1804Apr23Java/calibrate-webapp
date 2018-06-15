@@ -10,9 +10,12 @@ export class LibraryListService {
 
   constructor(private httpClient: HttpClient) { }
 
-  private accountUrl = 'http://ec2-184-72-131-208.compute-1.amazonaws.com:8080/CalibrateBackend/library/public';
+  private accountUrl = 'http://ec2-184-72-131-208.compute-1.amazonaws.com:8080/CalibrateBackend/library/';
 
   public getPublicLibraries(): Observable<Library[]> {
-    return this.httpClient.get<Library[]>(this.accountUrl);
+        return this.httpClient.get<Library[]>(this.accountUrl + 'public');
   }
+  public getPendingLibraries(): Observable<Library[]> {
+    return this.httpClient.get<Library[]>(this.accountUrl + 'pending');
+}
 }
