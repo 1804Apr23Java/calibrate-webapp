@@ -8,7 +8,11 @@
     <button mat-button (click)="accordion.closeAll()" [disabled]="!multi">Collapse All</button>
   </div>
 -->
-<mat-accordion class="headers-align">
+<mat-toolbar color="primary" class="mat-elevation-z8">
+    {{library.name}} Library
+  </mat-toolbar>
+
+<mat-accordion class="headers-align mat-elevation-z8 libraryTable">
   <mat-expansion-panel *ngFor="let question of library.questions; let i = index" [attr.data-index]="i" [expanded]="step === i + 1" (opened)="setStep(i + 1)" hideToggle="true">
     <mat-expansion-panel-header>
       <mat-panel-title class="shrinkMe" >
@@ -25,7 +29,8 @@
 
     <mat-selection-list>
         <mat-list-option *ngFor="let answer of question.answers; let j = index" [attr.data-index]="i">
-            Answer {{j + 1}}: {{answer.value}} Right Answer: {{answer.isCorrect}}
+            <mat-icon mat-list-icon>folder</mat-icon>
+            <h4 mat-line><span>Answer {{j + 1}}</span> {{answer.value}} <span>Right Answer: {{answer.isCorrect}}</span> </h4>
         </mat-list-option>
       </mat-selection-list>
 
