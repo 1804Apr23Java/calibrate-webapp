@@ -1,3 +1,11 @@
-<p>
-  login works!
-</p>
+<form class="login-form">
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Email" required [(ngModel)]="email" name="email">
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Password" type="password" required [(ngModel)]="password" name="password">
+  </mat-form-field>
+
+  <button mat-button color="primary" class="login-button-center" (click)="accountLogin()">Log in &gt;</button>
+</form>

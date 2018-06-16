@@ -16,4 +16,10 @@ export class AccountService {
   public getAccountById(id: number): Observable<Account> {
     return this.httpClient.get<Account>(`${this.accountUrl}/${id}`);
   }
+
+  public accountLogin(username: string, password: string): Observable<Account> {
+    return this.httpClient.post<Account>(`${this.accountUrl}/login`,
+      { username, password }
+    );
+  }
 }
