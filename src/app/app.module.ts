@@ -18,6 +18,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatTabsModule, MatTab } from '@angular/material/tabs';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
 import { AppRoutingModule } from './/app-routing.module';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AdminComponent } from './components/admin/admin.component';
@@ -34,7 +35,8 @@ import { TakeAQuizComponent } from './components/take-a-quiz/take-a-quiz.compone
 import { QuizSessionComponent } from './components/quiz-session/quiz-session.component';
 import { PendingLibraryListComponent } from './components/pending-library-list/pending-library-list.component';
 import { SidebarAdminComponent } from './components/sidebar-admin/sidebar-admin.component';
-
+import { LoginComponent } from './components/login/login.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,7 @@ import { SidebarAdminComponent } from './components/sidebar-admin/sidebar-admin.
     QuizSessionComponent,
     PendingLibraryListComponent,
     SidebarAdminComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,12 +69,14 @@ import { SidebarAdminComponent } from './components/sidebar-admin/sidebar-admin.
     MatRadioModule,
     MatAutocompleteModule,
     MatTabsModule,
+    MatInputModule,
     AppRoutingModule,
     MatCardModule,
     MatGridListModule,
     MatCheckboxModule,
     MatDividerModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [AccountService],
   bootstrap: [AppComponent]
