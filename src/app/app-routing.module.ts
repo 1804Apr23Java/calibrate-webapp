@@ -10,6 +10,7 @@ import { LibraryListComponent } from './components/library-list/library-list.com
 import { QuestionComponent } from './components/question/question.component';
 import { TakeAQuizComponent } from './components/take-a-quiz/take-a-quiz.component';
 import { QuizSessionComponent } from './components/quiz-session/quiz-session.component';
+import { PendingLibraryListComponent } from './components/pending-library-list/pending-library-list.component';
 import { LoginComponent } from './components/login/login.component';
 
 
@@ -21,7 +22,11 @@ const routes: Routes = [
   { path: 'question', component: QuestionComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'quiz-session', component: QuizSessionComponent },
-  { path: 'admin', component: AdminComponent },
+  { path: 'admin',
+    component: AdminComponent,
+    children: [
+      {path : 'pending-library-list', component: PendingLibraryListComponent }
+    ]  },
   { path: 'quizzes',
     component: QuizzesComponent,
     children: [

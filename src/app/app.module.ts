@@ -33,6 +33,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TakeAQuizComponent } from './components/take-a-quiz/take-a-quiz.component';
 import { QuizSessionComponent } from './components/quiz-session/quiz-session.component';
+import { PendingLibraryListComponent } from './components/pending-library-list/pending-library-list.component';
+import { SidebarAdminComponent } from './components/sidebar-admin/sidebar-admin.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
 
@@ -50,6 +52,8 @@ import { FormsModule } from '@angular/forms';
     SidebarComponent,
     TakeAQuizComponent,
     QuizSessionComponent,
+    PendingLibraryListComponent,
+    SidebarAdminComponent,
     LoginComponent,
   ],
   imports: [
