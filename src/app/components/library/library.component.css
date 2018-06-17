@@ -8,6 +8,9 @@
 }
 
 
+.h4 {
+  flex-basis: 0;
+}
 
 .libraryTable {
   width: calc(100% - 70px);
