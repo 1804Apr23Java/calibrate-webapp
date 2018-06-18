@@ -1,18 +1,12 @@
-<mat-tab-group>
-    <mat-tab>
-      <ng-template mat-tab-label>
-          <mat-icon>help</mat-icon>
-        Quizzes
-      </ng-template>
+<mat-card>
       <!-- START QUIZ OPTIONS -->
       <mat-nav-list>
-        <a mat-list-item routerLink="take-a-quiz">Take a Quiz</a>
-      </mat-nav-list>
-      <mat-nav-list>
-        <a mat-list-item routerLink="quiz-attempts">Review Previous Quizzes</a>
+        <mat-list-item routerLink="pending-library-list">Review Pending Libraries</mat-list-item>
+        <mat-list-item>Add New User</mat-list-item>
+        <mat-list-item>Delete User</mat-list-item>
       </mat-nav-list>
       <!-- END QUIZ OPTIONS -->
-    </mat-tab>
+    </mat-card>
     <!--
     <mat-tab>
       <ng-template mat-tab-label>
@@ -28,5 +22,3 @@
       <!-- END QUIZ OPTIONS 
     </mat-tab>
   -->
-  </mat-tab-group>
-  

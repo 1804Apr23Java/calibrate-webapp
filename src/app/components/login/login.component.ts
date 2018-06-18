@@ -19,19 +19,14 @@ export class LoginComponent implements OnInit {
   accountLogin(): void {
     this.accountService.accountLogin(this.email, this.password).subscribe(
       (returnedAccount: Account) => {
-        // save response into object
         this.account = returnedAccount;
-
-        // FOR TESTING - PRINT RETURNED ACCOUNT INFO
         console.log(this.account);
 
-        // LOG IN FUNCTIONALITY HERE
         // start Session, save user Account somewhere, etc.
+        localStorage.setItem('accountId', this.account.accountId.toString());
+        this.router.navigate(['profile']);
 
-        // ROUTE TO USER PROFILE PAGE
-        // this.router.navigate(['profile']);
-
-      }, error => { console.log(`Error: ${error}`); }
+      }, error => { console.log(`Error: ${JSON.stringify(error)}`); }
     );
   }
 
