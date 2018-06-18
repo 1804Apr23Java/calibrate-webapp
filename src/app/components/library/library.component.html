@@ -8,38 +8,46 @@
     <button mat-button (click)="accordion.closeAll()" [disabled]="!multi">Collapse All</button>
   </div>
 -->
-<mat-toolbar color="primary" class="mat-elevation-z8">
-    {{library.name}} Library
+
+<div *ngIf=library>
+  <mat-toolbar color="primary" class="mat-elevation-z8">
+    {{library.name}}
   </mat-toolbar>
 
-<mat-accordion class="headers-align mat-elevation-z8 libraryTable">
-  <mat-expansion-panel *ngFor="let question of library.questions; let i = index" [attr.data-index]="i" [expanded]="step === i + 1" (opened)="setStep(i + 1)" hideToggle="true">
-    <mat-expansion-panel-header>
-      <mat-panel-title class="shrinkMe" >
-        Question Number: {{i + 1}}
-      </mat-panel-title>
-      <mat-panel-description>
-        {{question.value}}
-      </mat-panel-description>
-      <mat-panel-description>
-          Question Difficulty: {{question.difficulty}}
+  <mat-accordion class="headers-align mat-elevation-z8 libraryTable">
+    <mat-expansion-panel *ngFor="let question of library.questions; let i = index" [attr.data-index]="i" [expanded]="step === i + 1"
+      (opened)="setStep(i + 1)" hideToggle="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="shrinkMe">
+          Question {{i + 1}}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{question.value}}
         </mat-panel-description>
-        <mat-icon>arrow_downward</mat-icon>
-    </mat-expansion-panel-header>
+        <!--
+        <mat-panel-description>
+          Difficulty: {{question.difficulty}}
+        </mat-panel-description> -->
+        <!-- <mat-icon>arrow_downward</mat-icon> -->
+      </mat-expansion-panel-header>
 
-    <mat-selection-list>
-        <mat-list-option *ngFor="let answer of question.answers; let j = index" [attr.data-index]="i">
-            <mat-icon mat-list-icon>folder</mat-icon>
-            <h4 mat-line><span>Answer {{j + 1}}</span> {{answer.value}} <span>Right Answer: {{answer.isCorrect}}</span> </h4>
-        </mat-list-option>
-      </mat-selection-list>
+      <mat-radio-group>
+        <mat-radio-button *ngFor="let answer of question.answers; let j = index" [attr.data-index]="i">
+          <span *ngIf="answer.isCorrect">
+            <mat-icon>check_box</mat-icon>
+          </span>
+          {{answer.value}}
+        </mat-radio-button>
+        <br>
+      </mat-radio-group>
 
-    <mat-action-row>
-        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+      <mat-action-row>
+        <button mat-button color="primary" (click)="prevStep()">Previous</button>
         <button mat-button color="primary" (click)="nextStep()">Next</button>
       </mat-action-row>
-  </mat-expansion-panel>
-</mat-accordion>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
 
 <!--
 <div *ngIf="dataSource">
