@@ -9,6 +9,11 @@ export class AdminAddAccountComponent implements OnInit {
 
   constructor() { }
 
+  email: string;
+  password: string;
+  firstname: string;
+  lastname: string;
+
   ngOnInit() {
   }
 
