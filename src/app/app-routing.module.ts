@@ -12,6 +12,9 @@ import { TakeAQuizComponent } from './components/take-a-quiz/take-a-quiz.compone
 import { QuizSessionComponent } from './components/quiz-session/quiz-session.component';
 import { PendingLibraryListComponent } from './components/pending-library-list/pending-library-list.component';
 import { LoginComponent } from './components/login/login.component';
+import { AdminDefaultComponent } from './components/admin-default/admin-default.component';
+import { AdminAddAccountComponent } from './components/admin-add-account/admin-add-account.component';
+import { AdminDeactivateAccountComponent } from './components/admin-deactivate-account/admin-deactivate-account.component';
 
 
 const routes: Routes = [
@@ -25,6 +28,9 @@ const routes: Routes = [
   { path: 'admin',
     component: AdminComponent,
     children: [
+      {path : 'admin-default', component: AdminDefaultComponent },
+      {path : 'admin-add-account', component: AdminAddAccountComponent },
+      {path : 'admin-deactivate-account', component: AdminDeactivateAccountComponent },
       {path : 'pending-library-list', component: PendingLibraryListComponent }
     ]  },
   { path: 'quizzes',
