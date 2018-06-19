@@ -23,8 +23,8 @@ export class LoginComponent implements OnInit {
         console.log(this.account);
 
         // start Session, save user Account somewhere, etc.
-        localStorage.setItem('accountId', this.account.accountId.toString());
-        this.router.navigate(['profile']);
+        sessionStorage.setItem('accountId', this.account.accountId.toString());
+        this.router.navigate(['profile/' + this.account.accountId.toString()]);
 
       }, error => { console.log(`Error: ${JSON.stringify(error)}`); }
     );
