@@ -44,9 +44,8 @@ export class LibraryComponent implements OnInit {
     this.libraryService.getLibraryById(libraryId).subscribe(
       (library: Library) => {
         this.library = library;
-        this.library.questions.sort((question1, question2) =>
+        /*this.library.questions.sort((question1, question2) =>
           (question1.value.toLowerCase > question2.value.toLowerCase ? 1 : -1));
-        /*
         this.dataSource = new MatTableDataSource(this.library.questions);
         const rows = [];
         this.library.questions.forEach(question => rows.push(question, { detailRow: true, question }));
@@ -71,6 +70,6 @@ export class LibraryComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getLibraryById(61);
+    this.getLibraryById(+sessionStorage.getItem('libraryId'));
   }
 }

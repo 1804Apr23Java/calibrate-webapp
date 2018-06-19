@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getAccountById(11);
+    this.getAccountById(+sessionStorage.getItem('accountId'));
   }
 
 }
