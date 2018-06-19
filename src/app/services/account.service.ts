@@ -21,6 +21,7 @@ export class AccountService {
   public accountLogin(email: string, password: string): Observable<Account> {
 
     this.params = new HttpParams().set('email', email).set('password', password);
-    return this.httpClient.post<Account>(`${this.accountUrl}/login`, null, {params: this.params});
+    return this.httpClient.post<Account>(`${this.accountUrl}/login`,
+      {'email': email, 'password': password});
   }
 }
