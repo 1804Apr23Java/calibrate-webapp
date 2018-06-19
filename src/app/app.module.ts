@@ -33,6 +33,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TakeAQuizComponent } from './components/take-a-quiz/take-a-quiz.component';
 import { QuizSessionComponent } from './components/quiz-session/quiz-session.component';
 import { LoginComponent } from './components/login/login.component';
+import { ProfileNavbarComponent } from './profile-navbar/profile-navbar.component';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { LoginComponent } from './components/login/login.component';
     TakeAQuizComponent,
     QuizSessionComponent,
     LoginComponent,
+    ProfileNavbarComponent,
   ],
   imports: [
     BrowserModule,

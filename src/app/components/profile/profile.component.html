@@ -1,3 +1,4 @@
+<!--
 <p>
   Email is {{account.email}}.
   Id is {{account.accountId}}.
@@ -5,4 +6,13 @@
 
 <div *ngIf="this.account.isAdmin">
   You are an admin, a winner is you
+</div>
+-->
+<div class="flex-grid">
+  <div class="col-1">
+    <app-profile-navbar></app-profile-navbar>
+  </div>
+  <div class="col-2">
+    <router-outlet></router-outlet>
+  </div>
 </div>
