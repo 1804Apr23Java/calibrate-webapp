@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Account } from '../../classes/account';
 import { AccountService } from '../../services/account.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -8,8 +9,8 @@ import { AccountService } from '../../services/account.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
-  constructor(private accountService: AccountService) { }
+  private accountId: String = sessionStorage.getItem('accountId');
+  constructor(private accountService: AccountService, private router: Router) {}
 
   public account: Account = new Account();
 
@@ -23,7 +24,10 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getAccountById(11);
+    if (this.accountId == null) {
+      this.router.navigate(['login']);
+    } else {
+      this.getAccountById(+this.accountId);
+    }
   }
-
 }

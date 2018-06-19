@@ -5,12 +5,12 @@
 <mat-toolbar color="primary">
   List of Libraries
 </mat-toolbar>
-<mat-grid-list cols="3">
+<mat-grid-list cols="3" rowHeight="3:2">
 
-  <mat-grid-tile *ngFor="let tile of libraryList">
-    <mat-card>
-      <mat-card-title>{{tile.name}}</mat-card-title>
-      <mat-card-subtitle>{{tile.questions.length}} questions</mat-card-subtitle>
+  <mat-grid-tile *ngFor="let library of libraryList">
+    <mat-card (click)="this.getLibrary(library.libraryId)" >
+      <mat-card-title>{{library.name}}</mat-card-title>
+      <mat-card-subtitle>{{library.questions.length}} questions</mat-card-subtitle>
     </mat-card>
   </mat-grid-tile>
 
