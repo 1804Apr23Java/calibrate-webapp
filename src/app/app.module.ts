@@ -37,6 +37,7 @@ import { PendingLibraryListComponent } from './components/pending-library-list/p
 import { SidebarAdminComponent } from './components/sidebar-admin/sidebar-admin.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
+import { ProfileNavbarComponent } from './profile-navbar/profile-navbar.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { FormsModule } from '@angular/forms';
     PendingLibraryListComponent,
     SidebarAdminComponent,
     LoginComponent,
+    ProfileNavbarComponent
   ],
   imports: [
     BrowserModule,
