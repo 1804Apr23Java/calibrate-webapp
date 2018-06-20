@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Question } from '../../classes/question';
-import { QuestionService } from '../../services/question.service';
+import { GatewayService } from '../../services/gateway.service';
 
 @Component({
   selector: 'app-question',
@@ -9,12 +9,12 @@ import { QuestionService } from '../../services/question.service';
 })
 export class QuestionComponent implements OnInit {
 
-  constructor(private questionService: QuestionService) { }
+  constructor(private gatewayService: GatewayService) { }
 
   public question: Question = new Question();
 
   getQuestionById(id: number): void {
-    this.questionService.getQuestionById(id).subscribe(
+    this.gatewayService.getQuestionById(id).subscribe(
       (question: Question) => {
         this.question = question;
       },

@@ -6,4 +6,11 @@ export class Account {
     public password: string;
     public username: string;
 
+    constructor(email: string, username: string, password: string) {
+        this.accountId = 0;
+        this.email = email;
+        this.isAdmin = false;
+        this.username = username;
+        this.password = password;
+    }
 }

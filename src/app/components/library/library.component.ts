@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Library } from '../../classes/library';
-import { LibraryService } from '../../services/library.service';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { Question } from '../../classes/question';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { DataSource } from '@angular/cdk/collections';
+import { GatewayService } from '../../services/gateway.service';
 
 
 @Component({
@@ -28,7 +28,7 @@ export class LibraryComponent implements OnInit {
 
   public library: Library = new Library();
 
-  constructor(private libraryService: LibraryService) { }
+  constructor(private gatewayService: GatewayService) { }
 
   // expandedElement: any;
   step = 0;
@@ -41,7 +41,7 @@ export class LibraryComponent implements OnInit {
   */
 
   getLibraryById(libraryId: number): void {
-    this.libraryService.getLibraryById(libraryId).subscribe(
+    this.gatewayService.getLibraryById(libraryId).subscribe(
       (library: Library) => {
         this.library = library;
         /*this.library.questions.sort((question1, question2) =>

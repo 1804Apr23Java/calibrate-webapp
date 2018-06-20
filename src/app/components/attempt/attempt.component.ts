@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AttemptService } from '../../services/attempt.service';
 import { Attempt } from '../../classes/attempt';
 import {MatTableDataSource} from '@angular/material';
+import { GatewayService } from '../../services/gateway.service';
 
 @Component({
   selector: 'app-attempt',
@@ -10,14 +10,14 @@ import {MatTableDataSource} from '@angular/material';
 })
 export class AttemptComponent implements OnInit {
 
-  constructor(private attemptService: AttemptService) { }
+  constructor(private gatewayService: GatewayService) { }
 
   public attempts: Attempt[];
   displayedColumns = ['name', 'date', 'score', 'view'];
   dataSource: MatTableDataSource<Attempt>;
 
   getAttemptsById(id: number): void {
-    this.attemptService.getAttemptsById(id).subscribe(
+    this.gatewayService.getAttemptsById(id).subscribe(
       (attempts: Attempt[]) => {
         this.attempts = attempts.sort((attempt1, attempt2) => attempt1.createdDate - attempt2.createdDate);
         this.dataSource = new MatTableDataSource(attempts);
