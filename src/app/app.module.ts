@@ -38,6 +38,9 @@ import { SidebarAdminComponent } from './components/sidebar-admin/sidebar-admin.
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { ProfileNavbarComponent } from './profile-navbar/profile-navbar.component';
+import { AdminDefaultComponent } from './components/admin-default/admin-default.component';
+import { AdminAddAccountComponent } from './components/admin-add-account/admin-add-account.component';
+import { AdminDeactivateAccountComponent } from './components/admin-deactivate-account/admin-deactivate-account.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +59,10 @@ import { ProfileNavbarComponent } from './profile-navbar/profile-navbar.componen
     PendingLibraryListComponent,
     SidebarAdminComponent,
     LoginComponent,
-    ProfileNavbarComponent
+    ProfileNavbarComponent,
+    AdminDefaultComponent,
+    AdminAddAccountComponent,
+    AdminDeactivateAccountComponent
   ],
   imports: [
     BrowserModule,
