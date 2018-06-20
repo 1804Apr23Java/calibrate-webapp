@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { LibraryListService } from '../../services/library-list.service';
-import { Library } from '../../classes/library';
+import { Library } from '../../models/library';
 import { Router } from '@angular/router';
+import { GatewayService } from '../../services/gateway.service';
 
 @Component({
   selector: 'app-library-list',
@@ -11,13 +11,13 @@ import { Router } from '@angular/router';
 export class LibraryListComponent implements OnInit {
   public libraryList: Library[];
 
-  constructor(private libraryService: LibraryListService, private router: Router) {}
+  constructor(private gatewayService: GatewayService, private router: Router) {}
 
   ngOnInit() {
     this.getPublicLibraries();
   }
   getPublicLibraries(): void {
-    this.libraryService.getPublicLibraries().subscribe(
+    this.gatewayService.getPublicLibraries().subscribe(
       (libraryList: Library[]) => {
         this.libraryList = libraryList;
       },

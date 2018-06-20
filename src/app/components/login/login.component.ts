@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from '../../services/account.service';
-import { Account } from '../../classes/account';
+import { Account } from '../../models/account';
 import { Router } from '@angular/router';
+import { GatewayService } from '../../services/gateway.service';
 
 @Component({
   selector: 'app-login',
@@ -10,14 +10,14 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private accountService: AccountService, private router: Router) { }
+  constructor(private gatewayService: GatewayService, private router: Router) { }
 
   email: string;
   password: string;
   account: Account;
 
   accountLogin(): void {
-    this.accountService.accountLogin(this.email, this.password).subscribe(
+    this.gatewayService.accountLogin(this.email, this.password).subscribe(
       (returnedAccount: Account) => {
         this.account = returnedAccount;
         console.log(this.account);
