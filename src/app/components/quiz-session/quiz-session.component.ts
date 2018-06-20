@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Quiz } from '../../classes/quiz';
+import { Quiz } from '../../models/quiz';
 import { GatewayService } from '../../services/gateway.service';
 
 @Component({

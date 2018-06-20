@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Library } from '../../classes/library';
+import { Library } from '../../models/library';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
-import { Question } from '../../classes/question';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { DataSource } from '@angular/cdk/collections';
 import { GatewayService } from '../../services/gateway.service';

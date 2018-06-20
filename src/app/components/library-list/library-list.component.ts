@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Library } from '../../classes/library';
+import { Library } from '../../models/library';
 import { Router } from '@angular/router';
 import { GatewayService } from '../../services/gateway.service';
 

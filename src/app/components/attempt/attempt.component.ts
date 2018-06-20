@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Attempt } from '../../classes/attempt';
+import { Attempt } from '../../models/attempt';
 import {MatTableDataSource} from '@angular/material';
 import { GatewayService } from '../../services/gateway.service';
 
