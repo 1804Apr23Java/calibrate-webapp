@@ -1,10 +1,28 @@
 .questionCard {
     width: 95%;
-    margin: 2.5% auto; 
+    margin: 2.5% auto;
 }
 
-.testing{
-    /*background-color: orangered;
-    text-decoration: underline;*/
-  
+.flex-grid {
+  display: flex;
+}
+
+.col-1 {
+  flex: 1;
+  padding: 20px;
+}
+
+.col-3 {
+  flex: 3;
+  padding: 20px;
+}
+
+.selected{
+  background-color: #eee;
+}
+
+.index-button{
+  height: 50px;
+  width: 50px;
+  font-size: 1.6em;
 }

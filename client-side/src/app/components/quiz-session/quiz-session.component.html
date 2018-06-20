@@ -5,29 +5,41 @@
     {{quiz.name}}: {{quiz.questions.length}} questions
   </mat-toolbar>
 
-  <div *ngFor="let question of quiz.questions; let i = index">
+  <div class="flex-grid">
+    <div class="col-3">
+      <!-- QUESTION DISPLAY CARD -->
+      <div *ngFor="let question of quiz.questions; let i = index">
+        <mat-card class="questionCard" *ngIf="i == currentQuestionIndex">
+          <mat-card-title>{{question.value}}</mat-card-title>
+          <mat-divider></mat-divider>
+          <br>
+          <mat-radio-group>
+            <mat-card-content *ngFor="let answer of question.answers">
+              <!--user this later 2way-->
+              <mat-radio-button value="{{answer.answerId}}">{{answer.value}}
+              </mat-radio-button>
+            </mat-card-content>
+          </mat-radio-group>
 
-    <mat-card class="questionCard" *ngIf="i == currentQuestionIndex">
-      <mat-card-title>{{question.value}}</mat-card-title>
-      <mat-divider></mat-divider>
-      <br>
-      <mat-radio-group>
+          <mat-action-row>
+            <button mat-button color="primary" (click)="firstQuestion()" [disabled]="currentQuestionIndex == 0">First</button>
+            <button mat-button color="primary" (click)="prevQuestion()" [disabled]="currentQuestionIndex == 0">Previous</button>
+            <button mat-button color="primary" (click)="nextQuestion()" [disabled]="currentQuestionIndex == this.quiz.questions.length - 1">Next</button>
+            <button mat-button color="primary" (click)="lastQuestion()" [disabled]="currentQuestionIndex == this.quiz.questions.length - 1">Last</button>
+          </mat-action-row>
+        </mat-card>
+      </div>
+    </div>
 
-        <mat-card-content *ngFor="let answer of question.answers">
-          <!--user this later 2way-->
-          <mat-radio-button value="{{answer.answerId}}">{{answer.value}}
-          </mat-radio-button>
-
-        </mat-card-content>
-      </mat-radio-group>
-
-      <mat-action-row>
-        <button mat-button color="primary" (click)="firstQuestion()" [disabled]="currentQuestionIndex == 0">First</button>
-        <button mat-button color="primary" (click)="prevQuestion()" [disabled]="currentQuestionIndex == 0">Previous</button>
-        <button mat-button color="primary" (click)="nextQuestion()" [disabled]="currentQuestionIndex == this.quiz.questions.length - 1">Next</button>
-        <button mat-button color="primary" (click)="lastQuestion()" [disabled]="currentQuestionIndex == this.quiz.questions.length - 1">Last</button>
-      </mat-action-row>
-    </mat-card>
-
+    <!-- SIDEBAR FOR QUESTION NAVIGATION BY INDEX -->
+    <div class="col-1">
+      <mat-card>
+        <mat-grid-list cols="3" rowHeight="1:1">
+          <mat-grid-tile *ngFor="let question of quiz.questions; let i = index">
+            <button mat-button color="primary" (click)="this.setQuestion(i)" class="index-button" [class.selected]="i == currentQuestionIndex">{{i}}</button>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-card>
+    </div>
   </div>
 </div>

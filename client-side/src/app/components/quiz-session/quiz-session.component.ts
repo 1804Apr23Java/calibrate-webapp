@@ -28,7 +28,7 @@ export class QuizSessionComponent implements OnInit {
   }
 
   // currentQuestionIndex manipulation
-  setCurrentQuestionIndex(index: number): void {
+  setQuestion(index: number): void {
     this.currentQuestionIndex = index;
   }
 
