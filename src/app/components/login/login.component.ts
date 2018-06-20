@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
     this.gatewayService.accountLogin(this.email, this.password).subscribe(
       (returnedAccount: Account) => {
         this.account = returnedAccount;
-        console.log(this.account);
 
         // start Session, save user Account somewhere, etc.
         sessionStorage.setItem('accountId', this.account.accountId.toString());

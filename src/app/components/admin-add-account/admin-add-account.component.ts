@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GatewayService } from '../../services/gateway.service';
+import { Account } from '../../models/account';
 
 @Component({
   selector: 'app-admin-add-account',
@@ -7,12 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminAddAccountComponent implements OnInit {
 
-  constructor() { }
+  constructor(private gatewayService: GatewayService) { }
 
   email: string;
   password: string;
   firstname: string;
   lastname: string;
+  account: Account;
+
+  addNewAccount(): void {
+    this.gatewayService.addNewAccount(this.email, this.password, this.firstname, this.lastname).subscribe(
+      (returnedAccount: Account) => {
+        this.account = returnedAccount;
+        console.log('Account posted!  Check database.');
+        console.log(this.account);
+
+      //   this.router.navigate(['profile/' + this.account.accountId.toString()]);
+
+      }, error => { console.log(`Error: ${JSON.stringify(error)}`); }
+    );
+  }
 
   ngOnInit() {
   }
