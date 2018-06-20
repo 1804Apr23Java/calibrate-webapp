@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { QuizService } from '../../services/quiz.service';
-import { Quiz } from '../../classes/quiz';
+import { Quiz } from '../../models/quiz';
+import { GatewayService } from '../../services/gateway.service';
 
 @Component({
   selector: 'app-quiz-session',
@@ -10,14 +10,14 @@ import { Quiz } from '../../classes/quiz';
 export class QuizSessionComponent implements OnInit {
   public quiz: Quiz;
 
-  constructor(private quizService: QuizService) { }
+  constructor(private gatewayService: GatewayService) { }
 
   ngOnInit() {
-    this.getQuizById();
+    this.getQuizById(122);
   }
 
-  getQuizById(): void {
-    this.quizService.getQuizById().subscribe(
+  getQuizById(id: number): void {
+    this.gatewayService.getQuizById(id).subscribe(
       (quiz: Quiz) => {
         this.quiz = quiz;
       },

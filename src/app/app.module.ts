@@ -23,7 +23,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { QuizzesComponent } from './components/quizzes/quizzes.component';
-import { AccountService } from './services/account.service';
+import { GatewayService } from './services/gateway.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LibraryListComponent } from './components/library-list/library-list.component';
 import { LibraryComponent } from './components/library/library.component';
@@ -37,7 +37,10 @@ import { PendingLibraryListComponent } from './components/pending-library-list/p
 import { SidebarAdminComponent } from './components/sidebar-admin/sidebar-admin.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
-import { ProfileNavbarComponent } from './profile-navbar/profile-navbar.component';
+import { ProfileNavbarComponent } from './components/profile-navbar/profile-navbar.component';
+import { AdminDefaultComponent } from './components/admin-default/admin-default.component';
+import { AdminAddAccountComponent } from './components/admin-add-account/admin-add-account.component';
+import { AdminDeactivateAccountComponent } from './components/admin-deactivate-account/admin-deactivate-account.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +59,10 @@ import { ProfileNavbarComponent } from './profile-navbar/profile-navbar.componen
     PendingLibraryListComponent,
     SidebarAdminComponent,
     LoginComponent,
-    ProfileNavbarComponent
+    ProfileNavbarComponent,
+    AdminDefaultComponent,
+    AdminAddAccountComponent,
+    AdminDeactivateAccountComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +86,7 @@ import { ProfileNavbarComponent } from './profile-navbar/profile-navbar.componen
     HttpClientModule,
     FormsModule
   ],
-  providers: [AccountService],
+  providers: [GatewayService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

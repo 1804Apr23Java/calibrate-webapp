@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Library } from '../../classes/library';
-import { LibraryListService } from '../../services/library-list.service';
+import { Library } from '../../models/library';
+import { GatewayService } from '../../services/gateway.service';
 
 @Component({
   selector: 'app-pending-library-list',
@@ -11,13 +11,13 @@ export class PendingLibraryListComponent implements OnInit {
 
   public libraryList: Library[];
 
-  constructor(private libraryService: LibraryListService) {}
+  constructor(private gatewayService: GatewayService) {}
 
   ngOnInit() {
     this.getPendingLibraries();
   }
   getPendingLibraries(): void {
-    this.libraryService.getPendingLibraries().subscribe(
+    this.gatewayService.getPendingLibraries().subscribe(
       (libraryList: Library[]) => {
         this.libraryList = libraryList;
       },

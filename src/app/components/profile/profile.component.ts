@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Account } from '../../classes/account';
-import { AccountService } from '../../services/account.service';
+import { Account } from '../../models/account';
 import { Router } from '@angular/router';
+import { GatewayService } from '../../services/gateway.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,12 +10,12 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   private accountId: String = sessionStorage.getItem('accountId');
-  constructor(private accountService: AccountService, private router: Router) {}
+  constructor(private gatewayService: GatewayService, private router: Router) {}
 
-  public account: Account = new Account();
+  public account: Account;
 
   getAccountById(id: number): void {
-    this.accountService.getAccountById(id).subscribe(
+    this.gatewayService.getAccountById(id).subscribe(
       (account: Account) => {
         this.account = account;
       },
