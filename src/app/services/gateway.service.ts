@@ -48,6 +48,15 @@ export class GatewayService {
     return this.httpClient.post<Account>(`${this.backendUrl}/account/add`, new Account(email, firstname + lastname, password));
   }
 
+  public getAllAccounts(): Observable<Account[]> {
+    return this.httpClient.get<Account[]>(`${this.backendUrl}/account/all`);
+  }
+
+  // WRITE HTTPCLIENT PATCH METHOD TO DEACTIVATE ACCOUNT
+  public deactivateAccount(): Observable<boolean> {
+    return null;
+  }
+
   public getQuestionById(id: number): Observable<Question> {
     return this.httpClient.get<Question>(`${this.backendUrl}/question/${id}`);
   }
