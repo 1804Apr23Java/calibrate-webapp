@@ -23,7 +23,7 @@ export class QuestionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getQuestionById(265);
+    this.getQuestionById(1);
   }
 
 }

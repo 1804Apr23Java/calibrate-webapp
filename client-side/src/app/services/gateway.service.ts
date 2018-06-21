@@ -14,7 +14,7 @@ export class GatewayService {
 
   constructor(private httpClient: HttpClient) { }
 
-  private backendUrl = 'http://ec2-184-72-131-208.compute-1.amazonaws.com:8080/CalibrateBackend';
+  private backendUrl = 'http://ec2-174-129-59-140.compute-1.amazonaws.com:8080/CalibrateBackend';
 
   public getQuizById(id: number): Observable<Quiz> {
     return this.httpClient.get<Quiz>(`${this.backendUrl}/quiz/${id}`);
@@ -22,6 +22,10 @@ export class GatewayService {
 
   public getLibraryById(libraryId: number): Observable<Library> {
     return this.httpClient.get<Library>(`${this.backendUrl}/library/${libraryId}`);
+  }
+
+  public getLibrariesByAccountId(accountId: number): Observable<Library[]> {
+    return this.httpClient.get<Library[]>(`${this.backendUrl}/library/byAccount/${accountId}`);
   }
 
   public getPublicLibraries(): Observable<Library[]> {
@@ -44,8 +48,8 @@ export class GatewayService {
       { 'email': email, 'password': password });
   }
 
-  public addNewAccount(email: string, password: string, firstname: string, lastname: string): Observable<Account> {
-    return this.httpClient.post<Account>(`${this.backendUrl}/account/add`, new Account(email, firstname + lastname, password));
+  public addNewAccount(email: string, password: string, firstName: string, lastName: string): Observable<Account> {
+    return this.httpClient.post<Account>(`${this.backendUrl}/account/add`, new Account(email, firstName, lastName, password));
   }
 
   public getAllAccounts(): Observable<Account[]> {

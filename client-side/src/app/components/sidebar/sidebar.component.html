@@ -20,10 +20,10 @@
       </ng-template>
       <!-- START QUIZ OPTIONS -->
       <mat-nav-list>
-        <a mat-list-item routerLink="my-libraries">My Libraries</a>
+        <a mat-list-item routerLink="my-libraries" (click)="setUserLibraries()">My Libraries</a>
       </mat-nav-list>
       <mat-nav-list>
-        <a mat-list-item routerLink="public-libraries">Public Libraries</a>
+        <a mat-list-item routerLink="public-libraries" (click)="setPublicLibraries()">Public Libraries</a>
       </mat-nav-list>
       <!-- END QUIZ OPTIONS -->
     </mat-tab>
