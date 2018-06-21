@@ -22,10 +22,10 @@
           </mat-radio-group>
 
           <mat-action-row>
-            <button mat-button color="primary" (click)="firstQuestion()" [disabled]="currentQuestionIndex == 0">First</button>
-            <button mat-button color="primary" (click)="prevQuestion()" [disabled]="currentQuestionIndex == 0">Previous</button>
-            <button mat-button color="primary" (click)="nextQuestion()" [disabled]="currentQuestionIndex == this.quiz.questions.length - 1">Next</button>
-            <button mat-button color="primary" (click)="lastQuestion()" [disabled]="currentQuestionIndex == this.quiz.questions.length - 1">Last</button>
+            <button mat-button color="accent" (click)="firstQuestion()" [disabled]="currentQuestionIndex == 0"><mat-icon>fast_rewind</mat-icon>First</button>
+            <button mat-button color="accent" (click)="prevQuestion()" [disabled]="currentQuestionIndex == 0"><mat-icon>skip_previous</mat-icon>Previous</button>
+            <button mat-button color="accent" (click)="nextQuestion()" [disabled]="currentQuestionIndex == this.quiz.questions.length - 1">Next<mat-icon>skip_next</mat-icon></button>
+            <button mat-button color="accent" (click)="lastQuestion()" [disabled]="currentQuestionIndex == this.quiz.questions.length - 1">Last<mat-icon>fast_forward</mat-icon></button>
           </mat-action-row>
         </mat-card>
       </div>
@@ -34,11 +34,19 @@
     <!-- SIDEBAR FOR QUESTION NAVIGATION BY INDEX -->
     <div class="col-1">
       <mat-card>
-        <mat-grid-list cols="3" rowHeight="1:1">
-          <mat-grid-tile *ngFor="let question of quiz.questions; let i = index">
-            <button mat-button color="primary" (click)="this.setQuestion(i)" class="index-button" [class.selected]="i == currentQuestionIndex">{{i}}</button>
-          </mat-grid-tile>
-        </mat-grid-list>
+        <mat-tab-group mat-stretch-tabs style="max-width: 800px;">
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon>question_answer</mat-icon>
+              Questions
+            </ng-template>
+            <mat-grid-list cols="3" rowHeight="1:1">
+              <mat-grid-tile *ngFor="let question of quiz.questions; let i = index">
+                <button mat-fab color="primary" (click)="this.setQuestion(i)" class="index-button" [class.selected]="i == currentQuestionIndex">{{i}}</button>
+              </mat-grid-tile>
+            </mat-grid-list>
+          </mat-tab>
+        </mat-tab-group>
       </mat-card>
     </div>
   </div>
