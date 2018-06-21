@@ -22,7 +22,11 @@
 }
 
 .index-button{
-  height: 50px;
-  width: 50px;
-  font-size: 1.6em;
+  font-size: 1.2em;
+  color: white;
+}
+
+.index-button-container {
+  max-height: 320px;
+  overflow: auto;
 }

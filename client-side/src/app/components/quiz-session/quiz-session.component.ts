@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Quiz } from '../../models/quiz';
+import { Question } from '../../models/question';
+
 import { GatewayService } from '../../services/gateway.service';
 
 @Component({
@@ -14,7 +16,7 @@ export class QuizSessionComponent implements OnInit {
   constructor(private gatewayService: GatewayService) { }
 
   ngOnInit() {
-    this.getQuizById(122);
+    this.getQuizById(47);
     this.currentQuestionIndex = 0;
   }
 
@@ -25,6 +27,18 @@ export class QuizSessionComponent implements OnInit {
       },
       error => console.log(`Error: ${error}`)
     );
+  }
+
+  // returns true if more than one correct answer (for checkbox)
+  // returns false if one correct answer (for radio buttons)
+  checkForMultipleCorrectAnswers(question: Question): boolean {
+    let correctAnswers = 0;
+    for (const answer of question.answers) {
+      if (answer.isCorrect) {
+        correctAnswers += 1;
+      }
+    }
+    return correctAnswers > 1;
   }
 
   // currentQuestionIndex manipulation
