@@ -13,13 +13,24 @@
           <mat-card-title>{{question.value}}</mat-card-title>
           <mat-divider></mat-divider>
           <br>
-          <mat-radio-group>
+          <mat-radio-group *ngIf="!checkForMultipleCorrectAnswers(question); else checkboxQuestion">
             <mat-card-content *ngFor="let answer of question.answers">
               <!--user this later 2way-->
               <mat-radio-button value="{{answer.answerId}}">{{answer.value}}
               </mat-radio-button>
             </mat-card-content>
           </mat-radio-group>
+
+          <ng-template #checkboxQuestion>
+              <mat-selection-list role="list">
+                  <mat-list-option checkboxPosition="before" *ngFor="let answer of question.answers">
+                    <p>
+                      <span>{{answer.value}}</span>
+                      <br>
+                    </p>
+                  </mat-list-option>
+                </mat-selection-list>
+          </ng-template>
 
           <mat-action-row>
             <button mat-button color="accent" (click)="firstQuestion()" [disabled]="currentQuestionIndex == 0"><mat-icon>fast_rewind</mat-icon>First</button>
@@ -34,7 +45,7 @@
     <!-- SIDEBAR FOR QUESTION NAVIGATION BY INDEX -->
     <div class="col-1">
       <mat-card>
-        <mat-tab-group mat-stretch-tabs style="max-width: 800px;">
+        <mat-tab-group mat-stretch-tabs style="max-width: 800px;" class="index-button-container">
           <mat-tab>
             <ng-template mat-tab-label>
               <mat-icon>question_answer</mat-icon>

@@ -25,3 +25,8 @@
   font-size: 1.2em;
   color: white;
 }
+
+.index-button-container {
+  max-height: 320px;
+  overflow: auto;
+}
