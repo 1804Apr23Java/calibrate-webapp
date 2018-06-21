@@ -17,7 +17,7 @@ export class QuizSessionComponent implements OnInit {
   constructor(private gatewayService: GatewayService) {}
 
   ngOnInit() {
-    this.getQuizById(47);
+    this.getQuizById(1);
     this.currentQuestionIndex = 0;
   }
 

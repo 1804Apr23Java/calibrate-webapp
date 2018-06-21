@@ -9,6 +9,14 @@ export class SidebarComponent implements OnInit {
 
   constructor() { }
 
+  setUserLibraries() {
+    sessionStorage.setItem('getUserLibraries', 'true');
+  }
+
+  setPublicLibraries() {
+    sessionStorage.setItem('getPublicLibraries', 'true');
+  }
+
   ngOnInit() {
   }
 
