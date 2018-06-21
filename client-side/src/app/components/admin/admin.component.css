@@ -1,15 +1,11 @@
 .flex-grid {
-    display: flex;
-  
-   }
-  .col-1 {
-    flex: 1;
-    padding: 20px;
-   
-  }
-  .col-2 {
-    flex: 3;
-    padding: 20px;
-  }
- 
- 
+  display: flex;
+}
+.col-1 {
+  flex: 1;
+  padding: 20px;
+}
+.col-2 {
+  flex: 3;
+  padding: 20px;
+}

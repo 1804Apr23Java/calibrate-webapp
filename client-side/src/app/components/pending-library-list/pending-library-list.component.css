@@ -1,14 +1,13 @@
 mat-card {
-    width: calc(100% - 70px);
-    height: calc(100% - 70px);
-  }
+  width: calc(100% - 70px);
+  height: calc(100% - 70px);
+}
 
-  .success {
-    color: green;
+.success {
+  color: green;
 }
 
 .center{
   margin-left: 10px;
   margin-right: auto;
 }
-  
