@@ -13,7 +13,7 @@ export class QuizSessionComponent implements OnInit {
   public quiz: Quiz;
   public currentQuestionIndex: number;
 
-  constructor(private gatewayService: GatewayService) { }
+  constructor(private gatewayService: GatewayService) {}
 
   ngOnInit() {
     this.getQuizById(47);
@@ -60,5 +60,15 @@ export class QuizSessionComponent implements OnInit {
 
   lastQuestion(): void {
     this.currentQuestionIndex = this.quiz.questions.length - 1;
+  }
+
+  // radio button behavior workaround
+  // Material provides a great checkbox implementation but not radio buttons
+  // this method listens for checkbox clicks and deselects all other options, emulating radio button behavior
+  handleSelection(event) {
+    if (event.option.selected) {
+      event.source.deselectAll();
+      event.option._setSelected(true);
+    }
   }
 }
