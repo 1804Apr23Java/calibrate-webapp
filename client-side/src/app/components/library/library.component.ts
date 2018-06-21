@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Library } from '../../models/library';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { animate, state, style, transition, trigger } from '@angular/animations';
@@ -23,9 +23,10 @@ import { GatewayService } from '../../services/gateway.service';
 
 
 
-export class LibraryComponent implements OnInit {
+export class LibraryComponent implements OnInit, OnDestroy {
 
   public library: Library = new Library();
+  private isPending: boolean;
 
   constructor(private gatewayService: GatewayService) { }
 
@@ -70,5 +71,10 @@ export class LibraryComponent implements OnInit {
 
   ngOnInit() {
     this.getLibraryById(+sessionStorage.getItem('libraryId'));
+    this.isPending = sessionStorage.getItem('isPending') === 'true';
+  }
+
+  ngOnDestroy() {
+    sessionStorage.removeItem('isPending');
   }
 }

@@ -1,8 +1,11 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="mat-elevation-z8 attempt-table">
   Add Account
 </mat-toolbar>
 
-<div>
+<div class="login-form">
+  <div class="aside-1"></div>
+ 
+  <div >
   <mat-form-field>
     <input matInput placeholder="First Name " required [(ngModel)]="firstname">
   </mat-form-field>
@@ -18,6 +21,7 @@
   <mat-form-field>
     <input matInput placeholder="Password" type="password" required [(ngModel)]="password">
   </mat-form-field>
-  <br>
-  <button mat-button color="primary" class="login-button-center" (click)="addNewAccount()">Submit New User &gt;</button>
 </div>
+  <div class="aside-2"></div>
+</div>
+<button mat-button color="primary" class="login-button-center" (click)="addNewAccount()"> Submit New User &gt;</button>

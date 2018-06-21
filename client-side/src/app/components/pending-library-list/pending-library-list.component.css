@@ -7,7 +7,7 @@ mat-card {
   color: green;
 }
 
-.center {
-  margin-left: auto;
+.center{
+  margin-left: 10px;
   margin-right: auto;
 }
