@@ -2,15 +2,19 @@ export class Account {
 
     public accountId: number;
     public email: string;
-    public isAdmin: boolean;
     public password: string;
-    public username: string;
+    public firstName: string;
+    public lastName: string;
+    public isAdmin: boolean;
+    public isActive: boolean;
 
-    constructor(email: string, username: string, password: string) {
+    constructor(email: string, firstName: string, lastName: string, password: string) {
         this.accountId = 0;
         this.email = email;
-        this.isAdmin = false;
-        this.username = username;
         this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.isAdmin = false;
+        this.isActive = true;
     }
 }
