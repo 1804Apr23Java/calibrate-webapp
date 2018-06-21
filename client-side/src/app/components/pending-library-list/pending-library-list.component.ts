@@ -21,7 +21,7 @@ export class PendingLibraryListComponent implements OnInit {
   getPendingLibraries(): void {
     this.gatewayService.getPendingLibraries().subscribe(
       (libraryList: Library[]) => {
-        this.libraryList = libraryList;
+        this.libraryList = libraryList.sort((library1, library2) => library1.name.localeCompare(library2.name));
       },
       error => console.log(`Error: ${error}`)
     );

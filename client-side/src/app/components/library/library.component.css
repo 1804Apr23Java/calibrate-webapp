@@ -23,3 +23,7 @@ mat-radio-group {
 .success {
   color: green;
 }
+.center{
+  text-align: center;
+  
+}
