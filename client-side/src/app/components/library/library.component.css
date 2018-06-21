@@ -20,3 +20,6 @@ mat-radio-group {
   display: inline-flex;
   flex-direction: column;
 }
+.success {
+  color: green;
+}

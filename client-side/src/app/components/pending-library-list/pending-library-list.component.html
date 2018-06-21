@@ -4,19 +4,10 @@
 <mat-grid-list cols="3" rowHeight="3:2">
 
   <mat-grid-tile *ngFor="let library of libraryList">
-    <mat-card>
+    <mat-card (click)="this.getLibrary(library.libraryId)">
       <mat-card-title>{{library.name}}</mat-card-title>
       <mat-card-subtitle>{{library.questions.length}} questions</mat-card-subtitle>
-      <div class="center">
-        <span class="success">
-          <button mat-button>
-            <mat-icon>check_circle_outline</mat-icon>
-          </button>
-        </span>
-        <button mat-button color="warn">
-          <mat-icon>highlight_off</mat-icon>
-        </button>
-      </div>
+    
     </mat-card>
   </mat-grid-tile>
   <!--<button mat-button>check_circle_outline</button>-->

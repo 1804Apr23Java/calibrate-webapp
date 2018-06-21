@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Library } from '../../models/library';
 import { GatewayService } from '../../services/gateway.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pending-library-list',
@@ -11,7 +12,8 @@ export class PendingLibraryListComponent implements OnInit {
 
   public libraryList: Library[];
 
-  constructor(private gatewayService: GatewayService) {}
+
+  constructor(private gatewayService: GatewayService, private router: Router) {}
 
   ngOnInit() {
     this.getPendingLibraries();
@@ -24,4 +26,10 @@ export class PendingLibraryListComponent implements OnInit {
       error => console.log(`Error: ${error}`)
     );
   }
+  getLibrary(libraryId: number) {
+    sessionStorage.setItem('libraryId', libraryId.toString());
+    sessionStorage.setItem('isPending', true.toString());
+    this.router.navigate(['library']);
+  }
+
 }
