@@ -1,26 +1,49 @@
 <!--This is where you view the current quiz you are taking-->
 
 <div *ngIf="quiz">
-  <mat-toolbar color="primary">
-    {{quiz.name}}: {{quiz.questions.length}} questions
+  <mat-toolbar color="primary" class="quiz-session-header">
+    Quiz: {{quiz.name}}
   </mat-toolbar>
 
   <div class="flex-grid">
     <div class="col-3">
+      <div class="question-number-header">
+        <mat-list-item>
+          <strong>
+              Question <span class="question-number-label">{{currentQuestionIndex + 1}}</span> out of <span class="question-number-label">{{ quiz.questions.length }}</span>
+          </strong>
+
+        </mat-list-item>
+
+      </div>
       <!-- QUESTION DISPLAY CARD -->
       <div *ngFor="let question of quiz.questions; let i = index">
         <mat-card class="questionCard" *ngIf="i == currentQuestionIndex">
+
           <mat-card-title>{{question.value}}</mat-card-title>
           <mat-divider></mat-divider>
           <br>
+
+          <!-- IF this is a radio button question -->
           <mat-radio-group *ngIf="!checkForMultipleCorrectAnswers(question); else checkboxQuestion">
-            <mat-card-content *ngFor="let answer of question.answers">
-              <!--user this later 2way-->
-              <mat-radio-button value="{{answer.answerId}}">{{answer.value}}
+            <!-- <mat-card-content *ngFor="let answer of question.answers">
+              <mat-radio-button value="{{answer.answerId}}" >
+                <label class="question-radio-button">
+                    {{answer.value}}
+                </label>
               </mat-radio-button>
-            </mat-card-content>
+            </mat-card-content> -->
+            <mat-selection-list role="list" (selectionChange)="handleSelection($event)">
+                <mat-list-option checkboxPosition="before" *ngFor="let answer of question.answers" class="checkbox-to-radio">
+                  <p>
+                    <span>{{answer.value}}</span>
+                    <br>
+                  </p>
+                </mat-list-option>
+              </mat-selection-list>
           </mat-radio-group>
 
+          <!-- ELSE if this is a checkbox question -->
           <ng-template #checkboxQuestion>
               <mat-selection-list role="list">
                   <mat-list-option checkboxPosition="before" *ngFor="let answer of question.answers">
@@ -32,11 +55,12 @@
                 </mat-selection-list>
           </ng-template>
 
+          <!-- Previous/Next navigation buttons-->
           <mat-action-row>
-            <button mat-button color="accent" (click)="firstQuestion()" [disabled]="currentQuestionIndex == 0"><mat-icon>fast_rewind</mat-icon>First</button>
-            <button mat-button color="accent" (click)="prevQuestion()" [disabled]="currentQuestionIndex == 0"><mat-icon>skip_previous</mat-icon>Previous</button>
-            <button mat-button color="accent" (click)="nextQuestion()" [disabled]="currentQuestionIndex == this.quiz.questions.length - 1">Next<mat-icon>skip_next</mat-icon></button>
-            <button mat-button color="accent" (click)="lastQuestion()" [disabled]="currentQuestionIndex == this.quiz.questions.length - 1">Last<mat-icon>fast_forward</mat-icon></button>
+            <button mat-raised-button color="accent" (click)="firstQuestion()" [disabled]="currentQuestionIndex == 0" class="prev-next-nav-button"><mat-icon>fast_rewind</mat-icon>First</button>
+            <button mat-raised-button color="accent" (click)="prevQuestion()" [disabled]="currentQuestionIndex == 0" class="prev-next-nav-button"><mat-icon>skip_previous</mat-icon>Previous</button>
+            <button mat-raised-button color="accent" (click)="nextQuestion()" [disabled]="currentQuestionIndex == this.quiz.questions.length - 1" class="prev-next-nav-button">Next<mat-icon>skip_next</mat-icon></button>
+            <button mat-raised-button color="accent" (click)="lastQuestion()" [disabled]="currentQuestionIndex == this.quiz.questions.length - 1" class="prev-next-nav-button">Last<mat-icon>fast_forward</mat-icon></button>
           </mat-action-row>
         </mat-card>
       </div>
@@ -51,13 +75,18 @@
               <mat-icon>question_answer</mat-icon>
               Questions
             </ng-template>
+
+            <!-- Question index button tile -->
             <mat-grid-list cols="3" rowHeight="1:1">
               <mat-grid-tile *ngFor="let question of quiz.questions; let i = index">
-                <button mat-fab color="primary" (click)="this.setQuestion(i)" class="index-button" [class.selected]="i == currentQuestionIndex">{{i}}</button>
+                <button mat-fab color="primary" (click)="this.setQuestion(i)" class="index-button" [class.selected]="i == currentQuestionIndex">{{i + 1}}</button>
               </mat-grid-tile>
             </mat-grid-list>
           </mat-tab>
         </mat-tab-group>
+        <!-- Submit/Save buttons -->
+        <button mat-raised-button color="primary" class="submit-button" style="color: white;">Submit</button>
+        <button mat-button color="accent" class="submit-button"><mat-icon>save</mat-icon>Save</button>
       </mat-card>
     </div>
   </div>
