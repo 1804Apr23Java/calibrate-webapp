@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Quiz } from '../../models/quiz';
-import { Question } from '../../models/question';
+import { Question, Answers } from '../../models/question';
 
 import { GatewayService } from '../../services/gateway.service';
 
@@ -12,6 +12,7 @@ import { GatewayService } from '../../services/gateway.service';
 export class QuizSessionComponent implements OnInit {
   public quiz: Quiz;
   public currentQuestionIndex: number;
+  public selectedAnswersSet: Set<Answers>;
 
   constructor(private gatewayService: GatewayService) {}
 
@@ -20,6 +21,7 @@ export class QuizSessionComponent implements OnInit {
     this.currentQuestionIndex = 0;
   }
 
+  // Service accessor
   getQuizById(id: number): void {
     this.gatewayService.getQuizById(id).subscribe(
       (quiz: Quiz) => {
@@ -27,6 +29,19 @@ export class QuizSessionComponent implements OnInit {
       },
       error => console.log(`Error: ${error}`)
     );
+  }
+
+  // Set manipulator
+  updateSelectedAnswersSet(event, answer: Answers): void {
+    if (event.option.selected) {
+      this.selectedAnswersSet.add(answer);
+    } else {
+      this.selectedAnswersSet.delete(answer);
+    }
+
+    // PRINT SET for testing
+    // remove this later
+    console.log(this.selectedAnswersSet);
   }
 
   // returns true if more than one correct answer (for checkbox)
@@ -67,6 +82,7 @@ export class QuizSessionComponent implements OnInit {
   // this method listens for checkbox clicks and deselects all other options, emulating radio button behavior
   handleSelection(event) {
     if (event.option.selected) {
+      console.log(event);
       event.source.deselectAll();
       event.option._setSelected(true);
     }

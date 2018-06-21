@@ -34,7 +34,7 @@
               </mat-radio-button>
             </mat-card-content> -->
             <mat-selection-list role="list" (selectionChange)="handleSelection($event)">
-                <mat-list-option checkboxPosition="before" *ngFor="let answer of question.answers" class="checkbox-to-radio">
+                <mat-list-option checkboxPosition="before" *ngFor="let answer of question.answers" class="checkbox-to-radio" (selectionChange)="updateSelectedAnswersSet($event, answer)">
                   <p>
                     <span>{{answer.value}}</span>
                     <br>
@@ -46,7 +46,7 @@
           <!-- ELSE if this is a checkbox question -->
           <ng-template #checkboxQuestion>
               <mat-selection-list role="list">
-                  <mat-list-option checkboxPosition="before" *ngFor="let answer of question.answers">
+                  <mat-list-option checkboxPosition="before" *ngFor="let answer of question.answers" (selectionChange)="updateSelectedAnswersSet($event, answer)">
                     <p>
                       <span>{{answer.value}}</span>
                       <br>
