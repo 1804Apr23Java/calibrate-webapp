@@ -18,7 +18,7 @@
   <mat-accordion class="headers-align mat-elevation-z8 libraryTable">
     <mat-expansion-panel *ngFor="let question of library.questions; let i = index" [attr.data-index]="i" [expanded]="step === i + 1"
       (opened)="setStep(i + 1)" hideToggle="true">
-      <mat-expansion-panel-header>
+      <mat-expansion-panel-header [collapsedHeight]="customCollapsedHeight">
         <mat-panel-title class="shrinkMe">
           Question {{i + 1}}
         </mat-panel-title>
@@ -51,9 +51,9 @@
 
 
 </div>
-<!--
-<mat-card class="center">
-<div *ngIf= "this.isPending" class="center">
+
+<mat-card *ngIf= "this.isPending" class="center">
+<div class="center">
   <span>
     <button mat-button routerLink="/admin/pending-library-list"> Approve
       <mat-icon class="success">check_circle_outline</mat-icon>
@@ -64,7 +64,7 @@
   </button>
 </div>
 </mat-card>
--->
+
 <!--
 <div *ngIf="dataSource">
   <mat-table [dataSource]="dataSource" class="mat-elevation-z8 libraryTable">

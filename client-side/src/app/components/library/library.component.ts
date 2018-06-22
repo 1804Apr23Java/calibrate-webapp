@@ -36,6 +36,7 @@ export class LibraryComponent implements OnInit, OnDestroy {
   // expandedElement: any;
   step = 0;
   questionNumber = 1;
+  customCollapsedHeight: String = '80px';
   /*
   displayedColumns = ['number', 'question', 'difficulty'];
   dataSource: MatTableDataSource<Question>;

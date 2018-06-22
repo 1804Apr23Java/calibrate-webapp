@@ -20,6 +20,7 @@ import { AdminDeactivateAccountComponent } from './components/admin-deactivate-a
 const routes: Routes = [
   { path: 'attempt', component: AttemptComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'library', component: LibraryComponent },
   { path: 'library-list', component: LibraryListComponent },
   { path: 'question', component: QuestionComponent },
   { path: 'profile', component: ProfileComponent },
