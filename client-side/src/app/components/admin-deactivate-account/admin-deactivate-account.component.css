@@ -1,0 +1,9 @@
+.account-table {
+  width: 100%;
+  height: 100%;
+}
+
+.table-container {
+  max-height: 400px;
+  overflow: auto;
+}

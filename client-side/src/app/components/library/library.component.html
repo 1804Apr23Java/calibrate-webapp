@@ -1,0 +1,109 @@
+<!--
+<div>
+    <mat-slide-toggle [(ngModel)]="multi">Allow Multi Expansion</mat-slide-toggle>
+  </div>
+  <p>Accordion Actions <sup>('Multi Expansion' mode only)</sup></p>
+  <div>
+    <button mat-button (click)="accordion.openAll()" [disabled]="!multi">Expand All</button>
+    <button mat-button (click)="accordion.closeAll()" [disabled]="!multi">Collapse All</button>
+  </div>
+-->
+
+<div *ngIf=library>
+  <mat-toolbar color="primary" class="mat-elevation-z8">
+    {{library.name}}
+  </mat-toolbar>
+
+  <mat-accordion class="headers-align mat-elevation-z8 libraryTable">
+    <mat-expansion-panel *ngFor="let question of library.questions; let i = index" [attr.data-index]="i" [expanded]="step === i + 1"
+      (opened)="setStep(i + 1)" hideToggle="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="shrinkMe">
+          Question {{i + 1}}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{question.value}}
+        </mat-panel-description>
+        <!--
+        <mat-panel-description>
+          Difficulty: {{question.difficulty}}
+        </mat-panel-description> -->
+        <!-- <mat-icon>arrow_downward</mat-icon> -->
+      </mat-expansion-panel-header>
+
+      <mat-radio-group>
+        <mat-radio-button *ngFor="let answer of question.answers; let j = index" [attr.data-index]="i">
+          <span *ngIf="answer.isCorrect">
+            <mat-icon>check_box</mat-icon>
+          </span>
+          {{answer.value}}
+        </mat-radio-button>
+        <br>
+      </mat-radio-group>
+
+      <mat-action-row>
+        <button mat-button color="primary" (click)="prevStep()">Previous</button>
+        <button mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+
+<mat-card class="center">
+<div *ngIf= "this.isPending" class="center">
+  <span>
+    <button mat-button routerLink="/admin/pending-library-list"> Approve
+      <mat-icon class="success">check_circle_outline</mat-icon>
+    </button>
+  </span>
+  <button mat-button routerLink="/admin/pending-library-list"> Deny
+    <mat-icon color="warn">highlight_off</mat-icon>
+  </button>
+</div>
+</mat-card>
+<!--
+<div *ngIf="dataSource">
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8 libraryTable">
+
+    <ng-container matColumnDef="number">
+      <mat-header-cell *matHeaderCellDef> Question Id </mat-header-cell>
+      <mat-cell *matCellDef="let question"> id </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="question">
+      <mat-header-cell *matHeaderCellDef> Question </mat-header-cell>
+      <mat-cell *matCellDef="let question"> {{question.value}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="difficulty">
+      <mat-header-cell *matHeaderCellDef> Difficulty </mat-header-cell>
+      <mat-cell *matCellDef="let question"> {{question.difficulty}} </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="expandedDetail">
+        <mat-cell *matCellDef="let detail">
+          The symbol for
+        </mat-cell>
+      </ng-container>
+
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" matRipple class="element-row" [class.expanded]="expandedElement == row"
+      (click)="expandedElement = row"></mat-row>
+    <mat-row *matRowDef="let row; columns: ['expandedDetail']; when: isExpansionDetailRow" [@detailExpand]="row.element == expandedElement ? 'expanded' : 'collapsed'"
+      style="overflow: hidden">
+    </mat-row>
+
+  </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
+-->
+<!--
+
+      <mat-list *ngFor="let answer of question.answers; let j = index" [attr.data-index]="i">
+          <mat-list-item >Answer {{j + 1}}: {{answer.value}} Right Answer: {{answer.isCorrect}}</mat-list-item>
+          <mat-divider></mat-divider>
+        </mat-list>
+-->

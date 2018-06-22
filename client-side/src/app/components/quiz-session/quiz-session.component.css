@@ -1,0 +1,63 @@
+.questionCard {
+    width: 95%;
+    margin: 2.5% auto;
+}
+
+.flex-grid {
+  display: flex;
+}
+
+.col-1 {
+  flex: 1;
+  padding: 20px;
+}
+
+.col-3 {
+  flex: 3;
+  padding: 20px;
+}
+
+.selected{
+  background-color: #eee;
+}
+
+.index-button{
+  font-size: 1.2em;
+  color: white;
+}
+
+.index-button-container {
+  max-height: 320px;
+  overflow: auto;
+}
+
+.submit-button {
+  font-size: 1.1em;
+  min-width: 50%;
+  margin-top: 20px;
+}
+
+.prev-next-nav-button {
+  margin: 10px;
+}
+
+.question-number-header {
+  font-size: 1.3em;
+  text-align: center;
+  width: 100%;
+}
+
+.question-number-label {
+  font-size: 1.6em;
+  color: #2196F3;
+}
+
+.quiz-session-header {
+  font-size: 2em;
+  color: white;
+}
+
+/*  */
+::ng-deep .checkbox-to-radio .mat-pseudo-checkbox{
+  border-radius: 50%;
+ }
