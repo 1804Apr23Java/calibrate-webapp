@@ -1,0 +1,12 @@
+endpoints:
+  mappings:
+    sensitive: false
+  beans:
+    sensitive: false
+    
+spring:
+  application:
+    name: client-side-boot
+    
+server:
+  port: 4200

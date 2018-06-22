@@ -1,0 +1,26 @@
+
+.divmain{
+  flex: 1;
+  background-color: magenta;
+}
+.aside-1{
+  flex:1;
+  }
+.aside-2{  
+  flex: 1;  
+  
+}
+.login-form {
+  padding: 20px;
+  display: flex;   
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  .login-button-center {
+    width: 80%;
+    margin-left: 10%;
+  }
+
