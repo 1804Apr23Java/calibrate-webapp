@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Library } from '../../classes/library';
 import { LibraryService } from '../../services/library.service';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { Question } from '../../classes/question';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { DataSource } from '@angular/cdk/collections';
+import {PageEvent} from '@angular/material';
 
 
 @Component({
@@ -55,7 +57,6 @@ export class LibraryComponent implements OnInit {
       error => console.log(`Error: ${error}`)
     );
   }
-
 
   setStep(index: number) {
     this.step = index;

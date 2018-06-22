@@ -17,7 +17,6 @@ import { LoginComponent } from './components/login/login.component';
 const routes: Routes = [
   { path: 'attempt', component: AttemptComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'library', component: LibraryComponent },
   { path: 'library-list', component: LibraryListComponent },
   { path: 'question', component: QuestionComponent },
   { path: 'profile', component: ProfileComponent },
@@ -34,7 +33,8 @@ const routes: Routes = [
       { path: 'public-libraries', component: LibraryListComponent },
       { path: 'pending-libraries', component: LibraryListComponent },
       { path: 'take-a-quiz', component: TakeAQuizComponent },
-      { path: 'quiz-attempts', component: AttemptComponent }
+      { path: 'quiz-attempts', component: AttemptComponent },
+      { path: 'library', component: LibraryComponent },
     ]  },
   { path: '**', redirectTo: 'profile' }
 ];

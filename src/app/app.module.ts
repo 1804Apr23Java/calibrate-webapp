@@ -38,6 +38,8 @@ import { SidebarAdminComponent } from './components/sidebar-admin/sidebar-admin.
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { ProfileNavbarComponent } from './profile-navbar/profile-navbar.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatPaginator} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -63,6 +65,7 @@ import { ProfileNavbarComponent } from './profile-navbar/profile-navbar.componen
     BrowserAnimationsModule,
     // NoopAnimationsModule,
     MatExpansionModule,
+    MatPaginatorModule,
     MatToolbarModule,
     MatTableModule,
     MatButtonModule,
