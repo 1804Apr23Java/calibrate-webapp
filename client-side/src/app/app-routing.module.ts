@@ -30,11 +30,13 @@ const routes: Routes = [
       {path : 'admin-default', component: AdminDefaultComponent },
       {path : 'admin-add-account', component: AdminAddAccountComponent },
       {path : 'admin-deactivate-account', component: AdminDeactivateAccountComponent },
+      {path: 'library', component: LibraryComponent },
       {path : 'pending-library-list', component: PendingLibraryListComponent }
     ]  },
   { path: 'quizzes',
     component: QuizzesComponent,
     children: [
+      { path: 'library', component: LibraryComponent },
       { path: 'my-libraries', component: LibraryListComponent },
       { path: 'public-libraries', component: LibraryListComponent },
       { path: 'pending-libraries', component: LibraryListComponent },

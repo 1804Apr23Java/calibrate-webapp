@@ -48,7 +48,7 @@ export class LibraryListComponent implements OnInit, DoCheck {
 
   getLibrary(libraryId: number) {
     sessionStorage.setItem('libraryId', libraryId.toString());
-    this.router.navigate(['library']);
+    this.router.navigate(['quizzes/library']);
   }
 
 }
