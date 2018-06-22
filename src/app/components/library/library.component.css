@@ -1,0 +1,22 @@
+.headers-align .mat-expansion-panel-header-title,
+.headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.headers-align .mat-expansion-panel-header-title {
+  text-align: center;
+}
+
+.h4 {
+  flex-basis: 0;
+}
+
+.libraryTable {
+  width: 95%;
+  margin: 2.5% auto;
+}
+
+mat-radio-group {
+  display: inline-flex;
+  flex-direction: column;
+}
