@@ -1,17 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Library } from '../../models/library';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
-<<<<<<< HEAD:src/app/components/library/library.component.ts
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { Question } from '../../classes/question';
+import { Question } from '../../models/question';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { DataSource } from '@angular/cdk/collections';
 import {PageEvent} from '@angular/material';
-=======
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { DataSource } from '@angular/cdk/collections';
 import { GatewayService } from '../../services/gateway.service';
->>>>>>> 5feb8e1256269c9e8db39808dfe171a8d97e7115:client-side/src/app/components/library/library.component.ts
 
 
 @Component({
