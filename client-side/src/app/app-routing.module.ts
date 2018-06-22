@@ -17,7 +17,7 @@ import { AdminAddAccountComponent } from './components/admin-add-account/admin-a
 import { AdminDeactivateAccountComponent } from './components/admin-deactivate-account/admin-deactivate-account.component';
 
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: 'attempt', component: AttemptComponent },
   { path: 'login', component: LoginComponent },
   { path: 'library', component: LibraryComponent },
