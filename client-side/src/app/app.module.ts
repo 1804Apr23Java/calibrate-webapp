@@ -36,10 +36,6 @@ import { QuizSessionComponent } from './components/quiz-session/quiz-session.com
 import { PendingLibraryListComponent } from './components/pending-library-list/pending-library-list.component';
 import { SidebarAdminComponent } from './components/sidebar-admin/sidebar-admin.component';
 import { LoginComponent } from './components/login/login.component';
-<<<<<<< HEAD:src/app/app.module.ts
-import { ProfileNavbarComponent } from './profile-navbar/profile-navbar.component';
-
-=======
 import { FormsModule } from '@angular/forms';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatPaginator} from '@angular/material';
@@ -47,7 +43,6 @@ import { ProfileNavbarComponent } from './components/profile-navbar/profile-navb
 import { AdminDefaultComponent } from './components/admin-default/admin-default.component';
 import { AdminAddAccountComponent } from './components/admin-add-account/admin-add-account.component';
 import { AdminDeactivateAccountComponent } from './components/admin-deactivate-account/admin-deactivate-account.component';
->>>>>>> 5feb8e1256269c9e8db39808dfe171a8d97e7115:client-side/src/app/app.module.ts
 
 @NgModule({
   declarations: [
@@ -67,12 +62,9 @@ import { AdminDeactivateAccountComponent } from './components/admin-deactivate-a
     SidebarAdminComponent,
     LoginComponent,
     ProfileNavbarComponent,
-<<<<<<< HEAD:src/app/app.module.ts
-=======
     AdminDefaultComponent,
     AdminAddAccountComponent,
     AdminDeactivateAccountComponent
->>>>>>> 5feb8e1256269c9e8db39808dfe171a8d97e7115:client-side/src/app/app.module.ts
   ],
   imports: [
     BrowserModule,
