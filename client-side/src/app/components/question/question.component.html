@@ -1,17 +1,24 @@
-<mat-selection-list role="list">
-  <mat-list-item>
-    Question {{question.questionId}}
-  </mat-list-item>
-  <mat-list-item>
-    {{question.value}}
-  </mat-list-item>
-  <mat-list-option checkboxPosition="before" *ngFor="let answer of question.answers">
-    <p>
-      <span>{{answer.value}}</span>
-      <span *ngIf="answer.isCorrect">
-        <mat-icon>check_box</mat-icon>
-      </span>
-      <br>
-    </p>
-  </mat-list-option>
-</mat-selection-list>
+<div *ngIf=question>
+  <mat-selection-list role="list">
+    <mat-list-item>
+      Question {{question.questionId}}
+    </mat-list-item>
+    <mat-list-item>
+      {{question.value}}
+    </mat-list-item>
+    <mat-list-item>
+      <ngx-prism language="java">
+        {{content}}
+      </ngx-prism>
+    </mat-list-item>
+    <mat-list-option checkboxPosition="before" *ngFor="let answer of question.answers">
+      <p>
+        <span>{{answer.value}}</span>
+        <span *ngIf="answer.isCorrect">
+          <mat-icon>check_box</mat-icon>
+        </span>
+        <br>
+      </p>
+    </mat-list-option>
+  </mat-selection-list>
+</div>
