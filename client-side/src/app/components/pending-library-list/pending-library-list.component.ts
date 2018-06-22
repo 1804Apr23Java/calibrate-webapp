@@ -29,7 +29,7 @@ export class PendingLibraryListComponent implements OnInit {
   getLibrary(libraryId: number) {
     sessionStorage.setItem('libraryId', libraryId.toString());
     sessionStorage.setItem('isPending', true.toString());
-    this.router.navigate(['library']);
+    this.router.navigate(['admin/library']);
   }
 
 }

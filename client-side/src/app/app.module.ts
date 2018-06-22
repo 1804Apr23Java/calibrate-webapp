@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { PrismModule } from '@ngx-prism/core'
+import { PrismModule } from '@ngx-prism/core';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -36,16 +36,11 @@ import { QuizSessionComponent } from './components/quiz-session/quiz-session.com
 import { PendingLibraryListComponent } from './components/pending-library-list/pending-library-list.component';
 import { SidebarAdminComponent } from './components/sidebar-admin/sidebar-admin.component';
 import { LoginComponent } from './components/login/login.component';
-<<<<<<< HEAD:src/app/app.module.ts
-import { ProfileNavbarComponent } from './profile-navbar/profile-navbar.component';
-
-=======
 import { FormsModule } from '@angular/forms';
 import { ProfileNavbarComponent } from './components/profile-navbar/profile-navbar.component';
 import { AdminDefaultComponent } from './components/admin-default/admin-default.component';
 import { AdminAddAccountComponent } from './components/admin-add-account/admin-add-account.component';
 import { AdminDeactivateAccountComponent } from './components/admin-deactivate-account/admin-deactivate-account.component';
->>>>>>> 5feb8e1256269c9e8db39808dfe171a8d97e7115:client-side/src/app/app.module.ts
 
 @NgModule({
   declarations: [
@@ -65,12 +60,9 @@ import { AdminDeactivateAccountComponent } from './components/admin-deactivate-a
     SidebarAdminComponent,
     LoginComponent,
     ProfileNavbarComponent,
-<<<<<<< HEAD:src/app/app.module.ts
-=======
     AdminDefaultComponent,
     AdminAddAccountComponent,
     AdminDeactivateAccountComponent
->>>>>>> 5feb8e1256269c9e8db39808dfe171a8d97e7115:client-side/src/app/app.module.ts
   ],
   imports: [
     BrowserModule,
