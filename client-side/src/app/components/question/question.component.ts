@@ -11,7 +11,9 @@ export class QuestionComponent implements OnInit {
 
   constructor(private gatewayService: GatewayService) { }
 
-  public question: Question = new Question();
+  public question: Question;
+
+  public content = 'public static void main(String [] args);';
 
   getQuestionById(id: number): void {
     this.gatewayService.getQuestionById(id).subscribe(
