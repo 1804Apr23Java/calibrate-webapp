@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { PrismModule } from '@ngx-prism/core'
+import { PrismModule } from '@ngx-prism/core';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -37,6 +37,8 @@ import { PendingLibraryListComponent } from './components/pending-library-list/p
 import { SidebarAdminComponent } from './components/sidebar-admin/sidebar-admin.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatPaginator} from '@angular/material';
 import { ProfileNavbarComponent } from './components/profile-navbar/profile-navbar.component';
 import { AdminDefaultComponent } from './components/admin-default/admin-default.component';
 import { AdminAddAccountComponent } from './components/admin-add-account/admin-add-account.component';
@@ -69,6 +71,7 @@ import { AdminDeactivateAccountComponent } from './components/admin-deactivate-a
     BrowserAnimationsModule,
     // NoopAnimationsModule,
     MatExpansionModule,
+    MatPaginatorModule,
     MatToolbarModule,
     MatTableModule,
     MatButtonModule,
