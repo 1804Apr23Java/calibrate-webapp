@@ -1,8 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Library } from '../../models/library';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { Question } from '../../models/question';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { DataSource } from '@angular/cdk/collections';
+import {PageEvent} from '@angular/material';
 import { GatewayService } from '../../services/gateway.service';
 
 
@@ -33,6 +36,7 @@ export class LibraryComponent implements OnInit, OnDestroy {
   // expandedElement: any;
   step = 0;
   questionNumber = 1;
+  customCollapsedHeight: String = '80px';
   /*
   displayedColumns = ['number', 'question', 'difficulty'];
   dataSource: MatTableDataSource<Question>;
@@ -55,7 +59,6 @@ export class LibraryComponent implements OnInit, OnDestroy {
       error => console.log(`Error: ${error}`)
     );
   }
-
 
   setStep(index: number) {
     this.step = index;
