@@ -57,7 +57,7 @@
   color: white;
 }
 
-/*  */
+/* fake radio buttons so both radio and checkboxes are the same type */
 ::ng-deep .checkbox-to-radio .mat-pseudo-checkbox{
   border-radius: 50%;
  }

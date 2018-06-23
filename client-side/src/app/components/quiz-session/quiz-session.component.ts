@@ -12,6 +12,7 @@ import { GatewayService } from '../../services/gateway.service';
 export class QuizSessionComponent implements OnInit {
   public quiz: Quiz;
   public currentQuestionIndex: number;
+  public selectedAnswersSet = new Set();
 
   constructor(private gatewayService: GatewayService) {}
 
@@ -20,6 +21,7 @@ export class QuizSessionComponent implements OnInit {
     this.currentQuestionIndex = 0;
   }
 
+  // Service accessor
   getQuizById(id: number): void {
     this.gatewayService.getQuizById(id).subscribe(
       (quiz: Quiz) => {
@@ -27,6 +29,16 @@ export class QuizSessionComponent implements OnInit {
       },
       error => console.log(`Error: ${error}`)
     );
+  }
+
+  // Set manipulator
+  updateSelectedAnswersSet(option): void {
+    if (option.selected) {
+      this.selectedAnswersSet.add(option.value[0]);
+    } else {
+      this.selectedAnswersSet.delete(option.value[0]);
+    }
+    console.log(this.selectedAnswersSet);
   }
 
   // returns true if more than one correct answer (for checkbox)
@@ -65,9 +77,12 @@ export class QuizSessionComponent implements OnInit {
   // radio button behavior workaround
   // Material provides a great checkbox implementation but not radio buttons
   // this method listens for checkbox clicks and deselects all other options, emulating radio button behavior
-  handleSelection(event) {
+  handleRadioSelection(event) {
     if (event.option.selected) {
       event.source.deselectAll();
+      for (const option of event.source.options._results) {
+        this.updateSelectedAnswersSet(option);
+      }
       event.option._setSelected(true);
     }
   }

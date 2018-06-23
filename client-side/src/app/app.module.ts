@@ -27,7 +27,6 @@ import { GatewayService } from './services/gateway.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LibraryListComponent } from './components/library-list/library-list.component';
 import { LibraryComponent } from './components/library/library.component';
-import { QuestionComponent } from './components/question/question.component';
 import { AttemptComponent } from './components/attempt/attempt.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -53,7 +52,6 @@ import { AdminDeactivateAccountComponent } from './components/admin-deactivate-a
     QuizzesComponent,
     LibraryListComponent,
     LibraryComponent,
-    QuestionComponent,
     AttemptComponent,
     SidebarComponent,
     TakeAQuizComponent,
