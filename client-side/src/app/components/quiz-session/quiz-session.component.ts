@@ -12,7 +12,7 @@ import { GatewayService } from '../../services/gateway.service';
 export class QuizSessionComponent implements OnInit {
   public quiz: Quiz;
   public currentQuestionIndex: number;
-  public selectedAnswersSet: Set<Answers>;
+  public selectedAnswersSet = new Set();
 
   constructor(private gatewayService: GatewayService) {}
 
@@ -32,11 +32,12 @@ export class QuizSessionComponent implements OnInit {
   }
 
   // Set manipulator
-  updateSelectedAnswersSet(event, answer: Answers): void {
-    if (event.option.selected) {
-      this.selectedAnswersSet.add(answer);
+  updateSelectedAnswersSet(option): void {
+    console.log('got to event click');
+    if (option.selected) {
+      this.selectedAnswersSet.add(option.value[0]);
     } else {
-      this.selectedAnswersSet.delete(answer);
+      this.selectedAnswersSet.delete(option.value[0]);
     }
 
     // PRINT SET for testing
@@ -84,7 +85,11 @@ export class QuizSessionComponent implements OnInit {
     if (event.option.selected) {
       console.log(event);
       event.source.deselectAll();
+      for (const option of event.source.options._results) {
+        this.updateSelectedAnswersSet(option);
+      }
       event.option._setSelected(true);
     }
+    console.log(this.selectedAnswersSet);
   }
 }
