@@ -38,6 +38,7 @@ export class QuizSessionComponent implements OnInit {
     } else {
       this.selectedAnswersSet.delete(option.value[0]);
     }
+    console.log(this.selectedAnswersSet);
   }
 
   // returns true if more than one correct answer (for checkbox)
@@ -76,7 +77,7 @@ export class QuizSessionComponent implements OnInit {
   // radio button behavior workaround
   // Material provides a great checkbox implementation but not radio buttons
   // this method listens for checkbox clicks and deselects all other options, emulating radio button behavior
-  handleSelection(event) {
+  handleRadioSelection(event) {
     if (event.option.selected) {
       event.source.deselectAll();
       for (const option of event.source.options._results) {

@@ -7,7 +7,6 @@ import { QuizzesComponent } from './components/quizzes/quizzes.component';
 import { AttemptComponent } from './components/attempt/attempt.component';
 import { LibraryComponent } from './components/library/library.component';
 import { LibraryListComponent } from './components/library-list/library-list.component';
-import { QuestionComponent } from './components/question/question.component';
 import { TakeAQuizComponent } from './components/take-a-quiz/take-a-quiz.component';
 import { QuizSessionComponent } from './components/quiz-session/quiz-session.component';
 import { PendingLibraryListComponent } from './components/pending-library-list/pending-library-list.component';
@@ -22,7 +21,6 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'library', component: LibraryComponent },
   { path: 'library-list', component: LibraryListComponent },
-  { path: 'question', component: QuestionComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'quiz-session', component: QuizSessionComponent },
   { path: 'admin',
