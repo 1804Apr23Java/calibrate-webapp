@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Quiz } from '../../models/quiz';
-import { Question, Answers } from '../../models/question';
+import { Question } from '../../models/question';
 
 import { GatewayService } from '../../services/gateway.service';
 
@@ -33,16 +33,11 @@ export class QuizSessionComponent implements OnInit {
 
   // Set manipulator
   updateSelectedAnswersSet(option): void {
-    console.log('got to event click');
     if (option.selected) {
       this.selectedAnswersSet.add(option.value[0]);
     } else {
       this.selectedAnswersSet.delete(option.value[0]);
     }
-
-    // PRINT SET for testing
-    // remove this later
-    console.log(this.selectedAnswersSet);
   }
 
   // returns true if more than one correct answer (for checkbox)
@@ -83,13 +78,11 @@ export class QuizSessionComponent implements OnInit {
   // this method listens for checkbox clicks and deselects all other options, emulating radio button behavior
   handleSelection(event) {
     if (event.option.selected) {
-      console.log(event);
       event.source.deselectAll();
       for (const option of event.source.options._results) {
         this.updateSelectedAnswersSet(option);
       }
       event.option._setSelected(true);
     }
-    console.log(this.selectedAnswersSet);
   }
 }
