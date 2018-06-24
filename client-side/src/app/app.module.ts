@@ -19,6 +19,7 @@ import { MatTabsModule, MatTab } from '@angular/material/tabs';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material';
 import { AppRoutingModule } from './/app-routing.module';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AdminComponent } from './components/admin/admin.component';
@@ -27,7 +28,7 @@ import { GatewayService } from './services/gateway.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LibraryListComponent } from './components/library-list/library-list.component';
 import { LibraryComponent } from './components/library/library.component';
-import { AttemptComponent } from './components/attempt/attempt.component';
+import { AttemptComponent, AttemptDialogComponent } from './components/attempt/attempt.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TakeAQuizComponent } from './components/take-a-quiz/take-a-quiz.component';
@@ -62,7 +63,8 @@ import { AdminDeactivateAccountComponent } from './components/admin-deactivate-a
     ProfileNavbarComponent,
     AdminDefaultComponent,
     AdminAddAccountComponent,
-    AdminDeactivateAccountComponent
+    AdminDeactivateAccountComponent,
+    AttemptDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -86,8 +88,10 @@ import { AdminDeactivateAccountComponent } from './components/admin-deactivate-a
     MatDividerModule,
     HttpClientModule,
     FormsModule,
-    PrismModule
+    PrismModule,
+    MatDialogModule
   ],
+  entryComponents: [AttemptDialogComponent],
   providers: [GatewayService],
   bootstrap: [AppComponent]
 })
