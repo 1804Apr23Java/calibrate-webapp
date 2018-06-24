@@ -1,8 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Attempt } from '../../models/attempt';
+import { Question } from '../../models/question';
 import {MatTableDataSource} from '@angular/material';
 import { GatewayService } from '../../services/gateway.service';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatRow} from '@angular/material';
 
 
 @Component({
@@ -28,13 +29,22 @@ export class AttemptComponent implements OnInit {
     );
   }
 
+  wasQuestionAnsweredCorrectly(question: Question): boolean {
+    for (const answer of question.answers) {
+      if (answer.isCorrect !== answer.isSelected) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   ngOnInit() {
     this.getAttemptsById(+sessionStorage.getItem('accountId'));
   }
 
   openDialog(selectedAttempt: MatRow): void {
     const dialogRef = this.dialog.open(AttemptDialogComponent, {
-      width: '80%',
+      width: '80%', height: '90%',
       data: { selectedAttempt }
     });
     console.log(selectedAttempt);
