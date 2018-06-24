@@ -33,7 +33,8 @@
       </mat-expansion-panel-header>
 
       <mat-radio-group>
-        <mat-radio-button *ngFor="let answer of question.answers; let j = index" [attr.data-index]="i">
+          <br>
+        <mat-radio-button class="questionButtons" *ngFor="let answer of question.answers; let j = index" [attr.data-index]="i">
           <span *ngIf="answer.isCorrect">
             <mat-icon>check_box</mat-icon>
           </span>
@@ -43,59 +44,25 @@
       </mat-radio-group>
 
       <mat-action-row>
-        <button mat-button color="primary" (click)="openDialog()">Edit</button>
+        <button mat-button color="primary" (click)="openDialog(question)">Edit</button>
         <!--<button mat-button color="primary" (click)="nextStep()">Next</button>-->
       </mat-action-row>
     </mat-expansion-panel>
   </mat-accordion>
 
+  <!--
+  <mat-card *ngIf= "this.isPending" class="center">
+    <div class="center">
+      <span>
+        <button mat-button routerLink="/admin/pending-library-list"> Approve
+          <mat-icon class="success">check_circle_outline</mat-icon>
+        </button>
+      </span>
+      <button mat-button routerLink="/admin/pending-library-list"> Deny
+        <mat-icon color="warn">highlight_off</mat-icon>
+      </button>
+    </div>
+    </mat-card>
+  -->
 
 </div>
-
-
-<!--
-<div *ngIf="dataSource">
-  <mat-table [dataSource]="dataSource" class="mat-elevation-z8 libraryTable">
-
-    <ng-container matColumnDef="number">
-      <mat-header-cell *matHeaderCellDef> Question Id </mat-header-cell>
-      <mat-cell *matCellDef="let question"> id </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="question">
-      <mat-header-cell *matHeaderCellDef> Question </mat-header-cell>
-      <mat-cell *matCellDef="let question"> {{question.value}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="difficulty">
-      <mat-header-cell *matHeaderCellDef> Difficulty </mat-header-cell>
-      <mat-cell *matCellDef="let question"> {{question.difficulty}} </mat-cell>
-    </ng-container>
-
-
-    <ng-container matColumnDef="expandedDetail">
-        <mat-cell *matCellDef="let detail">
-          The symbol for
-        </mat-cell>
-      </ng-container>
-
-
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;" matRipple class="element-row" [class.expanded]="expandedElement == row"
-      (click)="expandedElement = row"></mat-row>
-    <mat-row *matRowDef="let row; columns: ['expandedDetail']; when: isExpansionDetailRow" [@detailExpand]="row.element == expandedElement ? 'expanded' : 'collapsed'"
-      style="overflow: hidden">
-    </mat-row>
-
-  </mat-table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-</div>
--->
-<!--
-
-      <mat-list *ngFor="let answer of question.answers; let j = index" [attr.data-index]="i">
-          <mat-list-item >Answer {{j + 1}}: {{answer.value}} Right Answer: {{answer.isCorrect}}</mat-list-item>
-          <mat-divider></mat-divider>
-        </mat-list>
--->

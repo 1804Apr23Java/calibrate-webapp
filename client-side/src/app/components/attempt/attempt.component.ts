@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Attempt } from '../../models/attempt';
 import {MatTableDataSource} from '@angular/material';
 import { GatewayService } from '../../services/gateway.service';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatRow} from '@angular/material';
 
 
 @Component({
