@@ -1,75 +1,47 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { Library } from '../../models/library';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { Question } from '../../models/question';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { DataSource } from '@angular/cdk/collections';
-import {PageEvent} from '@angular/material';
+import { PageEvent } from '@angular/material';
 import { GatewayService } from '../../services/gateway.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 
 @Component({
   selector: 'app-library',
   templateUrl: './library.component.html',
   styleUrls: ['./library.component.css'],
-  /*
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed', style({ height: '0px', minHeight: '0', visibility: 'hidden' })),
-      state('expanded', style({ height: '*', visibility: 'visible' })),
-      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-    ]),
-  ]
-  */
 })
-
-
 
 export class LibraryComponent implements OnInit, OnDestroy {
 
   public library: Library = new Library();
   private isPending: boolean;
 
-  constructor(private gatewayService: GatewayService) { }
+  constructor(private gatewayService: GatewayService, public dialog: MatDialog) { }
 
-  // expandedElement: any;
   step = 0;
   questionNumber = 1;
   customCollapsedHeight: String = '80px';
-  /*
-  displayedColumns = ['number', 'question', 'difficulty'];
-  dataSource: MatTableDataSource<Question>;
 
-  isExpansionDetailRow: any;
-  */
 
   getLibraryById(libraryId: number): void {
     this.gatewayService.getLibraryById(libraryId).subscribe(
       (library: Library) => {
         this.library = library;
-        /*this.library.questions.sort((question1, question2) =>
-          (question1.value.toLowerCase > question2.value.toLowerCase ? 1 : -1));
-        this.dataSource = new MatTableDataSource(this.library.questions);
-        const rows = [];
-        this.library.questions.forEach(question => rows.push(question, { detailRow: true, question }));
-        this.isExpansionDetailRow = (i: number, row: Object) => row.hasOwnProperty('detailRow');
-        */
       },
       error => console.log(`Error: ${error}`)
     );
   }
 
-  setStep(index: number) {
-    this.step = index;
-  }
-
-  nextStep() {
-    this.step++;
-  }
-
-  prevStep() {
-    this.step--;
+  openDialog(): void {
+    const dialogRef = this.dialog.open(LibraryDialogComponent, {
+      width: '250px',
+      data: {}
+    });
   }
 
   ngOnInit() {
@@ -80,4 +52,20 @@ export class LibraryComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     sessionStorage.removeItem('isPending');
   }
+}
+
+@Component({
+  selector: 'app-library-dialog',
+  templateUrl: './library.component.questions.dialog.html',
+})
+export class LibraryDialogComponent {
+
+  constructor(
+    public dialogRef: MatDialogRef<LibraryDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
 }

@@ -2,14 +2,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { PrismModule } from '@ngx-prism/core';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
@@ -26,7 +28,7 @@ import { QuizzesComponent } from './components/quizzes/quizzes.component';
 import { GatewayService } from './services/gateway.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LibraryListComponent } from './components/library-list/library-list.component';
-import { LibraryComponent } from './components/library/library.component';
+import { LibraryComponent, LibraryDialogComponent } from './components/library/library.component';
 import { AttemptComponent } from './components/attempt/attempt.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -36,8 +38,8 @@ import { PendingLibraryListComponent } from './components/pending-library-list/p
 import { SidebarAdminComponent } from './components/sidebar-admin/sidebar-admin.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatPaginator} from '@angular/material';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginator } from '@angular/material';
 import { ProfileNavbarComponent } from './components/profile-navbar/profile-navbar.component';
 import { AdminDefaultComponent } from './components/admin-default/admin-default.component';
 import { AdminAddAccountComponent } from './components/admin-add-account/admin-add-account.component';
@@ -52,6 +54,7 @@ import { AdminDeactivateAccountComponent } from './components/admin-deactivate-a
     QuizzesComponent,
     LibraryListComponent,
     LibraryComponent,
+    LibraryDialogComponent,
     AttemptComponent,
     SidebarComponent,
     TakeAQuizComponent,
@@ -73,6 +76,7 @@ import { AdminDeactivateAccountComponent } from './components/admin-deactivate-a
     MatToolbarModule,
     MatTableModule,
     MatButtonModule,
+    MatDialogModule,
     MatListModule,
     MatIconModule,
     MatRadioModule,
@@ -88,6 +92,7 @@ import { AdminDeactivateAccountComponent } from './components/admin-deactivate-a
     FormsModule,
     PrismModule
   ],
+  entryComponents: [LibraryComponent, LibraryDialogComponent],
   providers: [GatewayService],
   bootstrap: [AppComponent]
 })
