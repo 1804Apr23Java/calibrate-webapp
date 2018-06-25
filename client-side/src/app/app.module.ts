@@ -32,14 +32,14 @@ import { AttemptComponent, AttemptDialogComponent } from './components/attempt/a
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSliderModule } from '@angular/material/slider';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { TakeAQuizComponent } from './components/take-a-quiz/take-a-quiz.component';
+import { TakeAQuizComponent, TakeAQuizAddDialogComponent } from './components/take-a-quiz/take-a-quiz.component';
 import { QuizSessionComponent } from './components/quiz-session/quiz-session.component';
 import { PendingLibraryListComponent } from './components/pending-library-list/pending-library-list.component';
 import { SidebarAdminComponent } from './components/sidebar-admin/sidebar-admin.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatPaginator} from '@angular/material';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginator } from '@angular/material';
 import { ProfileNavbarComponent } from './components/profile-navbar/profile-navbar.component';
 import { AdminDefaultComponent } from './components/admin-default/admin-default.component';
 import { AdminAddAccountComponent } from './components/admin-add-account/admin-add-account.component';
@@ -58,6 +58,7 @@ import { AdminDeactivateAccountComponent } from './components/admin-deactivate-a
     AttemptComponent,
     SidebarComponent,
     TakeAQuizComponent,
+    TakeAQuizAddDialogComponent,
     QuizSessionComponent,
     PendingLibraryListComponent,
     SidebarAdminComponent,
@@ -94,7 +95,7 @@ import { AdminDeactivateAccountComponent } from './components/admin-deactivate-a
     PrismModule,
     MatDialogModule
   ],
-  entryComponents: [AttemptDialogComponent, LibraryDialogComponent],
+  entryComponents: [AttemptDialogComponent, LibraryDialogComponent, TakeAQuizAddDialogComponent],
   providers: [GatewayService],
   bootstrap: [AppComponent]
 })

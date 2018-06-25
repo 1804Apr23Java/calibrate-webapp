@@ -77,3 +77,8 @@ mat-form-field {
   margin: 10px;
   width: 80%;
 }
+
+.questionOverflow {
+  max-height: 310px;
+  overflow: auto;
+}

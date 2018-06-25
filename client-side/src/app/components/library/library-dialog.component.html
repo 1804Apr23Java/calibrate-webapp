@@ -3,46 +3,50 @@
 </h2>
 <mat-card-content class="questionForm">
   <mat-form-field class="questionForm" appearance="outline">
-    <mat-label>{{data.question.value}}</mat-label>
-    <input matInput placeholder="" [(ngModel)]="questionValue">
+    <input matInput placeholder="Question" value={{data.question.value}}>
   </mat-form-field>
   </mat-card-content>
 </mat-card>
 
 <div class="body">
-<mat-card class="difficulty">
-  <mat-card-content>
-    <h2 class="example-h2">Difficulty</h2>
-    <mat-slider
-      [max]="difficultyMax"
-      [min]="0"
-      [(ngModel)]="difficultyValue"
-      [thumbLabel]="true"
-      [vertical]="true">
-    </mat-slider>
-  </mat-card-content>
-</mat-card>
+  <mat-card class="difficulty">
+    <mat-card-content>
+      <h2 class="example-h2">Difficulty</h2>
+      <mat-slider
+        [max]="difficultyMax"
+        [min]="0"
+        [(ngModel)]=data.question.difficulty
+        [thumbLabel]="true"
+        [vertical]="true">
+      </mat-slider>
+    </mat-card-content>
+  </mat-card>
 
-<mat-card class="questionField">
-<h2 class="example-h2">Answers</h2>
-<mat-card-content>
-<mat-divider></mat-divider>
-  <mat-form-field><mat-label>{{data.question.answers[0].value}}</mat-label>
-    <input matInput placeholder="First Answer" [(ngModel)]="firstAnswer">
-  </mat-form-field><mat-checkbox [(ngModel)]="firstCheck"></mat-checkbox><br><mat-divider></mat-divider>
-  <mat-form-field><mat-label>{{data.question.answers[1].value}}</mat-label>
-    <input matInput placeholder="Second Answer" [(ngModel)]="secondAnswer">
-  </mat-form-field><mat-checkbox [(ngModel)]="secondCheck"></mat-checkbox><br><mat-divider></mat-divider>
-  <mat-form-field><mat-label>{{data.question.answers[2].value}}</mat-label>
-    <input matInput placeholder="Third Answer" [(ngModel)]="thirdAnswer">
-  </mat-form-field><mat-checkbox [(ngModel)]="thirdCheck"></mat-checkbox><br><mat-divider></mat-divider>
-  <mat-form-field><mat-label>{{data.question.answers[3].value}}</mat-label>
-    <input matInput placeholder="Fourth Answer" [(ngModel)]="fourthAnswer">
-  </mat-form-field><mat-checkbox [(ngModel)]="fourthCheck"></mat-checkbox><br>
-  </mat-card-content>
-</mat-card>
+  <mat-card class="questionField">
+    <h2 class="example-h2">Answers</h2>
+    <mat-card-content class="questionOverflow">
+      <mat-divider></mat-divider>
+      <div  *ngFor="let answer of data.question.answers; let j = index">
+        <mat-form-field>
+          <input matInput placeholder="Answer" value={{answer.value}}>
+        </mat-form-field><mat-checkbox [(ngModel)]=answer.isCorrect></mat-checkbox><br>
+      </div>
+      <!--
+        <mat-form-field>
+          <input matInput placeholder="Second Answer" [(ngModel)]="secondAnswer">
+        </mat-form-field><mat-checkbox [(ngModel)]="secondCheck"></mat-checkbox><br><mat-divider></mat-divider>
+        <mat-form-field>
+          <input matInput placeholder="Third Answer" [(ngModel)]="thirdAnswer">
+        </mat-form-field><mat-checkbox [(ngModel)]="thirdCheck"></mat-checkbox><br><mat-divider></mat-divider>
+        <mat-form-field>
+          <input matInput placeholder="Fourth Answer" [(ngModel)]="fourthAnswer">
+        </mat-form-field><mat-checkbox [(ngModel)]="fourthCheck"></mat-checkbox><br>
+        -->
+    </mat-card-content>
+  </mat-card>
 </div>
+
 <mat-action-row>
-        <button mat-button color="primary" (click)="saveEdit()">Save</button>
+  <button mat-button color="primary" (click)="saveEdit()">Save</button>
         <!--<button mat-button color="primary" (click)="nextStep()">Next</button>-->
-      </mat-action-row>
+</mat-action-row>

@@ -65,23 +65,11 @@ export class LibraryComponent implements OnInit, OnDestroy {
 })
 export class LibraryDialogComponent {
   public data.question;
-  public questionValue = data.question.value;
-  public difficultyValue = data.question.difficulty;
   public difficultyMax: number = 5;
-  public firstAnswer: String = data.question.answers[0].value;
-  public secondAnswer: String = data.question.answers[1].value;
-  public thirdAnswer: String = data.question.answers[2].value;
-  public fourthAnswer: String = data.question.answers[3].value;
-  public firstCheck: Boolean = data.question.answers[0].isCorrect;
-  public secondCheck: Boolean = data.question.answers[1].isCorrect;
-  public thirdCheck: Boolean = data.question.answers[2].isCorrect;
-  public fourthCheck: Boolean = data.question.answers[3].isCorrect;
 
   constructor(
     public dialogRef: MatDialogRef<LibraryDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { 
-      console.log(data.question.difficulty);  
-      this.difficultyValue = data.question.difficulty;
       this.data.question = data.question;
     }
 
@@ -90,7 +78,7 @@ export class LibraryDialogComponent {
   }
 
   saveEdit(): void {
-    console.log(data.question.questionId, this.questionValue, this.firstAnswer, this.firstCheck, this.secondAnswer, this.secondAnswer, this.thirdAnswer, this.thirdCheck,  this.fourthAnswer, this.fourthCheck, this.difficultyValue);
+    console.log(/*data.question.questionId, */ this.data.question.value);
     console.log('Question Edited');
   }
 
