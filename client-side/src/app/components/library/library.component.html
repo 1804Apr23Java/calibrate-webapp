@@ -25,11 +25,6 @@
         <mat-panel-description>
           {{question.value}}
         </mat-panel-description>
-        <!--
-        <mat-panel-description>
-          Difficulty: {{question.difficulty}}
-        </mat-panel-description> -->
-        <!-- <mat-icon>arrow_downward</mat-icon> -->
       </mat-expansion-panel-header>
 
       <mat-radio-group>
@@ -45,12 +40,10 @@
 
       <mat-action-row>
         <button mat-button color="primary" (click)="openDialog(question)">Edit</button>
-        <!--<button mat-button color="primary" (click)="nextStep()">Next</button>-->
       </mat-action-row>
     </mat-expansion-panel>
   </mat-accordion>
 
-  <!--
   <mat-card *ngIf= "this.isPending" class="center">
     <div class="center">
       <span>
@@ -63,6 +56,5 @@
       </button>
     </div>
     </mat-card>
-  -->
 
 </div>

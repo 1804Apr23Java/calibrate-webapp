@@ -31,22 +31,10 @@
           <input matInput placeholder="Answer" value={{answer.value}}>
         </mat-form-field><mat-checkbox [(ngModel)]=answer.isCorrect></mat-checkbox><br>
       </div>
-      <!--
-        <mat-form-field>
-          <input matInput placeholder="Second Answer" [(ngModel)]="secondAnswer">
-        </mat-form-field><mat-checkbox [(ngModel)]="secondCheck"></mat-checkbox><br><mat-divider></mat-divider>
-        <mat-form-field>
-          <input matInput placeholder="Third Answer" [(ngModel)]="thirdAnswer">
-        </mat-form-field><mat-checkbox [(ngModel)]="thirdCheck"></mat-checkbox><br><mat-divider></mat-divider>
-        <mat-form-field>
-          <input matInput placeholder="Fourth Answer" [(ngModel)]="fourthAnswer">
-        </mat-form-field><mat-checkbox [(ngModel)]="fourthCheck"></mat-checkbox><br>
-        -->
     </mat-card-content>
   </mat-card>
 </div>
 
 <mat-action-row>
   <button mat-button color="primary" (click)="saveEdit()">Save</button>
-        <!--<button mat-button color="primary" (click)="nextStep()">Next</button>-->
 </mat-action-row>
