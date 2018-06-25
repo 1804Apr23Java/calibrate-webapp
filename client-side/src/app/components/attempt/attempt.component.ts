@@ -4,8 +4,6 @@ import {MatTableDataSource} from '@angular/material';
 import { GatewayService } from '../../services/gateway.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatRow} from '@angular/material';
 
-
-
 @Component({
   selector: 'app-attempt',
   templateUrl: './attempt.component.html',
