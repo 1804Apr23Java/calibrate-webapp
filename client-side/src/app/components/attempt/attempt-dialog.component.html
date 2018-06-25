@@ -1,0 +1,8 @@
+<p>Quiz: {{data.selectedAttempt.name}}</p>
+<div *ngFor="let question of data.selectedAttempt.questions">
+  {{question.value}}<br>
+  Difficulty: {{question.difficulty}}
+  <div *ngFor="let answer of question.answers">
+    {{answer.value}} Correct: {{ answer.isCorrect }} Selected: {{ answer.isSelected }}
+  </div>
+</div>

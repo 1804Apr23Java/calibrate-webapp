@@ -26,15 +26,8 @@
 
           <!-- IF this is a radio button question -->
           <mat-radio-group *ngIf="!checkForMultipleCorrectAnswers(question); else checkboxQuestion">
-            <!-- <mat-card-content *ngFor="let answer of question.answers">
-              <mat-radio-button value="{{answer.answerId}}" >
-                <label class="question-radio-button">
-                    {{answer.value}}
-                </label>
-              </mat-radio-button>
-            </mat-card-content> -->
-            <mat-selection-list role="list" (selectionChange)="handleSelection($event)">
-                <mat-list-option checkboxPosition="before" *ngFor="let answer of question.answers" class="checkbox-to-radio">
+            <mat-selection-list role="list" (selectionChange)="handleRadioSelection($event); updateSelectedAnswersSet($event.option)">
+                <mat-list-option checkboxPosition="before" *ngFor="let answer of question.answers" class="checkbox-to-radio" [value]=[answer.answerId] [selected]="selectedAnswersSet.has(answer.answerId)">
                   <p>
                     <span>{{answer.value}}</span>
                     <br>
@@ -45,8 +38,8 @@
 
           <!-- ELSE if this is a checkbox question -->
           <ng-template #checkboxQuestion>
-              <mat-selection-list role="list">
-                  <mat-list-option checkboxPosition="before" *ngFor="let answer of question.answers">
+              <mat-selection-list role="list" (selectionChange)="updateSelectedAnswersSet($event.option)">
+                  <mat-list-option checkboxPosition="before" *ngFor="let answer of question.answers" [value]=[answer.answerId] [selected]="selectedAnswersSet.has(answer.answerId)">
                     <p>
                       <span>{{answer.value}}</span>
                       <br>
