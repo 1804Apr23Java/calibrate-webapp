@@ -78,7 +78,7 @@ export class LibraryDialogComponent {
   }
 
   saveEdit(): void {
-    console.log(/*data.question.questionId, */ this.data.question.value);
+    console.log(this.data.question);
     console.log('Question Edited');
   }
 

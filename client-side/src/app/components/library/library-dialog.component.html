@@ -3,7 +3,7 @@
 </h2>
 <mat-card-content class="questionForm">
   <mat-form-field class="questionForm" appearance="outline">
-    <input matInput placeholder="Question" value={{data.question.value}}>
+    <input matInput placeholder="Question" [(ngModel)]=data.question.value>
   </mat-form-field>
   </mat-card-content>
 </mat-card>
@@ -28,7 +28,7 @@
       <mat-divider></mat-divider>
       <div  *ngFor="let answer of data.question.answers; let j = index">
         <mat-form-field>
-          <input matInput placeholder="Answer" value={{answer.value}}>
+          <input matInput placeholder="Answer" [(ngModel)]=answer.value>
         </mat-form-field><mat-checkbox [(ngModel)]=answer.isCorrect></mat-checkbox><br>
       </div>
     </mat-card-content>
