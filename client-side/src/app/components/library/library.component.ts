@@ -40,6 +40,10 @@ export class LibraryComponent implements OnInit, OnDestroy {
     );
   }
 
+  deleteQuestion(index) {
+    this.library.questions.splice(index, 1);
+  }
+
   openDialog(question: Question): void {
     let dialogRef = this.dialog.open(LibraryDialogComponent, {
       width: '80%',
@@ -84,6 +88,10 @@ export class LibraryDialogComponent {
   addAnswer() {
     this.newAnswer = true;
     console.log('Hello');
+  }
+
+  deleteAnswer(index) {
+    this.data.question.answers.splice(index, 1);
   }
 
   appendAnswer() {

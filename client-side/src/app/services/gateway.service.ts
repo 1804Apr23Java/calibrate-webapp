@@ -13,9 +13,8 @@ import { Question } from '../models/question';
 export class GatewayService {
 
   constructor(private httpClient: HttpClient) { }
-  
-  private backendUrl = 'http://ec2-174-129-59-140.compute-1.amazonaws.com:8080/CalibrateBackend';
 
+  private backendUrl = 'http://ec2-174-129-59-140.compute-1.amazonaws.com:8080/CalibrateBackend';
 
   public getQuizById(id: number): Observable<Quiz> {
     return this.httpClient.get<Quiz>(`${this.backendUrl}/quiz/${id}`);

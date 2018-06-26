@@ -14,7 +14,9 @@
     {{library.name}}
   </mat-toolbar>
   <br>
+</div>
 
+<div class="entrapment">
   <mat-accordion class="headers-align mat-elevation-z8 libraryTable">
     <mat-expansion-panel *ngFor="let question of library.questions; let i = index" [attr.data-index]="i" [expanded]="step === i + 1"
        hideToggle="true"><!--(opened)="setStep(i + 1)"-->
@@ -39,9 +41,8 @@
       </mat-radio-group>
 
       <mat-action-row>
-        <button mat-button color="primary">Delete</button>
         <button mat-button color="primary" (click)="openDialog(question)">Edit</button>
-        <button mat-button color="primary">Delete</button>
+        <button mat-button color="primary" (click)="deleteQuestion(index)">Delete</button>
       </mat-action-row>
     </mat-expansion-panel>
   </mat-accordion>
