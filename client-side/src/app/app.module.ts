@@ -26,7 +26,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { QuizzesComponent } from './components/quizzes/quizzes.component';
 import { GatewayService } from './services/gateway.service';
 import { HttpClientModule } from '@angular/common/http';
-import { LibraryListComponent } from './components/library-list/library-list.component';
+import { LibraryListComponent, NewLibraryDialogComponent } from './components/library-list/library-list.component';
 import { LibraryComponent, LibraryDialogComponent } from './components/library/library.component';
 import { AttemptComponent, AttemptDialogComponent } from './components/attempt/attempt.component';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -69,7 +69,8 @@ import { SavedQuizzesComponent } from './components/saved-quizzes/saved-quizzes.
     AdminAddAccountComponent,
     AdminDeactivateAccountComponent,
     AttemptDialogComponent,
-    SavedQuizzesComponent
+    SavedQuizzesComponent,
+    NewLibraryDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -97,7 +98,7 @@ import { SavedQuizzesComponent } from './components/saved-quizzes/saved-quizzes.
     PrismModule,
     MatDialogModule
   ],
-  entryComponents: [AttemptDialogComponent, LibraryDialogComponent, TakeAQuizAddDialogComponent],
+  entryComponents: [AttemptDialogComponent, LibraryDialogComponent, TakeAQuizAddDialogComponent, NewLibraryDialogComponent],
   providers: [GatewayService],
   bootstrap: [AppComponent]
 })
