@@ -1,0 +1,13 @@
+<mat-dialog-content>
+  <mat-toolbar color="primary" class="quiz-session-header mat-elevation-z8">
+    Add New Library
+  </mat-toolbar>
+  <mat-form-field class="new-title-input">
+    <input matInput placeholder="New Library Title" [value]='newLibraryName'>
+  </mat-form-field>
+</mat-dialog-content>
+
+<div class="mat-dialog-actions">
+  <button mat-button (click)="onNoClick()" cdkFocusInitial>Close</button>
+  <button mat-button color="primary" (click)="addNewLibrary()">Save</button>
+</div>

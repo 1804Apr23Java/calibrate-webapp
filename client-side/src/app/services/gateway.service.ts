@@ -14,8 +14,13 @@ export class GatewayService {
 
   constructor(private httpClient: HttpClient) { }
 
+<<<<<<< HEAD
   private zuulUrl = '';
   private backendUrl = 'http://ec2-174-129-59-140.compute-1.amazonaws.com:8080/CalibrateBackend';
+=======
+  private backendUrl = 'http://ec2-174-129-59-140.compute-1.amazonaws.com:8080/CalibrateBackend';
+  private zuulUrl = 'http://ec2-35-171-24-66.compute-1.amazonaws.com:8765';
+>>>>>>> staging
 
   public getQuizById(id: number): Observable<Quiz> {
     return this.httpClient.get<Quiz>(`${this.backendUrl}/quiz/${id}`);
@@ -60,6 +65,11 @@ export class GatewayService {
   // WRITE HTTPCLIENT PATCH METHOD TO DEACTIVATE ACCOUNT
   public deactivateAccount(): Observable<boolean> {
     return null;
+  }
+
+  public addNewLibrary(accountId: number, name: string): Observable<Library> {
+    return this.httpClient.post<Library>(`${this.zuulUrl}/library/new`,
+      { 'accountId': accountId, 'name': name, 'numberOfQuestion': 0, 'status': 'PRIVATE' });
   }
 
   public getQuestionById(id: number): Observable<Question> {
