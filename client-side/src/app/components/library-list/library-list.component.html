@@ -8,9 +8,18 @@
 <mat-grid-list cols="3" rowHeight="3:2">
 
   <mat-grid-tile *ngFor="let library of libraryList">
-    <mat-card (click)="this.getLibrary(library.libraryId)" >
+    <mat-card (click)="this.getLibrary(library.libraryId)">
       <mat-card-title>{{library.name}}</mat-card-title>
       <mat-card-subtitle>{{library.questions.length}} questions</mat-card-subtitle>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile *ngIf="userLibraries">
+    <mat-card (click)="openDialog()">
+      <mat-card-title>
+          <mat-icon class="attempt-icon-correct">library_add</mat-icon>
+      </mat-card-title>
+      <mat-card-subtitle>Add New Library</mat-card-subtitle>
     </mat-card>
   </mat-grid-tile>
 
