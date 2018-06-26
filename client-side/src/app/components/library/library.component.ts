@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, Inject, ViewEncapsulation } from '@angular/core';
 import { Library } from '../../models/library';
+import { Answers } from '../../models/question';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { Question } from '../../models/question';
@@ -64,17 +65,30 @@ export class LibraryComponent implements OnInit, OnDestroy {
   encapsulation: ViewEncapsulation.None,
 })
 export class LibraryDialogComponent {
-  public data.question;
+
   public difficultyMax: number = 5;
+  public newAnswer: Boolean = false;
+  public newIndex: number;
+  public newerAnswer: Answers;
 
   constructor(
     public dialogRef: MatDialogRef<LibraryDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { 
-      this.data.question = data.question;
+      this.newIndex = 0;
     }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  addAnswer() {
+    this.newAnswer = true;
+    console.log('Hello');
+  }
+
+  appendAnswer() {
+    this.data.question.answers.push(new Answers());
+    console.log(this.data.question.answers)
   }
 
   saveEdit(): void {
