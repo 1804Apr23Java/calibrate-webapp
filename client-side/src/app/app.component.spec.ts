@@ -45,6 +45,8 @@ import {
   MatDividerModule
 } from '@angular/material';
 import { FormsModule } from '@angular/forms';
+import { PrismModule } from '@ngx-prism/core';
+
 describe('AppComponent', () => {
 
 
@@ -67,7 +69,8 @@ describe('AppComponent', () => {
         MatGridListModule,
         MatCheckboxModule,
         MatDividerModule,
-        FormsModule
+        FormsModule,
+        PrismModule
       ],
       declarations: [
         AppComponent,
@@ -103,10 +106,10 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('app');
   }));
-  it('should render title in a h1 tag', async(() => {
+  it('should define navbar', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to calibrate-clientside!');
+    expect('app-navbar').toBeDefined();
   }));
 });

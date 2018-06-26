@@ -1,10 +1,12 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { GatewayService } from './gateway.service';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('GatewayService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientModule],
       providers: [GatewayService]
     });
   });

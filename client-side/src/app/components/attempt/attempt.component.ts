@@ -4,7 +4,10 @@ import { Question } from '../../models/question';
 import {MatTableDataSource} from '@angular/material';
 import { GatewayService } from '../../services/gateway.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatRow} from '@angular/material';
+<<<<<<< HEAD
 
+=======
+>>>>>>> 90c1770f5e2f231f9418c1e813d069c58229a6a0
 
 @Component({
   selector: 'app-attempt',
