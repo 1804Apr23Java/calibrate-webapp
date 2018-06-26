@@ -31,6 +31,7 @@ mat-radio-group {
 .questionForm {
   display: flex;
   flex-direction: column;
+  margin: 10px;
 }
 
 .questionButtons {
@@ -73,9 +74,14 @@ mat-radio-group {
   margin: 10px;
 }
 
+
+.headerLink {
+  margin: 10px;
+}
+
 mat-form-field {
   margin: 10px;
-  width: 80%;
+  width: 70%;
 }
 
 .questionOverflow {
