@@ -12,7 +12,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { QuizzesComponent } from './components/quizzes/quizzes.component';
 import { LibraryListComponent } from './components/library-list/library-list.component';
 import { LibraryComponent } from './components/library/library.component';
-import { QuestionComponent } from './components/question/question.component';
+// import { QuestionComponent } from './components/question/question.component';
 import { AttemptComponent } from './components/attempt/attempt.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TakeAQuizComponent } from './components/take-a-quiz/take-a-quiz.component';
@@ -80,7 +80,7 @@ describe('AppComponent', () => {
         QuizzesComponent,
         LibraryListComponent,
         LibraryComponent,
-        QuestionComponent,
+      // QuestionComponent,
         AttemptComponent,
         SidebarComponent,
         TakeAQuizComponent,
