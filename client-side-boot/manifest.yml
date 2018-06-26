@@ -1,0 +1,6 @@
+applications:
+- name: calibrate
+  memory: 1024M
+  buildpack: java_buildpack
+  routes:
+  - route: calibrate.cfapps.io
