@@ -1,5 +1,6 @@
 export class Question {
 
+    constructor() {}
     questionId: number;
     difficulty: number;
     value: string;
@@ -9,6 +10,8 @@ export class Question {
 }
 
 export class Answers {
+
+
 
     answerId: number;
     isCorrect: boolean;
