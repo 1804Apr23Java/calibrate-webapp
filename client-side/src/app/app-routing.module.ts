@@ -15,6 +15,8 @@ import { AdminDefaultComponent } from './components/admin-default/admin-default.
 import { AdminAddAccountComponent } from './components/admin-add-account/admin-add-account.component';
 import { AdminDeactivateAccountComponent } from './components/admin-deactivate-account/admin-deactivate-account.component';
 import { SavedQuizzesComponent } from './components/saved-quizzes/saved-quizzes.component';
+import { ProfileHomepageComponent } from './components/profile-homepage/profile-homepage.component';
+import { ProfileUpdateComponent } from './components/profile-update/profile-update.component';
 
 
 export const routes: Routes = [
@@ -22,7 +24,13 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'library', component: LibraryComponent },
   { path: 'library-list', component: LibraryListComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile', 
+    component: ProfileComponent,
+    children: [
+      {path : 'app-profile-homepage', component: ProfileHomepageComponent },
+      {path : 'app-profile-update', component: ProfileUpdateComponent },
+       { path: '**', redirectTo: 'app-profile-homepage' }
+  ]  },
   { path: 'quiz-session', component: QuizSessionComponent },
   { path: 'admin',
     component: AdminComponent,

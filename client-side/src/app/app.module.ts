@@ -45,6 +45,9 @@ import { AdminDefaultComponent } from './components/admin-default/admin-default.
 import { AdminAddAccountComponent } from './components/admin-add-account/admin-add-account.component';
 import { AdminDeactivateAccountComponent } from './components/admin-deactivate-account/admin-deactivate-account.component';
 import { SavedQuizzesComponent } from './components/saved-quizzes/saved-quizzes.component';
+import { SidebarProfileComponent } from './components/sidebar-profile/sidebar-profile.component';
+import { ProfileHomepageComponent } from './components/profile-homepage/profile-homepage.component';
+import { ProfileUpdateComponent } from './components/profile-update/profile-update.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +72,10 @@ import { SavedQuizzesComponent } from './components/saved-quizzes/saved-quizzes.
     AdminAddAccountComponent,
     AdminDeactivateAccountComponent,
     AttemptDialogComponent,
-    SavedQuizzesComponent
+    SavedQuizzesComponent,
+    SidebarProfileComponent,
+    ProfileHomepageComponent,
+    ProfileUpdateComponent
   ],
   imports: [
     BrowserModule,

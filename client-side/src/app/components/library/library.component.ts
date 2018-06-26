@@ -22,6 +22,7 @@ export class LibraryComponent implements OnInit, OnDestroy {
 
   public library: Library = new Library();
   private isPending: boolean;
+  private isPrivate: boolean;
   
 
   constructor(private gatewayService: GatewayService, public dialog: MatDialog) { }
@@ -41,7 +42,19 @@ export class LibraryComponent implements OnInit, OnDestroy {
   }
 
   deleteQuestion(index) {
+    console.log(index);
     this.library.questions.splice(index, 1);
+  }
+
+  addNewQuestion(): void {
+    let question: Question = {
+      value: "boo", 
+      difficulty:1,
+      libraryId: this.library.libraryId
+    }
+    console.log('hello' + this.library.questions);
+    this.library.questions.push(question); 
+    console.log('goodbye' + this.library.questions);
   }
 
   openDialog(question: Question): void {
@@ -55,6 +68,7 @@ export class LibraryComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.getLibraryById(+sessionStorage.getItem('libraryId'));
     this.isPending = sessionStorage.getItem('isPending') === 'true';
+    this.isPrivate = sessionStorage.getItem('isPrivate') === 'true';
   }
 
   ngOnDestroy() {

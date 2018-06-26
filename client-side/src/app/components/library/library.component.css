@@ -98,3 +98,16 @@ mat-form-field {
   max-height: 500px;
   overflow: auto;
 }
+
+.icon-correct {
+  font-size: 30px;
+  color: green;
+}
+
+.attempt-icon {
+  min-width: 50px;
+}
+
+.shrinkMe {
+  max-width: 100px;
+}
