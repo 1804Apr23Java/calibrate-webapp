@@ -1,8 +1,36 @@
-<p>Quiz: {{data.selectedAttempt.name}}</p>
-<div *ngFor="let question of data.selectedAttempt.questions">
-  {{question.value}}<br>
-  Difficulty: {{question.difficulty}}
-  <div *ngFor="let answer of question.answers">
-    {{answer.value}} Correct: {{ answer.isCorrect }} Selected: {{ answer.isSelected }}
-  </div>
+<mat-dialog-content>
+  <mat-toolbar color="primary" class="quiz-session-header mat-elevation-z8">
+    Quiz: {{data.selectedAttempt.name}}
+  </mat-toolbar>
+
+  <mat-accordion class="mat-elevation-z8">
+    <mat-expansion-panel *ngFor="let question of data.selectedAttempt.questions; let i = index" [attr.data-index]="i" hideToggle="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{question.value}}
+          <br>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <mat-list role="list">
+        <p>
+
+          <mat-list-item *ngFor="let answer of question.answers">
+            <span class="attempt-icon">
+              <mat-icon *ngIf="answer.isCorrect" class="attempt-icon-correct">check_box</mat-icon>
+              <mat-icon *ngIf="!answer.isCorrect && answer.isSelected" class="attempt-icon-incorrect">cancel</mat-icon>
+            </span>
+
+            <span>{{answer.value}}</span>
+          </mat-list-item>
+        </p>
+      </mat-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+
+
+</mat-dialog-content>
+<div class="mat-dialog-actions">
+    <button mat-button (click)="onNoClick()" cdkFocusInitial>Close</button>
 </div>
