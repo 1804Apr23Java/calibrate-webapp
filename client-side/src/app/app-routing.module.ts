@@ -17,7 +17,7 @@ import { AdminDeactivateAccountComponent } from './components/admin-deactivate-a
 import { SavedQuizzesComponent } from './components/saved-quizzes/saved-quizzes.component';
 
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: 'attempt', component: AttemptComponent },
   { path: 'login', component: LoginComponent },
   { path: 'library', component: LibraryComponent },
