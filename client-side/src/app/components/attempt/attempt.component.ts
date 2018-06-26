@@ -19,6 +19,7 @@ export class AttemptComponent implements OnInit {
   displayedColumns = ['name', 'date', 'score', 'view'];
   dataSource: MatTableDataSource<Attempt>;
 
+  // THIS NEEDS TO BE "GET ATTEMPTS BY ID WHERE isComplete IS TRUE"
   getAttemptsById(id: number): void {
     this.gatewayService.getAttemptsById(id).subscribe(
       (attempts: Attempt[]) => {

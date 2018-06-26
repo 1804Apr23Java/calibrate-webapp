@@ -14,6 +14,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AdminDefaultComponent } from './components/admin-default/admin-default.component';
 import { AdminAddAccountComponent } from './components/admin-add-account/admin-add-account.component';
 import { AdminDeactivateAccountComponent } from './components/admin-deactivate-account/admin-deactivate-account.component';
+import { SavedQuizzesComponent } from './components/saved-quizzes/saved-quizzes.component';
 
 
 const routes: Routes = [
@@ -42,6 +43,7 @@ const routes: Routes = [
       { path: 'take-a-quiz', component: TakeAQuizComponent },
       { path: 'quiz-attempts', component: AttemptComponent },
       { path: 'library', component: LibraryComponent },
+      { path: 'saved-quizzes', component: SavedQuizzesComponent }
     ]  },
   { path: '**', redirectTo: 'profile' }
 ];
