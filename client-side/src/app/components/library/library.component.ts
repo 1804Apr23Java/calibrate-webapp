@@ -27,9 +27,14 @@ export class LibraryComponent implements OnInit, OnDestroy {
   private libraryTemp: Library;
 
   constructor(private gatewayService: GatewayService, public dialog: MatDialog, private router: Router) { }
-
+  clickConfirm() {
+    if (confirm('Are you sure to delete ' + name)) {
+      console.log('Implement delete functionality here');
+    }
+  }
   makeLibraryPublic(libraryId: number) {
     sessionStorage.setItem('libraryId', libraryId.toString());
+    if (confirm('Are you sure to approve this library?')) {
     this.gatewayService.makeLibraryPublic(libraryId).subscribe(
       (libraryTemp: Library) => {
         this.libraryTemp = libraryTemp;
@@ -38,8 +43,11 @@ export class LibraryComponent implements OnInit, OnDestroy {
     );
     this.router.navigate(['admin/pending-library-list']);
   }
+  }
   makeLibraryPrivate(libraryId: number) {
     sessionStorage.setItem('libraryId', libraryId.toString());
+    //
+    if (confirm('Are you sure to deny this library?')) {
     this.gatewayService.makeLibraryPrivate(libraryId).subscribe(
       (libraryTemp: Library) => {
         this.libraryTemp = libraryTemp;
@@ -47,6 +55,8 @@ export class LibraryComponent implements OnInit, OnDestroy {
          error => console.log(`Error: ${error}`)
     );
     this.router.navigate(['admin/pending-library-list']);
+    // location.reload();
+  }
   }
   getLibraryById(libraryId: number): void {
     this.gatewayService.getLibraryById(libraryId).subscribe(
