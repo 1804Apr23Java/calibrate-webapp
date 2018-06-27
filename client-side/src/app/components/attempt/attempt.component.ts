@@ -4,6 +4,7 @@ import { Question } from '../../models/question';
 import {MatTableDataSource} from '@angular/material';
 import { GatewayService } from '../../services/gateway.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatRow} from '@angular/material';
+import { QuizLogicService } from '../../services/quizlogic.service';
 
 @Component({
   selector: 'app-attempt',
@@ -12,7 +13,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatRow} from '@angular/materia
 })
 export class AttemptComponent implements OnInit {
 
-  constructor(private gatewayService: GatewayService, public dialog: MatDialog) { }
+  constructor(private gatewayService: GatewayService, private logicService: QuizLogicService, public dialog: MatDialog) { }
 
   public attempts: Attempt[];
   displayedColumns = ['name', 'date', 'score', 'view'];
@@ -30,12 +31,7 @@ export class AttemptComponent implements OnInit {
   }
 
   wasQuestionAnsweredCorrectly(question: Question): boolean {
-    for (const answer of question.answers) {
-      if (answer.isCorrect !== answer.isSelected) {
-        return false;
-      }
-    }
-    return true;
+    return this.logicService.wasQuestionAnsweredCorrectly(question);
   }
 
   ngOnInit() {
@@ -64,10 +60,27 @@ export class AttemptDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<AttemptDialogComponent>,
+    private logicService: QuizLogicService,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  wasQuestionAnsweredCorrectly(question: Question): boolean {
+    return this.logicService.wasQuestionAnsweredCorrectly(question);
+  }
+
+  getCorrectRowStyle(question: Question): Object {
+    if (this.wasQuestionAnsweredCorrectly(question)) {
+      return { 'background-color': '#ccffcc' };
+    } else {
+      return { 'background-color': '#ffcccc'};
+    }
+  }
+
+  getPercentageColorStyle(score: number): Object {
+    return this.logicService.getPercentageColorStyle(score);
   }
 
 }
