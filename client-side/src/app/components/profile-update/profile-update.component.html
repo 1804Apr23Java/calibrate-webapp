@@ -1,0 +1,27 @@
+<mat-toolbar color="primary" class="mat-elevation-z8 attempt-table">
+  Update Account
+</mat-toolbar>
+
+<div class="login-form">
+  <div class="aside-1"></div>
+ 
+  <div>
+  <mat-form-field>
+    <input matInput placeholder="First Name" [(ngModel)]="this.account.firstName">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="Last Name" [(ngModel)]="this.account.lastName">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="Current Password" type="password" [(ngModel)]="oldPassword">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="New Password" type="password" [(ngModel)]="newPassword">
+  </mat-form-field>
+</div>
+  <div class="aside-2"></div>
+</div>
+<button mat-button color="primary" class="login-button-center"> Update Profile &gt;</button>

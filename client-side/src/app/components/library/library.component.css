@@ -16,6 +16,11 @@
   margin: 2.5% auto;
 }
 
+.questionsBody {
+  max-height: 100px;
+  overflow: auto;
+}
+
 mat-radio-group {
   display: inline-flex;
   flex-direction: column;
@@ -87,4 +92,22 @@ mat-form-field {
 .questionOverflow {
   max-height: 310px;
   overflow: auto;
+}
+
+.entrapment {
+  height: 530px;
+  overflow: auto;
+}
+
+.icon-correct {
+  font-size: 30px;
+  color: green;
+}
+
+.attempt-icon {
+  min-width: 50px;
+}
+
+.shrinkMe {
+  max-width: 100px;
 }

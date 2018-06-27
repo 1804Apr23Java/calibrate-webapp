@@ -9,20 +9,6 @@
 </mat-card>
 
 <div class="body">
-<!--
-  <mat-card class="difficulty">
-    <mat-card-content>
-      <h2 class="example-h2">Difficulty</h2>
-      <mat-slider
-        [max]="difficultyMax"
-        [min]="0"
-        [(ngModel)]=data.question.difficulty
-        [thumbLabel]="true"
-        [vertical]="true">
-      </mat-slider>
-    </mat-card-content>
-  </mat-card>
-  -->
   <mat-card class="questionField">
     <h2 class="example-h2">Answers</h2>
     <mat-card-content class="questionOverflow">
@@ -30,7 +16,7 @@
       <div  *ngFor="let answer of data.question.answers; let j = index">
         <mat-form-field>
           <input matInput placeholder="Answer" [(ngModel)]=answer.value>
-        </mat-form-field>Right Answer <mat-checkbox [(ngModel)]=answer.isCorrect></mat-checkbox>  Delete Answer <mat-checkbox [(ngModel)]=answer.isCorrect><br>
+        </mat-form-field>Right Answer <mat-checkbox [(ngModel)]=answer.isCorrect><button mat-button color="warn" (click)="deleteAnswer(j)"><mat-icon color="warn">highlight_off</mat-icon></button><br>
         </mat-checkbox>
       </div>
       <div *ngIf="newAnswer">

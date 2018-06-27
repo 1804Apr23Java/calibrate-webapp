@@ -14,7 +14,9 @@
     {{library.name}}
   </mat-toolbar>
   <br>
+</div>
 
+<div class="entrapment">
   <mat-accordion class="headers-align mat-elevation-z8 libraryTable">
     <mat-expansion-panel *ngFor="let question of library.questions; let i = index" [attr.data-index]="i" [expanded]="step === i + 1"
        hideToggle="true"><!--(opened)="setStep(i + 1)"-->
@@ -27,26 +29,29 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
 
-      <mat-radio-group>
-          <br>
-        <mat-radio-button class="questionButtons" *ngFor="let answer of question.answers; let j = index" [attr.data-index]="i">
-          <span *ngIf="answer.isCorrect">
-            <mat-icon>check_box</mat-icon>
-          </span>
-          {{answer.value}}
-        </mat-radio-button>
-        <br>
-      </mat-radio-group>
+      <mat-list role="list">
+        <p>
+
+          <mat-list-item *ngFor="let answer of question.answers; let j = index" [attr.data-index]="i">
+            <span class="attempt-icon">
+              <mat-icon *ngIf="answer.isCorrect" class="icon-correct">check_box</mat-icon>
+            </span>
+
+            <span>{{answer.value}}</span>
+          </mat-list-item>
+        </p>
+      </mat-list>
 
       <mat-action-row>
-        <button mat-button color="primary">Delete</button>
         <button mat-button color="primary" (click)="openDialog(question)">Edit</button>
-        <button mat-button color="primary">Delete</button>
+        <button mat-button color="primary" (click)="deleteQuestion(i)">Delete</button>
       </mat-action-row>
     </mat-expansion-panel>
   </mat-accordion>
 
-  <mat-card *ngIf= "this.isPending" class="center">
+</div>
+
+  <mat-card class="center" *ngIf="this.isPending">
     <div class="center">
       <span>
         <button mat-button routerLink="/admin/pending-library-list"> Approve
@@ -57,6 +62,12 @@
         <mat-icon color="warn">highlight_off</mat-icon>
       </button>
     </div>
-    </mat-card>
+  </mat-card>
 
-</div>
+    <div *ngIf="!this.isPending" (click)="addNewQuestion">
+            <mat-action-row>
+        <button mat-button color="primary" (click)="addNewQuestion()">Add new question</button>
+         <button mat-button color="primary" *ngIf = "this.isPrivate == 'true'"(click)="submitForApproval()">Submit For Approval</button>
+      </mat-action-row>
+    </div>
+
