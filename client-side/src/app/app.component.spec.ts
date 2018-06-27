@@ -1,7 +1,9 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, fakeAsync, tick, async } from '@angular/core/testing';
 import {
   RouterTestingModule
 } from '@angular/router/testing';
+import {Location} from '@angular/common';
+
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -12,7 +14,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { QuizzesComponent } from './components/quizzes/quizzes.component';
 import { LibraryListComponent } from './components/library-list/library-list.component';
 import { LibraryComponent } from './components/library/library.component';
-import { QuestionComponent } from './components/question/question.component';
+// import { QuestionComponent } from './components/question/question.component';
 import { AttemptComponent } from './components/attempt/attempt.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TakeAQuizComponent } from './components/take-a-quiz/take-a-quiz.component';
@@ -49,10 +51,13 @@ import { PrismModule } from '@ngx-prism/core';
 
 describe('AppComponent', () => {
 
-
+  //  let location: Location;
+  //  let router: Router;
+  //  let fixture;
   beforeEach(async(() => {
+ //  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, HttpClientModule,
+      imports: [RouterTestingModule.withRoutes(routes), HttpClientModule,
         BrowserModule,
         BrowserAnimationsModule,
         MatExpansionModule,
@@ -80,7 +85,7 @@ describe('AppComponent', () => {
         QuizzesComponent,
         LibraryListComponent,
         LibraryComponent,
-        QuestionComponent,
+      // QuestionComponent,
         AttemptComponent,
         SidebarComponent,
         TakeAQuizComponent,
@@ -95,7 +100,19 @@ describe('AppComponent', () => {
 
       ],
     }).compileComponents();
+    // });
+    // router = TestBed.get(Router);
+    // location = TestBed.get(Location);
+    // fixture = TestBed.createComponent(AppComponent);
+    // router.initialNavigation();
   }));
+
+  // it('should nav to profile by default', fakeAsync(() => {
+  //    router.navigate(['']);
+  //    tick();
+  //    expect(location.path()).toBe('/profile');
+  //  }));
+
   it('should create the app', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
