@@ -35,7 +35,7 @@ export class LibraryComponent implements OnInit, OnDestroy {
     this.gatewayService.getLibraryById(libraryId).subscribe(
       (library: Library) => {
         this.library = library;
-        console.log('libraries' this.library library);
+        // console.log('libraries' this.library library);
       },
       error => console.log(`Error: ${error}`)
     );
@@ -75,7 +75,7 @@ export class LibraryComponent implements OnInit, OnDestroy {
   }
 
   submitForApproval(): void {
-    
+
   }
 
   ngOnInit() {
@@ -87,7 +87,7 @@ export class LibraryComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     sessionStorage.removeItem('isPending');
-    console.log('destry' this.library);
+    // console.log('destry' this.library);
   }
 }
 
@@ -122,7 +122,7 @@ export class LibraryDialogComponent {
       answerId: null,
       isCorrect: false,
       value: '',
-      questionId: this.data.question.questionId
+      questionId: this.data.question.questionId,
       isSelected: false,
     };
     this.data.question.answers.push(answer);

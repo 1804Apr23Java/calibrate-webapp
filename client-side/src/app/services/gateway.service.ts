@@ -75,7 +75,7 @@ export class GatewayService {
   }
 
   public submitLibraryForApproval(libraryId: number): Observable<Library> {
-    return this.httpClient.post<Account>(`${this.backendUrl}/account/add`, new Account(email, firstName, lastName, password));
+    return this.httpClient.post<Library>(`${this.backendUrl}/account/add`, new Account(email, firstName, lastName, password));
   }
 
   // WRITE HTTPCLIENT PATCH METHOD TO DEACTIVATE ACCOUNT
