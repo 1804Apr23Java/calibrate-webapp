@@ -17,10 +17,8 @@ export class ProfileUpdateComponent implements OnInit {
   lastname: string;
   account: Account;
   private accountId: String = sessionStorage.getItem('accountId');
-
-  public account: Account;
-
-
+  oldPassword: string;
+  newPassword: string;
 
   getAccountById(id: number): void {
     this.gatewayService.getAccountById(id).subscribe(

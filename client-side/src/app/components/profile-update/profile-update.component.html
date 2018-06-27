@@ -5,7 +5,7 @@
 <div class="login-form">
   <div class="aside-1"></div>
  
-  <div >
+  <div>
   <mat-form-field>
     <input matInput placeholder="First Name" [(ngModel)]="this.account.firstName">
   </mat-form-field>
@@ -15,7 +15,11 @@
   </mat-form-field>
   <br>
   <mat-form-field>
-    <input matInput placeholder="Password" type="password" [(ngModel)]="this.account.password">
+    <input matInput placeholder="Current Password" type="password" [(ngModel)]="oldPassword">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="New Password" type="password" [(ngModel)]="newPassword">
   </mat-form-field>
 </div>
   <div class="aside-2"></div>

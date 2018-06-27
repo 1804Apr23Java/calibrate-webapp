@@ -15,4 +15,5 @@ export class Answers {
     value: string;
     questionId: number;
     isSelected: boolean;
+
 }

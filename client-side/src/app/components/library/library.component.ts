@@ -22,7 +22,7 @@ export class LibraryComponent implements OnInit, OnDestroy {
 
   public library: Library = new Library();
   private isPending: boolean;
-  private isPrivate: boolean;
+  private isPrivate: string;
   
 
   constructor(private gatewayService: GatewayService, public dialog: MatDialog) { }
@@ -48,14 +48,13 @@ export class LibraryComponent implements OnInit, OnDestroy {
 
   addNewQuestion(): void {
     let question: Question = {
+      questionId: null,
       value: "", 
       difficulty:1,
       libraryId: this.library.libraryId,
       answers: []
     }
-    console.log('hello' + this.library.questions.answers);
     this.library.questions.push(question); 
-    console.log('goodbye' + this.library.questions.answers);
   }
 
   openDialog(question: Question): void {
@@ -109,7 +108,11 @@ export class LibraryDialogComponent {
 
   appendAnswer() {
     let answer: Answers = {
-      value: "" 
+      answerId: null,
+      isCorrect: false,
+      value: "",
+      questionId: this.data.question.questionId,
+      isSelected: false;
     }
     this.data.question.answers.push(answer);
     console.log(this.data.question.answers)

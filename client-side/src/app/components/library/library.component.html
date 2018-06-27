@@ -67,7 +67,7 @@
     <div *ngIf="!this.isPending" (click)="addNewQuestion">
             <mat-action-row>
         <button mat-button color="primary" (click)="addNewQuestion()">Add new question</button>
-         <button mat-button color="primary" *ngIf = "this.isPrivate"(click)="submitForApproval()">Submit For Approval</button>
+         <button mat-button color="primary" *ngIf = "this.isPrivate == 'true'"(click)="submitForApproval()">Submit For Approval</button>
       </mat-action-row>
     </div>
 

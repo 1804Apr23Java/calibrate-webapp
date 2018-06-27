@@ -5,6 +5,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Library } from '../../models/library';
 import { Quiz } from '../../models/quiz';
 import { Question } from '../../models/question';
+import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 
 @Component({
   selector: 'app-take-a-quiz',
@@ -13,32 +15,55 @@ import { Question } from '../../models/question';
 })
 export class TakeAQuizComponent implements OnInit {
 
-  publicLibraryListString: String;
+  maxQuestions: number = 0;
   currentlySelectedLibraries: Library[] = [];
-  public selectedLibrarySet = new Set();
-
-  
-
-  newName: any = "";
-  newQuiz: Quiz;
-  newLibraryIds: number[] = [];
-  newQuizLength: number;
+  selectedLibrarySet = new Set();
+  quizName: string = '';
+  questionFormControl = new FormControl('', [
+    Validators.max(this.maxQuestions), 
+    Validators.min(0),
+    Validators.required]);
 
   constructor(private gatewayService: GatewayService, public dialog: MatDialog) { }
 
   ngOnInit() {
   }
 
-  openDialog(): void {
+  openDialog(dataSet: Set): void {
     const dialogRef = this.dialog.open(TakeAQuizAddDialogComponent, {
       width: '60%',
-      height: '60%'
+      height: '60%',
+      data: this.selectedLibrarySet
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      this.selectedLibrarySet.add(result);
+      this.addToMaxQuestions(result);
+      console.log(this.maxQuestions);
     });
+  }
+
+  addToMaxQuestions(result: Library): void {
+    this.maxQuestions = this.maxQuestions + result.questions.length;
+    this.questionFormControl = new FormControl('', [
+      Validators.max(this.maxQuestions), 
+      Validators.min(0),
+      Validators.required]);
+  }
+
+  deleteFromMaxQuestions(library: Library): void {
+    this.maxQuestions = this.maxQuestions - library.questions.length;
+    this.questionFormControl = new FormControl('', [
+      Validators.max(this.maxQuestions), 
+      Validators.min(0),
+      Validators.required]);
+  }
+
+  generateNewQuiz() {
+    
+  }
+
+  startNewQuiz() {
+    this.generateNewQuiz();
   }
 
 }
@@ -53,13 +78,14 @@ export class TakeAQuizComponent implements OnInit {
 export class TakeAQuizAddDialogComponent implements OnInit {
 
   libraryList: Library[] = [];
-  libraryListString: String;
   publicLibraryList: Library[] = [];
 
   maxQuestions: number = 0;
 
   constructor(private gatewayService: GatewayService,
-  public dialogRef: MatDialogRef<TakeAQuizAddDialogComponent>) { }
+  public dialogRef: MatDialogRef<TakeAQuizAddDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any)  { 
+  }
   
   ngOnInit() {
     this.getAllPublicLibraries();
@@ -85,6 +111,7 @@ export class TakeAQuizAddDialogComponent implements OnInit {
   }
 
   returnLibrary(library: Library): void {
+    this.data.add(library);
     this.dialogRef.close(library);
   }
 }

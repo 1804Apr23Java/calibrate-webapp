@@ -31,3 +31,20 @@ mat-card {
   width: 80%;
   margin: 20px 0 20px 10%;
 }
+
+mat-horizontal-stepper {
+  margin: 10px;
+}
+mat-chip-list {
+  padding: 20px;
+  width: 850px;
+}
+
+.stepBox {
+  height: 450px;
+  overflow: auto;
+}
+
+.stepBox3 {
+  height: 450px;
+}
