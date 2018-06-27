@@ -3,6 +3,7 @@ import { Quiz } from '../../models/quiz';
 import { Question } from '../../models/question';
 
 import { GatewayService } from '../../services/gateway.service';
+import { QuizLogicService } from '../../services/quizlogic.service';
 
 @Component({
   selector: 'app-quiz-session',
@@ -14,7 +15,7 @@ export class QuizSessionComponent implements OnInit {
   public currentQuestionIndex: number;
   public selectedAnswersSet = new Set();
 
-  constructor(private gatewayService: GatewayService) {}
+  constructor(private gatewayService: GatewayService, private logicService: QuizLogicService) {}
 
   ngOnInit() {
     this.getQuizById(1);
@@ -44,13 +45,7 @@ export class QuizSessionComponent implements OnInit {
   // returns true if more than one correct answer (for checkbox)
   // returns false if one correct answer (for radio buttons)
   checkForMultipleCorrectAnswers(question: Question): boolean {
-    let correctAnswers = 0;
-    for (const answer of question.answers) {
-      if (answer.isCorrect) {
-        correctAnswers += 1;
-      }
-    }
-    return correctAnswers > 1;
+    return this.logicService.checkForMultipleCorrectAnswers(question);
   }
 
   // currentQuestionIndex manipulation

@@ -3,12 +3,21 @@
     Quiz: {{data.selectedAttempt.name}}
   </mat-toolbar>
 
-  <p>Print score!</p>
-  <p>{{ data.selectedAttempt.numCorrect / data.selectedAttempt.numberOfQuestions | percent }}</p>
+  <div class="flex-container">
+    <div class="col-1">
+      <p>Your score for this quiz:</p>
+      <div class="score-circle" [ngStyle]="getPercentageColorStyle(data.selectedAttempt.numCorrect / data.selectedAttempt.numberOfQuestions)">
+        {{ data.selectedAttempt.numCorrect / data.selectedAttempt.numberOfQuestions | percent }}
+      </div>
+    </div>
+    <div class="col-1">
+      <p>histogram goes here lol</p>
+    </div>
+  </div>
 
   <mat-accordion class="mat-elevation-z8">
     <mat-expansion-panel *ngFor="let question of data.selectedAttempt.questions; let i = index" [attr.data-index]="i" hideToggle="true">
-      <mat-expansion-panel-header>
+      <mat-expansion-panel-header [ngStyle]="getCorrectRowStyle(question)">
         <mat-panel-title>
           {{question.value}}
           <br>
@@ -25,9 +34,6 @@
             </span>
             <span>{{answer.value}}</span>
 
-            <!-- fill remaining width -->
-            <span class="fill-remaining-width"></span>
-
             <!-- Place green/red correct/incorrect boxes at end of list item -->
             <span class="attempt-icon">
               <mat-icon *ngIf="answer.isCorrect" class="attempt-icon-correct">check_box</mat-icon>
@@ -40,5 +46,5 @@
   </mat-accordion>
 </mat-dialog-content>
 <div class="mat-dialog-actions">
-  <button mat-button (click)="onNoClick()" cdkFocusInitial>Close</button>
+  <button mat-button (click)="onNoClick()" class="close-button">Close</button>
 </div>
