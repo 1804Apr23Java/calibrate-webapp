@@ -29,5 +29,5 @@ export class ProfileComponent implements OnInit {
     } else {
       this.getAccountById(+this.accountId);
     }
-  }
+   }
 }

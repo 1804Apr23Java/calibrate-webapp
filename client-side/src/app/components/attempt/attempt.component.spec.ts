@@ -11,8 +11,9 @@ import {
   MatRadioModule, MatAutocompleteModule,
   MatTabsModule, MatInputModule,
   MatCardModule, MatGridListModule,
-  MatCheckboxModule, MatDividerModule } from '@angular/material';
+  MatCheckboxModule, MatDividerModule, MatDialogModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatRow} from '@angular/material';
 
 describe('AttemptComponent', () => {
   let component: AttemptComponent;
@@ -30,7 +31,7 @@ describe('AttemptComponent', () => {
         MatAutocompleteModule, MatTabsModule,
         MatInputModule, MatCardModule,
         MatGridListModule, MatCheckboxModule,
-        MatDividerModule],
+        MatDividerModule, MatDialogModule],
       declarations: [ AttemptComponent ]
     })
     .compileComponents();
