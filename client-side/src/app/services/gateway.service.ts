@@ -19,7 +19,13 @@ export class GatewayService {
   private backendLoginUrl = 'http://ec2-35-171-24-66.compute-1.amazonaws.com:8764';
 
   public getQuizById(id: number): Observable<Quiz> {
-    return this.httpClient.get<Quiz>(`${this.backendUrl}/quiz/${id}`);
+    return this.httpClient.get<Quiz>(`${this.zuulUrl}/quiz/quiz/${id}`);
+  }
+
+  public generateQuiz(libraryIds: number[], name: string, numQuestions: number): Observable<Quiz> {
+    return this.httpClient.post<Quiz>(`${this.zuulUrl}/quiz/quiz/generate`,
+      { 'libraryIds': libraryIds, 'name': name, 'numQuestions': numQuestions }
+    );
   }
 
   public getLibraryById(libraryId: number): Observable<Library> {
@@ -84,7 +90,8 @@ export class GatewayService {
     console.log('got to service');
     console.log(`{ 'accountId': ${accountId}, 'name': ${name}, 'numberOfQuestions': 0, 'status': 'PRIVATE' }`);
     return this.httpClient.post<Library>(`${this.zuulUrl}/library/new`, (
-      { 'accountId': accountId, 'name': name, 'numberOfQuestions': 0, 'status': 'PRIVATE' }));
+      { 'accountId': accountId, 'name': name, 'numberOfQuestions': 0, 'status': 'PRIVATE' }
+    ));
   }
 
   public getQuestionById(id: number): Observable<Question> {

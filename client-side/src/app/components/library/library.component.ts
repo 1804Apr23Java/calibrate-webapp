@@ -70,7 +70,7 @@ export class LibraryComponent implements OnInit, OnDestroy {
   }
 
   submitForApproval(): void {
-    
+
   }
 
   ngOnInit() {
@@ -116,7 +116,7 @@ export class LibraryDialogComponent {
       answerId: null,
       isCorrect: false,
       value: '',
-      questionId: this.data.question.questionId
+      questionId: this.data.question.questionId,
       isSelected: false,
     };
     this.data.question.answers.push(answer);

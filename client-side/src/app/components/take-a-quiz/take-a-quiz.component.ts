@@ -23,6 +23,7 @@ export class TakeAQuizComponent implements OnInit {
     Validators.max(this.maxQuestions),
     Validators.min(0),
     Validators.required]);
+  desiredNumberOfQuestions = 0;
 
   constructor(private gatewayService: GatewayService, public dialog: MatDialog) { }
 
@@ -63,8 +64,17 @@ export class TakeAQuizComponent implements OnInit {
     this.deleteFromMaxQuestions(library);
   }
 
-  generateNewQuiz() {
-
+  generateNewQuiz(): void {
+    const idArray = new Array();
+    for (const library of this.selectedLibrarySet) {
+      idArray.push(library.libraryId);
+    }
+    this.gatewayService.generateQuiz(idArray, this.quizName, this.desiredNumberOfQuestions).subscribe(
+      (quiz: Quiz) => {
+        sessionStorage.setItem('currentQuizId', JSON.stringify(quiz.quizId));
+      },
+      error => console.log(`Error: ${error}`)
+    );
   }
 
   startNewQuiz() {
