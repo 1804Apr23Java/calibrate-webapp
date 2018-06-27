@@ -24,6 +24,7 @@ export class GatewayService {
 
   public getLibraryById(libraryId: number): Observable<Library> {
     return this.httpClient.get<Library>(`${this.zuulUrl}/library/libraryid/${libraryId}`);
+
   }
 
   public getQuestionsByLibraryId(libraryId: number): Observable<Question[]> {
@@ -35,13 +36,13 @@ export class GatewayService {
   }
 // admin approve/deny
   public makeLibraryPending(libraryId: number): Observable<Library> {
-    return this.httpClient.patch<Library>(`${this.backendUrl}/library/makePending/`, libraryId);
+    return this.httpClient.patch<Library>(`${this.zuulUrl}/library/makePending/`, libraryId);
   }
   public makeLibraryPublic(libraryId: number): Observable<Library> {
-    return this.httpClient.patch<Library>(`${this.backendUrl}/library/makePublic/`, libraryId);
+    return this.httpClient.patch<Library>(`${this.zuulUrl}/library/makePublic/`, libraryId);
   }
   public makeLibraryPrivate(libraryId: number): Observable<Library> {
-    return this.httpClient.patch<Library>(`${this.backendUrl}/library/makePrivate/`, libraryId);
+    return this.httpClient.patch<Library>(`${this.zuulUrl}/library/makePrivate/`, libraryId);
   }
 
   public getPublicLibraries(): Observable<Library[]> {
@@ -73,12 +74,9 @@ export class GatewayService {
     return this.httpClient.get<Account[]>(`${this.backendUrl}/account/all`);
   }
 
-<<<<<<< HEAD
-  public submitLibraryForApproval(libraryId: number): Observable<Library> {
-    return this.httpClient.post<Library>(`${this.backendUrl}/account/add`, new Account(email, firstName, lastName, password));
-  }
-=======
->>>>>>> 3e3bb609fc4c4870936ec6050844a40285eaaaff
+  // public submitLibraryForApproval(libraryId: number): Observable<Library> {
+  //   return this.httpClient.post<Account>(`${this.backendUrl}/account/add`, new Account(email, firstName, lastName, password));
+  // }
 
   // WRITE HTTPCLIENT PATCH METHOD TO DEACTIVATE ACCOUNT
   public deactivateAccount(): Observable<boolean> {
@@ -88,9 +86,9 @@ export class GatewayService {
   // Service is up, why isn't this working?
   public addNewLibrary(accountId: number, name: string): Observable<Library> {
     console.log('got to service');
-    console.log(`{ 'accountId': ${accountId}, 'name': ${name}, 'numberOfQuestions': 0, 'status': 'PRIVATE' }`);
-    return this.httpClient.post<Library>(`${this.zuulUrl}/library/new`, (new library: Library =
-      { 'accountId': accountId, 'name': name, 'numberOfQuestions': 0, 'status': 'PRIVATE' }));
+    console.log(`{ 'accountId': ${accountId}, 'name': ${name}, 'numberOfQuestion': 0, 'status': 'PRIVATE' }`);
+    return this.httpClient.post<Library>(`${this.zuulUrl}/library/new`,
+      { 'accountId': accountId, 'name': name, 'numberOfQuestion': 0, 'status': 'PRIVATE' });
   }
 
   public getQuestionById(id: number): Observable<Question> {

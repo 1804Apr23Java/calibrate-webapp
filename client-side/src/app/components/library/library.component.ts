@@ -10,6 +10,7 @@ import { PageEvent } from '@angular/material';
 import { GatewayService } from '../../services/gateway.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MatSliderModule } from '@angular/material/slider';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -23,11 +24,30 @@ export class LibraryComponent implements OnInit, OnDestroy {
   public library = new Library();
   private isPending: boolean;
   private isPrivate: string;
+  private libraryTemp: Library;
 
+  constructor(private gatewayService: GatewayService, public dialog: MatDialog, private router: Router) { }
 
-  constructor(private gatewayService: GatewayService, public dialog: MatDialog) { }
-
-
+  makeLibraryPublic(libraryId: number) {
+    sessionStorage.setItem('libraryId', libraryId.toString());
+    this.gatewayService.makeLibraryPublic(libraryId).subscribe(
+      (libraryTemp: Library) => {
+        this.libraryTemp = libraryTemp;
+      },
+         error => console.log(`Error: ${error}`)
+    );
+    this.router.navigate(['quizzes/library']);
+  }
+  makeLibraryPrivate(libraryId: number) {
+    sessionStorage.setItem('libraryId', libraryId.toString());
+    this.gatewayService.makeLibraryPrivate(libraryId).subscribe(
+      (libraryTemp: Library) => {
+        this.libraryTemp = libraryTemp;
+      },
+         error => console.log(`Error: ${error}`)
+    );
+    this.router.navigate(['quizzes/library']);
+  }
   getLibraryById(libraryId: number): void {
     this.gatewayService.getLibraryById(libraryId).subscribe(
       (library: Library) => {
