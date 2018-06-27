@@ -12,7 +12,7 @@
          </mat-toolbar-row>
 
         <mat-toolbar-row style="border: 1px solid #aaa; background-color: white;" *ngFor="let library of selectedLibrarySet; let i = index">
-          <span>{{library.name}}</span><span> {{library.questions.length}} Questions</span>
+          <span>{{library.name}}</span><span> {{library.numberOfQuestions}} Questions</span>
           <button mat-button color="warn" (click)="deleteSelectedLibrary(i, library)"><mat-icon color="warn">highlight_off</mat-icon></button>
         </mat-toolbar-row>
 

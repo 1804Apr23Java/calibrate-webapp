@@ -43,7 +43,7 @@ export class TakeAQuizComponent implements OnInit {
   }
 
   addToMaxQuestions(result: Library): void {
-    this.maxQuestions = this.maxQuestions + result.questions.length;
+    this.maxQuestions = this.maxQuestions + result.numberOfQuestions;
     this.questionFormControl = new FormControl('', [
       Validators.max(this.maxQuestions),
       Validators.min(0),
@@ -51,7 +51,7 @@ export class TakeAQuizComponent implements OnInit {
   }
 
   deleteFromMaxQuestions(library: Library): void {
-    this.maxQuestions = this.maxQuestions - library.questions.length;
+    this.maxQuestions = this.maxQuestions - library.numberOfQuestions;
     this.questionFormControl = new FormControl('', [
       Validators.max(this.maxQuestions),
       Validators.min(0),
