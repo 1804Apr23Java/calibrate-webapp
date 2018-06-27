@@ -56,13 +56,13 @@ export class LibraryListComponent implements OnInit {
 // trying here
   getLibrary(libraryId: number) {
     sessionStorage.setItem('libraryId', libraryId.toString());
-    this.gatewayService.makeLibraryPending(libraryId).subscribe(
-      (libraryTemp: Library) => {
-        this.libraryTemp = libraryTemp;
-      },
-         error => console.log(`Error: ${error}`)
-    );
-    this.router.navigate(['quizzes/library']);
+    // this.gatewayService.makeLibraryPending(libraryId).subscribe(
+    //   (libraryTemp: Library) => {
+    //     this.libraryTemp = libraryTemp;
+    //   },
+    //      error => console.log(`Error: ${error}`)
+    // );
+     this.router.navigate(['quizzes/library']);
   }
 
   openDialog(): void {

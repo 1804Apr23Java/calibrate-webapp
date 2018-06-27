@@ -36,7 +36,7 @@ export class LibraryComponent implements OnInit, OnDestroy {
       },
          error => console.log(`Error: ${error}`)
     );
-    this.router.navigate(['quizzes/library']);
+    this.router.navigate(['admin/pending-library-list']);
   }
   makeLibraryPrivate(libraryId: number) {
     sessionStorage.setItem('libraryId', libraryId.toString());
@@ -46,7 +46,7 @@ export class LibraryComponent implements OnInit, OnDestroy {
       },
          error => console.log(`Error: ${error}`)
     );
-    this.router.navigate(['quizzes/library']);
+    this.router.navigate(['admin/pending-library-list']);
   }
   getLibraryById(libraryId: number): void {
     this.gatewayService.getLibraryById(libraryId).subscribe(
@@ -89,10 +89,16 @@ export class LibraryComponent implements OnInit, OnDestroy {
     });
   }
 
-  submitForApproval(): void {
-
+  submitForApproval(libraryId: number) {
+    sessionStorage.setItem('libraryId', libraryId.toString());
+    this.gatewayService.makeLibraryPending(libraryId).subscribe(
+      (libraryTemp: Library) => {
+        this.libraryTemp = libraryTemp;
+      },
+         error => console.log(`Error: ${error}`)
+    );
+    this.router.navigate(['quizzes/my-libraries']);
   }
-
   ngOnInit() {
     this.getLibraryById(+sessionStorage.getItem('libraryId'));
     this.getQuestionsByLibraryId(56);
