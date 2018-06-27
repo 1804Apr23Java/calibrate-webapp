@@ -16,6 +16,7 @@ export class GatewayService {
 
   private backendUrl = 'http://ec2-174-129-59-140.compute-1.amazonaws.com:8080/CalibrateBackend';
   private zuulUrl = 'http://ec2-35-171-24-66.compute-1.amazonaws.com:8765';
+  private backendLoginUrl = 'http://ec2-35-171-24-66.compute-1.amazonaws.com:8764';
 
   public getQuizById(id: number): Observable<Quiz> {
     return this.httpClient.get<Quiz>(`${this.backendUrl}/quiz/${id}`);
@@ -32,6 +33,16 @@ export class GatewayService {
 
   public getLibrariesByAccountId(accountId: number): Observable<Library[]> {
     return this.httpClient.get<Library[]>(`${this.backendUrl}/library/byAccount/${accountId}`);
+  }
+// admin approve/deny
+  public makeLibraryPending(libraryId: number): Observable<Library> {
+    return this.httpClient.patch<Library>(`${this.backendUrl}/library/makePending/`, libraryId);
+  }
+  public makeLibraryPublic(libraryId: number): Observable<Library> {
+    return this.httpClient.patch<Library>(`${this.backendUrl}/library/makePublic/`, libraryId);
+  }
+  public makeLibraryPrivate(libraryId: number): Observable<Library> {
+    return this.httpClient.patch<Library>(`${this.backendUrl}/library/makePrivate/`, libraryId);
   }
 
   public getPublicLibraries(): Observable<Library[]> {

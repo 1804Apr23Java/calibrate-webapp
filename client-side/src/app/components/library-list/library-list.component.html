@@ -8,9 +8,10 @@
 <mat-grid-list cols="3" rowHeight="3:2">
 
   <mat-grid-tile *ngFor="let library of libraryList">
+    <!--look at this later-->
     <mat-card (click)="this.getLibrary(library.libraryId)">
       <mat-card-title>{{library.name}}</mat-card-title>
-      <mat-card-subtitle>{{library.questions.length}} questions</mat-card-subtitle>
+      <!--<mat-card-subtitle>{{library.questions.length}} questions</mat-card-subtitle>-->
     </mat-card>
   </mat-grid-tile>
 

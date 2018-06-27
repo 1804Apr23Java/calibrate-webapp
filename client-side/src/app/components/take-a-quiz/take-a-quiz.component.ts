@@ -15,12 +15,12 @@ import { ErrorStateMatcher } from '@angular/material/core';
 })
 export class TakeAQuizComponent implements OnInit {
 
-  maxQuestions: number = 0;
+  maxQuestions = 0;
   currentlySelectedLibraries: Library[] = [];
   selectedLibrarySet: Library[] = [];
-  quizName: string = '';
+  quizName = '';
   questionFormControl = new FormControl('', [
-    Validators.max(this.maxQuestions), 
+    Validators.max(this.maxQuestions),
     Validators.min(0),
     Validators.required]);
 
@@ -29,7 +29,7 @@ export class TakeAQuizComponent implements OnInit {
   ngOnInit() {
   }
 
-  openDialog(dataSet: Set): void {
+  openDialog(dataSet): void {
     const dialogRef = this.dialog.open(TakeAQuizAddDialogComponent, {
       width: '60%',
       height: '60%',
@@ -45,7 +45,7 @@ export class TakeAQuizComponent implements OnInit {
   addToMaxQuestions(result: Library): void {
     this.maxQuestions = this.maxQuestions + result.questions.length;
     this.questionFormControl = new FormControl('', [
-      Validators.max(this.maxQuestions), 
+      Validators.max(this.maxQuestions),
       Validators.min(0),
       Validators.required]);
   }
@@ -53,7 +53,7 @@ export class TakeAQuizComponent implements OnInit {
   deleteFromMaxQuestions(library: Library): void {
     this.maxQuestions = this.maxQuestions - library.questions.length;
     this.questionFormControl = new FormControl('', [
-      Validators.max(this.maxQuestions), 
+      Validators.max(this.maxQuestions),
       Validators.min(0),
       Validators.required]);
   }
@@ -64,7 +64,7 @@ export class TakeAQuizComponent implements OnInit {
   }
 
   generateNewQuiz() {
-    
+
   }
 
   startNewQuiz() {
@@ -85,13 +85,13 @@ export class TakeAQuizAddDialogComponent implements OnInit {
   libraryList: Library[] = [];
   publicLibraryList: Library[] = [];
 
-  maxQuestions: number = 0;
+  maxQuestions = 0;
 
   constructor(private gatewayService: GatewayService,
   public dialogRef: MatDialogRef<TakeAQuizAddDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any)  { 
+    @Inject(MAT_DIALOG_DATA) public data: any)  {
   }
-  
+
   ngOnInit() {
     this.getAllPublicLibraries();
     this.getUserLibraries();
