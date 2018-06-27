@@ -17,7 +17,7 @@ export class TakeAQuizComponent implements OnInit {
 
   maxQuestions: number = 0;
   currentlySelectedLibraries: Library[] = [];
-  selectedLibrarySet = new Set();
+  selectedLibrarySet: Library[] = [];
   quizName: string = '';
   questionFormControl = new FormControl('', [
     Validators.max(this.maxQuestions), 
@@ -56,6 +56,11 @@ export class TakeAQuizComponent implements OnInit {
       Validators.max(this.maxQuestions), 
       Validators.min(0),
       Validators.required]);
+  }
+
+  deleteSelectedLibrary(index, library): void {
+    this.selectedLibrarySet.splice(index, 1);
+    this.deleteFromMaxQuestions(library);
   }
 
   generateNewQuiz() {
@@ -111,7 +116,7 @@ export class TakeAQuizAddDialogComponent implements OnInit {
   }
 
   returnLibrary(library: Library): void {
-    this.data.add(library);
+    this.data.push(library);
     this.dialogRef.close(library);
   }
 }
