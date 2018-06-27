@@ -29,11 +29,12 @@ export class LibraryListComponent implements OnInit, DoCheck {
     } */
    }
 
+/*
   ngDoCheck() {
     sessionStorage.removeItem('getUserLibraries');
     sessionStorage.removeItem('getPublicLibraries');
   }
-
+*/
   getUserLibraries(accountId: number): void {
     this.gatewayService.getLibrariesByAccountId(accountId).subscribe(
       (libraryList: Library[]) => {

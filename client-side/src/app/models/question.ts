@@ -1,7 +1,7 @@
 export class Question {
 
     questionId: number;
-    difficulty: number;
+    difficulty: number; 
     value: string;
     libraryId: number;
     answers: Answers[];
@@ -15,8 +15,4 @@ export class Answers {
     value: string;
     questionId: number;
     isSelected: boolean;
-
-    public constructor(init?:Partial<Answers>) {
-        Object.assign(this, init);
-    }
 }

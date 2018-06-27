@@ -32,7 +32,6 @@ export class ProfileUpdateComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.accountId)
     this.getAccountById(+this.accountId);
   }
 

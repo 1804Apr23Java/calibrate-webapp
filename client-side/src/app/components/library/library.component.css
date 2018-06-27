@@ -95,7 +95,7 @@ mat-form-field {
 }
 
 .entrapment {
-  max-height: 500px;
+  height: 530px;
   overflow: auto;
 }
 

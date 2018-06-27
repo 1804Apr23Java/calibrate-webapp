@@ -32,6 +32,6 @@ export class ProfileHomepageComponent implements OnInit {
       this.getAccountById(+this.accountId);
     }
   }
-  }
+
 
 }

@@ -11,10 +11,12 @@ export class SidebarComponent implements OnInit {
 
   setUserLibraries() {
     sessionStorage.setItem('getUserLibraries', 'true');
+    sessionStorage.removeItem('getPublicLibraries');
   }
 
   setPublicLibraries() {
     sessionStorage.setItem('getPublicLibraries', 'true');
+    sessionStorage.removeItem('getUserLibraries');
   }
 
   ngOnInit() {

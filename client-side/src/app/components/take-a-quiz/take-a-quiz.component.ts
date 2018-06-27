@@ -13,13 +13,11 @@ import { Question } from '../../models/question';
 })
 export class TakeAQuizComponent implements OnInit {
 
-  libraryList: Library[] = [];
-  libraryListString: String;
-  publicLibraryList: Library[] = [];
   publicLibraryListString: String;
-
   currentlySelectedLibraries: Library[] = [];
-  maxQuestions: number = 0;
+  public selectedLibrarySet = new Set();
+
+  
 
   newName: any = "";
   newQuiz: Quiz;
@@ -31,6 +29,42 @@ export class TakeAQuizComponent implements OnInit {
   ngOnInit() {
   }
 
+  openDialog(): void {
+    const dialogRef = this.dialog.open(TakeAQuizAddDialogComponent, {
+      width: '60%',
+      height: '60%'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      this.selectedLibrarySet.add(result);
+    });
+  }
+
+}
+
+
+
+@Component({
+  selector: 'app-take-a-quiz-add-dialog',
+  templateUrl: './take-a-quiz-add-dialog.component.html',
+  styleUrls: ['./take-a-quiz.component.css']
+})
+export class TakeAQuizAddDialogComponent implements OnInit {
+
+  libraryList: Library[] = [];
+  libraryListString: String;
+  publicLibraryList: Library[] = [];
+
+  maxQuestions: number = 0;
+
+  constructor(private gatewayService: GatewayService,
+  public dialogRef: MatDialogRef<TakeAQuizAddDialogComponent>) { }
+  
+  ngOnInit() {
+    this.getAllPublicLibraries();
+    this.getUserLibraries();
+  }
 
   getAllPublicLibraries(): void {
     this.gatewayService.getPublicLibraries().subscribe(
@@ -50,25 +84,7 @@ export class TakeAQuizComponent implements OnInit {
     );
   }
 
-  openDialog(): void {
-    this.dialog.open(TakeAQuizAddDialogComponent, {
-      width: '80%',
-      height: '80%'
-    });
+  returnLibrary(library: Library): void {
+    this.dialogRef.close(library);
   }
-
-}
-
-
-
-@Component({
-  selector: 'app-take-a-quiz-add-dialog',
-  templateUrl: './take-a-quiz-add-dialog.component.html',
-  styleUrls: ['./take-a-quiz.component.css']
-})
-export class TakeAQuizAddDialogComponent {
-
-  constructor() { }
-  
-
 }

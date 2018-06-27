@@ -73,13 +73,10 @@ import { ProfileUpdateComponent } from './components/profile-update/profile-upda
     AdminDeactivateAccountComponent,
     AttemptDialogComponent,
     SavedQuizzesComponent,
-<<<<<<< HEAD
     SidebarProfileComponent,
     ProfileHomepageComponent,
-    ProfileUpdateComponent
-=======
+    ProfileUpdateComponent,
     NewLibraryDialogComponent
->>>>>>> staging
   ],
   imports: [
     BrowserModule,
