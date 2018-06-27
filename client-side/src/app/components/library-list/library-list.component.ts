@@ -9,7 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
   templateUrl: './library-list.component.html',
   styleUrls: ['./library-list.component.css']
 })
-export class LibraryListComponent implements OnInit, DoCheck {
+export class LibraryListComponent implements OnInit {
   public libraryList: Library[];
   public userLibraries: string;
   public publicLibraries: string;
@@ -30,11 +30,12 @@ export class LibraryListComponent implements OnInit, DoCheck {
     } */
    }
 
+/*
   ngDoCheck() {
     sessionStorage.removeItem('getUserLibraries');
     sessionStorage.removeItem('getPublicLibraries');
   }
-
+*/
   getUserLibraries(accountId: number): void {
     this.gatewayService.getLibrariesByAccountId(accountId).subscribe(
       (libraryList: Library[]) => {

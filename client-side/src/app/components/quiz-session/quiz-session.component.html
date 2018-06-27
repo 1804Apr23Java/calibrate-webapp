@@ -12,6 +12,7 @@
           <strong>
               Question <span class="question-number-label">{{currentQuestionIndex + 1}}</span> out of <span class="question-number-label">{{ quiz.questions.length }}</span>
           </strong>
+          <mat-progress-bar mode="determinate" [value]="answeredQuestionsSet.size / quiz.questions.length * 100" style="margin-top: 30px;"></mat-progress-bar>
 
         </mat-list-item>
 
@@ -26,7 +27,7 @@
 
           <!-- IF this is a radio button question -->
           <mat-radio-group *ngIf="!checkForMultipleCorrectAnswers(question); else checkboxQuestion">
-            <mat-selection-list role="list" (selectionChange)="handleRadioSelection($event); updateSelectedAnswersSet($event.option)">
+            <mat-selection-list role="list" (selectionChange)="updateAnsweredQuestionsSet($event, question); handleRadioSelection($event); updateSelectedAnswersSet($event.option)">
                 <mat-list-option checkboxPosition="before" *ngFor="let answer of question.answers" class="checkbox-to-radio" [value]=[answer.answerId] [selected]="selectedAnswersSet.has(answer.answerId)">
                   <p>
                     <span>{{answer.value}}</span>
@@ -38,7 +39,7 @@
 
           <!-- ELSE if this is a checkbox question -->
           <ng-template #checkboxQuestion>
-              <mat-selection-list role="list" (selectionChange)="updateSelectedAnswersSet($event.option)">
+              <mat-selection-list role="list" (selectionChange)="updateAnsweredQuestionsSet($event, question); updateSelectedAnswersSet($event.option)">
                   <mat-list-option checkboxPosition="before" *ngFor="let answer of question.answers" [value]=[answer.answerId] [selected]="selectedAnswersSet.has(answer.answerId)">
                     <p>
                       <span>{{answer.value}}</span>
@@ -72,7 +73,7 @@
             <!-- Question index button tile -->
             <mat-grid-list cols="3" rowHeight="1:1">
               <mat-grid-tile *ngFor="let question of quiz.questions; let i = index">
-                <button mat-fab color="primary" (click)="this.setQuestion(i)" class="index-button" [class.selected]="i == currentQuestionIndex">{{i + 1}}</button>
+                <button mat-fab (click)="this.setQuestion(i)" class="index-button" [ngStyle]="getIndexButtonStyle(question, i)">{{i + 1}}</button>
               </mat-grid-tile>
             </mat-grid-list>
           </mat-tab>

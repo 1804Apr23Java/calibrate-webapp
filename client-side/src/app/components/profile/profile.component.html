@@ -1,24 +1,8 @@
-<div *ngIf="this.account">
-  <mat-card class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Revature Associate {{account.accountId}}</mat-card-title>
-      <mat-card-subtitle>Java Developer</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="https://media.istockphoto.com/photos/businessman-silhouette-as-avatar-or-default-profile-picture-picture-id476085198?k=6&m=476085198&s=612x612&w=0&h=5cDQxXHFzgyz8qYeBQu2gCZq1_TN0z40e_8ayzne0X0="
-      alt="Photo of a Shiba Inu">
-    <mat-card-content>
-      <p>
-        {{account.firstName}} {{account.lastName}} is a full stack Java developer with Revature. <span *ngIf="this.account.isAdmin">They are also an admin on this site.</span>
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>Email
-        <mat-icon>mail_outline</mat-icon>
-      </button>
-      <button mat-button>Website
-        <mat-icon>public</mat-icon>
-      </button>
-    </mat-card-actions>
-  </mat-card>
+<div class="flex-grid">
+  <div class="col-1">
+    <app-sidebar-profile></app-sidebar-profile>
+  </div>
+  <div class="col-2">
+     <router-outlet></router-outlet>
+  </div>
 </div>

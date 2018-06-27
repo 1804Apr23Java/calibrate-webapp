@@ -3,6 +3,7 @@ import { Quiz } from '../../models/quiz';
 import { Question } from '../../models/question';
 
 import { GatewayService } from '../../services/gateway.service';
+import { QuizLogicService } from '../../services/quizlogic.service';
 
 @Component({
   selector: 'app-quiz-session',
@@ -13,8 +14,9 @@ export class QuizSessionComponent implements OnInit {
   public quiz: Quiz;
   public currentQuestionIndex: number;
   public selectedAnswersSet = new Set();
+  public answeredQuestionsSet = new Set();
 
-  constructor(private gatewayService: GatewayService) {}
+  constructor(private gatewayService: GatewayService, private logicService: QuizLogicService) {}
 
   ngOnInit() {
     this.getQuizById(1);
@@ -38,19 +40,12 @@ export class QuizSessionComponent implements OnInit {
     } else {
       this.selectedAnswersSet.delete(option.value[0]);
     }
-    console.log(this.selectedAnswersSet);
   }
 
   // returns true if more than one correct answer (for checkbox)
   // returns false if one correct answer (for radio buttons)
   checkForMultipleCorrectAnswers(question: Question): boolean {
-    let correctAnswers = 0;
-    for (const answer of question.answers) {
-      if (answer.isCorrect) {
-        correctAnswers += 1;
-      }
-    }
-    return correctAnswers > 1;
+    return this.logicService.checkForMultipleCorrectAnswers(question);
   }
 
   // currentQuestionIndex manipulation
@@ -72,6 +67,32 @@ export class QuizSessionComponent implements OnInit {
 
   lastQuestion(): void {
     this.currentQuestionIndex = this.quiz.questions.length - 1;
+  }
+
+  // check if question has been answered
+
+  updateAnsweredQuestionsSet(event, question: Question): void {
+    for (const option of event.source.options._results) {
+      if (option.selected) {
+        this.answeredQuestionsSet.add(question.questionId);
+        return;
+      }
+    }
+    this.answeredQuestionsSet.delete(question.questionId);
+  }
+
+  getIndexButtonStyle(question: Question, index: number): Object {
+    if (index === this.currentQuestionIndex) {
+      if (this.answeredQuestionsSet.has(question.questionId)) {
+        return { 'background-color': '#f8ac87' };
+      } else {
+        return { 'background-color': '#9ed1fa'};
+      }
+    } else if (this.answeredQuestionsSet.has(question.questionId)) {
+      return { 'background-color': '#f26925' };
+    } else {
+      return { 'background-color': '#2196F3'};
+    }
   }
 
   // radio button behavior workaround
