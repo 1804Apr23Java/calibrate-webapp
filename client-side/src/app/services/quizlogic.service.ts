@@ -29,6 +29,15 @@ export class QuizLogicService {
     return true;
   }
 
+  public hasQuestionBeenAnswered(question: Question): boolean {
+    for (const answer of question.answers) {
+      if (answer.isSelected) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   // returns a color for a number between 0-100 for styles
   // shades of red to yellow to green
   public getPercentageColorStyle(score: number): Object {

@@ -14,6 +14,7 @@ export class QuizSessionComponent implements OnInit {
   public quiz: Quiz;
   public currentQuestionIndex: number;
   public selectedAnswersSet = new Set();
+  public answeredQuestionsSet = new Set();
 
   constructor(private gatewayService: GatewayService, private logicService: QuizLogicService) {}
 
@@ -39,7 +40,6 @@ export class QuizSessionComponent implements OnInit {
     } else {
       this.selectedAnswersSet.delete(option.value[0]);
     }
-    console.log(this.selectedAnswersSet);
   }
 
   // returns true if more than one correct answer (for checkbox)
@@ -67,6 +67,37 @@ export class QuizSessionComponent implements OnInit {
 
   lastQuestion(): void {
     this.currentQuestionIndex = this.quiz.questions.length - 1;
+  }
+
+  // check if question has been answered
+  // hasQuestionBeenAnswered(question: Question): boolean {
+  //   return this.logicService.hasQuestionBeenAnswered(question);
+  // }
+
+  updateAnsweredQuestionsSet(event, question: Question): void {
+    console.log(event);
+    for (const option of event.source.options._results) {
+      if (option.selected) {
+        this.answeredQuestionsSet.add(question.questionId);
+        return;
+      }
+    }
+    this.answeredQuestionsSet.delete(question.questionId);
+  }
+
+  getIndexButtonStyle(question: Question, index: number): Object {
+    console.log(index + this.currentQuestionIndex);
+    if (index === this.currentQuestionIndex) {
+      if (this.answeredQuestionsSet.has(question.questionId)) {
+        return { 'background-color': '#f8ac87' };
+      } else {
+        return { 'background-color': '#9ed1fa'};
+      }
+    } else if (this.answeredQuestionsSet.has(question.questionId)) {
+      return { 'background-color': '#f26925' };
+    } else {
+      return { 'background-color': '#2196F3'};
+    }
   }
 
   // radio button behavior workaround
