@@ -70,12 +70,8 @@ export class QuizSessionComponent implements OnInit {
   }
 
   // check if question has been answered
-  // hasQuestionBeenAnswered(question: Question): boolean {
-  //   return this.logicService.hasQuestionBeenAnswered(question);
-  // }
 
   updateAnsweredQuestionsSet(event, question: Question): void {
-    console.log(event);
     for (const option of event.source.options._results) {
       if (option.selected) {
         this.answeredQuestionsSet.add(question.questionId);
@@ -86,7 +82,6 @@ export class QuizSessionComponent implements OnInit {
   }
 
   getIndexButtonStyle(question: Question, index: number): Object {
-    console.log(index + this.currentQuestionIndex);
     if (index === this.currentQuestionIndex) {
       if (this.answeredQuestionsSet.has(question.questionId)) {
         return { 'background-color': '#f8ac87' };

@@ -19,7 +19,7 @@ import { MatTabsModule, MatTab } from '@angular/material/tabs';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
-import { MatDialogModule } from '@angular/material';
+import { MatDialogModule, MatProgressBarModule } from '@angular/material';
 import { AppRoutingModule } from './/app-routing.module';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AdminComponent } from './components/admin/admin.component';
@@ -96,7 +96,8 @@ import { SavedQuizzesComponent } from './components/saved-quizzes/saved-quizzes.
     HttpClientModule,
     FormsModule,
     PrismModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressBarModule
   ],
   entryComponents: [AttemptDialogComponent, LibraryDialogComponent, TakeAQuizAddDialogComponent, NewLibraryDialogComponent],
   providers: [GatewayService],
