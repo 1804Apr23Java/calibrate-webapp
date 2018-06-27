@@ -23,7 +23,7 @@ export class LibraryComponent implements OnInit, OnDestroy {
   public library: Library = new Library();
   private isPending: boolean;
   private isPrivate: string;
-  
+
 
   constructor(private gatewayService: GatewayService, public dialog: MatDialog) { }
 
@@ -47,18 +47,18 @@ export class LibraryComponent implements OnInit, OnDestroy {
   }
 
   addNewQuestion(): void {
-    let question: Question = {
+    const question: Question = {
       questionId: null,
-      value: "", 
-      difficulty:1,
+      value: '',
+      difficulty: 1,
       libraryId: this.library.libraryId,
       answers: []
-    }
-    this.library.questions.push(question); 
+    };
+    this.library.questions.push(question);
   }
 
   openDialog(question: Question): void {
-    let dialogRef = this.dialog.open(LibraryDialogComponent, {
+    const dialogRef = this.dialog.open(LibraryDialogComponent, {
       width: '80%',
       height: '80%',
       data: { question }
@@ -83,18 +83,18 @@ export class LibraryComponent implements OnInit, OnDestroy {
 @Component({
   selector: 'app-library-dialog',
   templateUrl: './library-dialog.component.html',
-  styleUrls: ['./library.component.css'],  
+  styleUrls: ['./library.component.css'],
   encapsulation: ViewEncapsulation.None,
 })
 export class LibraryDialogComponent {
 
-  public difficultyMax: number = 5;
+  public difficultyMax = 5;
   public newAnswer: Boolean = false;
   public newIndex: number;
 
   constructor(
     public dialogRef: MatDialogRef<LibraryDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { 
+    @Inject(MAT_DIALOG_DATA) public data: any) {
       this.newIndex = 0;
     }
 
@@ -107,15 +107,15 @@ export class LibraryDialogComponent {
   }
 
   appendAnswer() {
-    let answer: Answers = {
+    const answer: Answers = {
       answerId: null,
       isCorrect: false,
-      value: "",
+      value: '',
       questionId: this.data.question.questionId,
-      isSelected: false;
-    }
+      isSelected: false,
+    };
     this.data.question.answers.push(answer);
-    console.log(this.data.question.answers)
+    console.log(this.data.question.answers);
   }
 
   saveEdit(): void {
