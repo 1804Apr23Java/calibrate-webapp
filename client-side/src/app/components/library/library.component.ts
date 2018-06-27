@@ -24,7 +24,6 @@ export class LibraryComponent implements OnInit, OnDestroy {
   private isPending: boolean;
   private isPrivate: string;
 
-
   constructor(private gatewayService: GatewayService, public dialog: MatDialog) { }
 
 
@@ -41,6 +40,7 @@ export class LibraryComponent implements OnInit, OnDestroy {
     this.gatewayService.getQuestionsByLibraryId(libraryId).subscribe(
       (listOfQuestions: Question[]) => {
         this.library.questions = listOfQuestions;
+        console.log(this.library.questions);
       },
       error => console.log(`Error: ${error}`)
     );

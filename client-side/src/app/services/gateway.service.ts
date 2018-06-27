@@ -72,13 +72,18 @@ export class GatewayService {
   }
 
   public addNewAccount(email: string, password: string, firstName: string, lastName: string): Observable<Account> {
-    return this.httpClient.post<Account>(`${this.backendUrl}/account/add`, new Account(email, firstName, lastName, password));
+    console.log(email, password, firstName, lastName);
+    return this.httpClient.post<Account>(`${this.zuulUrl}/account/register`,
+      { 'email': email, 'password': password, 'firstName': firstName, 'lastName': lastName });
   }
 
   public getAllAccounts(): Observable<Account[]> {
-    return this.httpClient.get<Account[]>(`${this.backendUrl}/account/all`);
+    return this.httpClient.get<Account[]>(`${this.zuulUrl}/account/all`);
   }
 
+  public getQuestionById(id: number): Observable<Question> {
+    return this.httpClient.get<Question>(`${this.backendUrl}/question/${id}`);
+  }
 
   // WRITE HTTPCLIENT PATCH METHOD TO DEACTIVATE ACCOUNT
   public deactivateAccount(): Observable<boolean> {
@@ -94,8 +99,6 @@ export class GatewayService {
     ));
   }
 
-  public getQuestionById(id: number): Observable<Question> {
-    return this.httpClient.get<Question>(`${this.backendUrl}/question/${id}`);
-  }
+
 
 }
