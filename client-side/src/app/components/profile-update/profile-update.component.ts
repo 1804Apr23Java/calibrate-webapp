@@ -11,10 +11,6 @@ export class ProfileUpdateComponent implements OnInit {
 
   constructor(private gatewayService: GatewayService) { }
 
-  email: string;
-  password: string;
-  firstname: string;
-  lastname: string;
   account: Account;
   private accountId: String = sessionStorage.getItem('accountId');
   oldPassword: string;
@@ -31,6 +27,14 @@ export class ProfileUpdateComponent implements OnInit {
 
   ngOnInit() {
     this.getAccountById(+this.accountId);
+  }
+
+  updateProfile(): void {
+    this.gatewayService.updateProfileInfo().subscribe(
+      (account: Account) => {
+
+      }
+    )
   }
 
 }

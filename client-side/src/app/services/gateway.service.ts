@@ -23,7 +23,12 @@ export class GatewayService {
   }
 
   public getLibraryById(libraryId: number): Observable<Library> {
-    return this.httpClient.get<Library>(`${this.zuulUrl}/library/id/${libraryId}`);
+    let library: Library = this.httpClient.get<Library>(`${this.zuulUrl}/library/libraryid/${libraryId}`);
+    return library;
+  }
+
+  public getQuestionsByLibraryId(libraryId: number): Observable<Question[]> {
+    return this.httpClient.get<Question[]>(`${this.zuulUrl}/quiz/question/lib/${libraryId}`);
   }
 
   public getLibrariesByAccountId(accountId: number): Observable<Library[]> {
@@ -43,10 +48,8 @@ export class GatewayService {
   public getPublicLibraries(): Observable<Library[]> {
     return this.httpClient.get<Library[]>(`${this.backendUrl}/library/public`);
   }
-  //
+
   public getPendingLibraries(): Observable<Library[]> {
-    // let questionList : Question[];
-    // questionList = this.httpClient.get<Question[]>(`${this.zuulUrl}`);
     return this.httpClient.get<Library[]>(`${this.zuulUrl}/library/status/pending`);
   }
 
@@ -69,6 +72,10 @@ export class GatewayService {
 
   public getAllAccounts(): Observable<Account[]> {
     return this.httpClient.get<Account[]>(`${this.backendUrl}/account/all`);
+  }
+
+  public submitLibraryForApproval(libraryId: number): Observable<Library> {
+    return this.httpClient.post<Account>(`${this.backendUrl}/account/add`, new Account(email, firstName, lastName, password));
   }
 
   // WRITE HTTPCLIENT PATCH METHOD TO DEACTIVATE ACCOUNT
