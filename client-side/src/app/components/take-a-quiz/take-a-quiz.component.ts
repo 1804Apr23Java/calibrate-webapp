@@ -29,7 +29,7 @@ export class TakeAQuizComponent implements OnInit {
   ngOnInit() {
   }
 
-  openDialog(dataSet: Set): void {
+  openDialog(dataSet): void {
     const dialogRef = this.dialog.open(TakeAQuizAddDialogComponent, {
       width: '60%',
       height: '60%',
@@ -43,7 +43,7 @@ export class TakeAQuizComponent implements OnInit {
   }
 
   addToMaxQuestions(result: Library): void {
-    this.maxQuestions = this.maxQuestions + result.questions.length;
+    this.maxQuestions = this.maxQuestions + result.numberOfQuestions;
     this.questionFormControl = new FormControl('', [
       Validators.max(this.maxQuestions), 
       Validators.min(0),
@@ -51,7 +51,7 @@ export class TakeAQuizComponent implements OnInit {
   }
 
   deleteFromMaxQuestions(library: Library): void {
-    this.maxQuestions = this.maxQuestions - library.questions.length;
+    this.maxQuestions = this.maxQuestions - library.numberOfQuestions;
     this.questionFormControl = new FormControl('', [
       Validators.max(this.maxQuestions), 
       Validators.min(0),
