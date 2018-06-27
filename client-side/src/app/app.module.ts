@@ -107,7 +107,7 @@ import { MatChipsModule } from '@angular/material/chips';
     FormsModule,
     PrismModule,
     MatDialogModule,
-    MatProgressBarModule
+    MatProgressBarModule,
     ReactiveFormsModule,
   ],
   entryComponents: [AttemptDialogComponent, LibraryDialogComponent, TakeAQuizAddDialogComponent, NewLibraryDialogComponent],

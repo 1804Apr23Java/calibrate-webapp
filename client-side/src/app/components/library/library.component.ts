@@ -20,7 +20,7 @@ import { MatSliderModule } from '@angular/material/slider';
 
 export class LibraryComponent implements OnInit, OnDestroy {
 
-  public library: Library = new Library();
+  public library = new Library();
   private isPending: boolean;
   private isPrivate: string;
   
@@ -31,11 +31,20 @@ export class LibraryComponent implements OnInit, OnDestroy {
   questionNumber = 1;
   customCollapsedHeight: String = '80px';
 
-
   getLibraryById(libraryId: number): void {
     this.gatewayService.getLibraryById(libraryId).subscribe(
       (library: Library) => {
         this.library = library;
+        console.log('libraries' this.library library);
+      },
+      error => console.log(`Error: ${error}`)
+    );
+  }
+
+  getQuestionsByLibraryId(libraryId: number): void {
+    this.gatewayService.getQuestionsByLibraryId(libraryId).subscribe(
+      (listOfQuestions: Question[]) => {
+        this.library.questions = listOfQuestions;
       },
       error => console.log(`Error: ${error}`)
     );
@@ -66,17 +75,19 @@ export class LibraryComponent implements OnInit, OnDestroy {
   }
 
   submitForApproval(): void {
-
+    
   }
 
   ngOnInit() {
     this.getLibraryById(+sessionStorage.getItem('libraryId'));
+    this.getQuestionsByLibraryId(56);
     this.isPending = sessionStorage.getItem('isPending') === 'true';
     this.isPrivate = sessionStorage.getItem('getUserLibraries');
   }
 
   ngOnDestroy() {
     sessionStorage.removeItem('isPending');
+    console.log('destry' this.library);
   }
 }
 
@@ -112,7 +123,7 @@ export class LibraryDialogComponent {
       isCorrect: false,
       value: "",
       questionId: this.data.question.questionId,
-      isSelected: false;
+      isSelected: false
     }
     this.data.question.answers.push(answer);
     console.log(this.data.question.answers)

@@ -9,7 +9,7 @@
   </div>
 -->
 
-<div *ngIf=library>
+<div>
   <mat-toolbar color="primary" class="mat-elevation-z8">
     {{library.name}}
   </mat-toolbar>
@@ -48,7 +48,6 @@
       </mat-action-row>
     </mat-expansion-panel>
   </mat-accordion>
-
 </div>
 
   <mat-card class="center" *ngIf="this.isPending">
