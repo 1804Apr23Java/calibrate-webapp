@@ -6,7 +6,7 @@
   <mat-grid-tile *ngFor="let library of this.libraryList" (click) = "returnLibrary(library)">
     <mat-card>
       <mat-card-title>{{library.name}}</mat-card-title>
-      <mat-card-subtitle>{{library.questions.length}} questions</mat-card-subtitle>
+      <mat-card-subtitle>{{library.numberOfQuestions}} questions</mat-card-subtitle>
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile *ngFor="let library of this.publicLibraryList" (click) = "returnLibrary(library)">

@@ -66,13 +66,18 @@ export class GatewayService {
   }
 
   public addNewAccount(email: string, password: string, firstName: string, lastName: string): Observable<Account> {
-    return this.httpClient.post<Account>(`${this.backendUrl}/account/add`, new Account(email, firstName, lastName, password));
+    console.log(email, password, firstName, lastName);
+    return this.httpClient.post<Account>(`${this.zuulUrl}/account/register`, 
+      { 'email': email, 'password': password, 'firstName': firstName, 'lastName': lastName });
   }
 
   public getAllAccounts(): Observable<Account[]> {
-    return this.httpClient.get<Account[]>(`${this.backendUrl}/account/all`);
+    return this.httpClient.get<Account[]>(`${this.zuulUrl}/account/all`);
   }
 
+  public getQuestionById(id: number): Observable<Question> {
+    return this.httpClient.get<Question>(`${this.backendUrl}/question/${id}`);
+  }
 
   // WRITE HTTPCLIENT PATCH METHOD TO DEACTIVATE ACCOUNT
   public deactivateAccount(): Observable<boolean> {
@@ -82,13 +87,9 @@ export class GatewayService {
   // Service is up, why isn't this working?
   public addNewLibrary(accountId: number, name: string): Observable<Library> {
     console.log('got to service');
-    console.log(`{ 'accountId': ${accountId}, 'name': ${name}, 'numberOfQuestions': 0, 'status': 'PRIVATE' }`);
-    return this.httpClient.post<Library>(`${this.zuulUrl}/library/new`, (new library: Library =
-      { 'accountId': accountId, 'name': name, 'numberOfQuestions': 0, 'status': 'PRIVATE' }));
+    return this.httpClient.post<Library>(`${this.zuulUrl}/library/new`, { 'accountId': accountId, 'name': name, 'numberOfQuestions': 10, 'status': 'PRIVATE' });
   }
 
-  public getQuestionById(id: number): Observable<Question> {
-    return this.httpClient.get<Question>(`${this.backendUrl}/question/${id}`);
-  }
+
 
 }
