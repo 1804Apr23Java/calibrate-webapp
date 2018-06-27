@@ -22,6 +22,7 @@ export class LibraryComponent implements OnInit, OnDestroy {
 
   public library: Library = new Library();
   private isPending: boolean;
+  private isPrivate: string;
   
 
   constructor(private gatewayService: GatewayService, public dialog: MatDialog) { }
@@ -40,6 +41,22 @@ export class LibraryComponent implements OnInit, OnDestroy {
     );
   }
 
+  deleteQuestion(index) {
+    console.log(index);
+    this.library.questions.splice(index, 1);
+  }
+
+  addNewQuestion(): void {
+    let question: Question = {
+      questionId: null,
+      value: "", 
+      difficulty:1,
+      libraryId: this.library.libraryId,
+      answers: []
+    }
+    this.library.questions.push(question); 
+  }
+
   openDialog(question: Question): void {
     let dialogRef = this.dialog.open(LibraryDialogComponent, {
       width: '80%',
@@ -48,9 +65,14 @@ export class LibraryComponent implements OnInit, OnDestroy {
     });
   }
 
+  submitForApproval(): void {
+
+  }
+
   ngOnInit() {
     this.getLibraryById(+sessionStorage.getItem('libraryId'));
     this.isPending = sessionStorage.getItem('isPending') === 'true';
+    this.isPrivate = sessionStorage.getItem('getUserLibraries');
   }
 
   ngOnDestroy() {
@@ -69,7 +91,6 @@ export class LibraryDialogComponent {
   public difficultyMax: number = 5;
   public newAnswer: Boolean = false;
   public newIndex: number;
-  public newerAnswer: Answers;
 
   constructor(
     public dialogRef: MatDialogRef<LibraryDialogComponent>,
@@ -81,13 +102,19 @@ export class LibraryDialogComponent {
     this.dialogRef.close();
   }
 
-  addAnswer() {
-    this.newAnswer = true;
-    console.log('Hello');
+  deleteAnswer(index) {
+    this.data.question.answers.splice(index, 1);
   }
 
   appendAnswer() {
-    this.data.question.answers.push(new Answers());
+    let answer: Answers = {
+      answerId: null,
+      isCorrect: false,
+      value: "",
+      questionId: this.data.question.questionId,
+      isSelected: false;
+    }
+    this.data.question.answers.push(answer);
     console.log(this.data.question.answers)
   }
 

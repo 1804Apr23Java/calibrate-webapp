@@ -37,7 +37,7 @@ import { QuizSessionComponent } from './components/quiz-session/quiz-session.com
 import { PendingLibraryListComponent } from './components/pending-library-list/pending-library-list.component';
 import { SidebarAdminComponent } from './components/sidebar-admin/sidebar-admin.component';
 import { LoginComponent } from './components/login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatPaginator } from '@angular/material';
 import { ProfileNavbarComponent } from './components/profile-navbar/profile-navbar.component';
@@ -45,6 +45,11 @@ import { AdminDefaultComponent } from './components/admin-default/admin-default.
 import { AdminAddAccountComponent } from './components/admin-add-account/admin-add-account.component';
 import { AdminDeactivateAccountComponent } from './components/admin-deactivate-account/admin-deactivate-account.component';
 import { SavedQuizzesComponent } from './components/saved-quizzes/saved-quizzes.component';
+import { SidebarProfileComponent } from './components/sidebar-profile/sidebar-profile.component';
+import { ProfileHomepageComponent } from './components/profile-homepage/profile-homepage.component';
+import { ProfileUpdateComponent } from './components/profile-update/profile-update.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -70,6 +75,9 @@ import { SavedQuizzesComponent } from './components/saved-quizzes/saved-quizzes.
     AdminDeactivateAccountComponent,
     AttemptDialogComponent,
     SavedQuizzesComponent,
+    SidebarProfileComponent,
+    ProfileHomepageComponent,
+    ProfileUpdateComponent,
     NewLibraryDialogComponent
   ],
   imports: [
@@ -81,10 +89,12 @@ import { SavedQuizzesComponent } from './components/saved-quizzes/saved-quizzes.
     MatToolbarModule,
     MatTableModule,
     MatButtonModule,
+    MatChipsModule,
     MatListModule,
     MatIconModule,
     MatRadioModule,
     MatSliderModule,
+    MatStepperModule,
     MatAutocompleteModule,
     MatTabsModule,
     MatInputModule,
@@ -98,6 +108,7 @@ import { SavedQuizzesComponent } from './components/saved-quizzes/saved-quizzes.
     PrismModule,
     MatDialogModule,
     MatProgressBarModule
+    ReactiveFormsModule,
   ],
   entryComponents: [AttemptDialogComponent, LibraryDialogComponent, TakeAQuizAddDialogComponent, NewLibraryDialogComponent],
   providers: [GatewayService],
