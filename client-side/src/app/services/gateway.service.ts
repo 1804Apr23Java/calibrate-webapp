@@ -23,8 +23,7 @@ export class GatewayService {
   }
 
   public getLibraryById(libraryId: number): Observable<Library> {
-    let library: Library = this.httpClient.get<Library>(`${this.zuulUrl}/library/libraryid/${libraryId}`);
-    return library;
+    return this.httpClient.get<Library>(`${this.zuulUrl}/library/libraryid/${libraryId}`);
   }
 
   public getQuestionsByLibraryId(libraryId: number): Observable<Question[]> {
@@ -32,7 +31,7 @@ export class GatewayService {
   }
 
   public getLibrariesByAccountId(accountId: number): Observable<Library[]> {
-    return this.httpClient.get<Library[]>(`${this.backendUrl}/library/byAccount/${accountId}`);
+    return this.httpClient.get<Library[]>(`${this.zuulUrl}/library/byAccountId/${accountId}`);
   }
 // admin approve/deny
   public makeLibraryPending(libraryId: number): Observable<Library> {
@@ -46,7 +45,7 @@ export class GatewayService {
   }
 
   public getPublicLibraries(): Observable<Library[]> {
-    return this.httpClient.get<Library[]>(`${this.backendUrl}/library/public`);
+    return this.httpClient.get<Library[]>(`${this.zuulUrl}/library/status/public`);
   }
 
   public getPendingLibraries(): Observable<Library[]> {
@@ -74,9 +73,6 @@ export class GatewayService {
     return this.httpClient.get<Account[]>(`${this.backendUrl}/account/all`);
   }
 
-  public submitLibraryForApproval(libraryId: number): Observable<Library> {
-    return this.httpClient.post<Account>(`${this.backendUrl}/account/add`, new Account(email, firstName, lastName, password));
-  }
 
   // WRITE HTTPCLIENT PATCH METHOD TO DEACTIVATE ACCOUNT
   public deactivateAccount(): Observable<boolean> {
@@ -85,8 +81,10 @@ export class GatewayService {
 
   // working example of Zuul post
   public addNewLibrary(accountId: number, name: string): Observable<Library> {
-    return this.httpClient.post<Library>(`${this.zuulUrl}/library/new`,
-      { 'accountId': accountId, 'name': name, 'numberOfQuestion': 0, 'status': 'PRIVATE' });
+    console.log('got to service');
+    console.log(`{ 'accountId': ${accountId}, 'name': ${name}, 'numberOfQuestions': 0, 'status': 'PRIVATE' }`);
+    return this.httpClient.post<Library>(`${this.zuulUrl}/library/new`, (
+      { 'accountId': accountId, 'name': name, 'numberOfQuestions': 0, 'status': 'PRIVATE' }));
   }
 
   public getQuestionById(id: number): Observable<Question> {

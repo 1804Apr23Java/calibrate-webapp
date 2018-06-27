@@ -28,7 +28,7 @@ export class ProfileUpdateComponent implements OnInit {
   ngOnInit() {
     this.getAccountById(+this.accountId);
   }
-
+/*
   updateProfile(): void {
     this.gatewayService.updateProfileInfo().subscribe(
       (account: Account) => {
@@ -36,5 +36,5 @@ export class ProfileUpdateComponent implements OnInit {
       }
     )
   }
-
+*/
 }
