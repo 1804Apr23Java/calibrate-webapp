@@ -1,7 +1,7 @@
 export class Question {
 
     questionId: number;
-    difficulty: number; 
+    difficulty: number;
     value: string;
     libraryId: number;
     answers: Answers[];

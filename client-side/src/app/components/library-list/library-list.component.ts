@@ -90,7 +90,11 @@ export class NewLibraryDialogComponent {
   }
 
   addNewLibrary(): void {
-    this.gatewayService.addNewLibrary(+sessionStorage.getItem('accountId'), this.newLibraryName);
+    this.gatewayService.addNewLibrary(+sessionStorage.getItem('accountId'), this.newLibraryName).subscribe(
+      (returnedLibrary: Library) => {
+        console.log(returnedLibrary);
+      }, error => { console.log(`Error: ${JSON.stringify(error)}`); }
+    );
   }
 
 }

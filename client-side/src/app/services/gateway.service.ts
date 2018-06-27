@@ -62,10 +62,8 @@ export class GatewayService {
     return null;
   }
 
-  // Service is up, why isn't this working?
+  // working example of Zuul post
   public addNewLibrary(accountId: number, name: string): Observable<Library> {
-    console.log('got to service');
-    console.log(`{ 'accountId': ${accountId}, 'name': ${name}, 'numberOfQuestion': 0, 'status': 'PRIVATE' }`);
     return this.httpClient.post<Library>(`${this.zuulUrl}/library/new`,
       { 'accountId': accountId, 'name': name, 'numberOfQuestion': 0, 'status': 'PRIVATE' });
   }

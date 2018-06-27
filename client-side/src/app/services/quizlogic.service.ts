@@ -37,20 +37,4 @@ export class QuizLogicService {
     }
     return false;
   }
-
-  // returns a color for a number between 0-100 for styles
-  // shades of red to yellow to green
-  public getPercentageColorStyle(score: number): Object {
-    if (score <= 50) {
-      return { 'background-color': '#ff0000' };
-    } else if (score <= 60) {
-      return { 'background-color': '#ff6600' };
-    } else if (score <= 70) {
-      return { 'background-color': '#ffff00' };
-    } else if (score <= 90) {
-      return { 'background-color': '#66ff66' };
-    } else {
-      return { 'background-color': '#00ff00' };
-    }
-  }
 }
