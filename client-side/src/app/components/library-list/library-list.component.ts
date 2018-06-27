@@ -13,6 +13,7 @@ export class LibraryListComponent implements OnInit, DoCheck {
   public libraryList: Library[];
   public userLibraries: string;
   public publicLibraries: string;
+  public libraryTemp: Library;
 
   constructor(private gatewayService: GatewayService, private router: Router, public dialog: MatDialog) {}
 
@@ -51,9 +52,15 @@ export class LibraryListComponent implements OnInit, DoCheck {
       error => console.log(`Error: ${error}`)
     );
   }
-
+// trying here
   getLibrary(libraryId: number) {
     sessionStorage.setItem('libraryId', libraryId.toString());
+    this.gatewayService.makeLibraryPending(libraryId).subscribe(
+      (libraryTemp: Library) => {
+        this.libraryTemp = libraryTemp;
+      },
+         error => console.log(`Error: ${error}`)
+    );
     this.router.navigate(['quizzes/library']);
   }
 

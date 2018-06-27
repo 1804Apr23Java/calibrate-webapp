@@ -28,6 +28,16 @@ export class GatewayService {
   public getLibrariesByAccountId(accountId: number): Observable<Library[]> {
     return this.httpClient.get<Library[]>(`${this.backendUrl}/library/byAccount/${accountId}`);
   }
+// admin approve/deny
+  public makeLibraryPending(libraryId: number): Observable<Library> {
+    return this.httpClient.patch<Library>(`${this.backendUrl}/library/makePending/`, libraryId);
+  }
+  public makeLibraryPublic(libraryId: number): Observable<Library> {
+    return this.httpClient.patch<Library>(`${this.backendUrl}/library/makePublic/`, libraryId);
+  }
+  public makeLibraryPrivate(libraryId: number): Observable<Library> {
+    return this.httpClient.patch<Library>(`${this.backendUrl}/library/makePrivate/`, libraryId);
+  }
 
   public getPublicLibraries(): Observable<Library[]> {
     return this.httpClient.get<Library[]>(`${this.backendUrl}/library/public`);
