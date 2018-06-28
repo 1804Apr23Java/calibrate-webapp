@@ -40,7 +40,7 @@ export class AdminDeactivateAccountComponent implements OnInit {
       error => console.log(`Error: ${error}`)
     );
   }
-
+  
   ngOnInit() {
     this.getAllAccounts();
   }

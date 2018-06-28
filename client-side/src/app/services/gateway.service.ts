@@ -97,6 +97,11 @@ export class GatewayService {
   public getQuestionById(id: number): Observable<Question> {
     return this.httpClient.get<Question>(`${this.zuulUrl}/quiz/question/${id}`);
   }
+  
+  public generateQuiz(libraryIds: number[], name: string, numQuestions: number ): Observable<Quiz> {
+    return this.httpClient.post<Quiz>(`${this.zuulUrl}/quiz/quiz/generate`,
+      { 'libraryIds': libraryIds, 'name': name, 'numQuestions': numQuestions });
+    }
 
   public addNewAnswer(value: string, isCorrect: boolean): Observable<Answers> {
     let h = new HttpHeaders().set('Content-Type': 'application/x-www-form-urlencoded');
