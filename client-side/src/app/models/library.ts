@@ -11,7 +11,7 @@ export class Library {
 
 }
 
-enum Status {
+export enum Status {
     PRIVATE = 0,
     PENDING = 1,
     PUBLIC = 2

@@ -7,7 +7,7 @@
     <div class="col-1">
       <p>Your score for this quiz:</p>
       <div class="score-circle" [ngStyle]="getPercentageColorStyle(data.selectedAttempt.numCorrect / data.selectedAttempt.numberOfQuestions)">
-        {{ data.selectedAttempt.numCorrect / data.selectedAttempt.numberOfQuestions | percent }}
+        {{ data.selectedAttempt.score | percent }}
       </div>
     </div>
     <div class="col-1">

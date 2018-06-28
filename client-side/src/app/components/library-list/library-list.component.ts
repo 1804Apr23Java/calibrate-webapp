@@ -15,7 +15,7 @@ export class LibraryListComponent implements OnInit {
   public publicLibraries: string;
   public libraryTemp: Library;
 
-  constructor(private gatewayService: GatewayService, private router: Router, public dialog: MatDialog) {}
+  constructor(private gatewayService: GatewayService, private router: Router, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.userLibraries = sessionStorage.getItem('getUserLibraries');
@@ -28,7 +28,7 @@ export class LibraryListComponent implements OnInit {
     } /* else {
       this.router.navigate(['profile']);
     } */
-   }
+  }
 
 
   getUserLibraries(accountId: number): void {
@@ -48,7 +48,7 @@ export class LibraryListComponent implements OnInit {
       error => console.log(`Error: ${error}`)
     );
   }
-// trying here
+  // trying here
   getLibrary(libraryId: number) {
     sessionStorage.setItem('libraryId', libraryId.toString());
     // this.gatewayService.makeLibraryPending(libraryId).subscribe(
@@ -57,13 +57,13 @@ export class LibraryListComponent implements OnInit {
     //   },
     //      error => console.log(`Error: ${error}`)
     // );
-     this.router.navigate(['quizzes/library']);
+    this.router.navigate(['quizzes/library']);
   }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(NewLibraryDialogComponent, {
       width: '50%', height: '400px',
-      data: { }
+      data: {}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -92,7 +92,10 @@ export class NewLibraryDialogComponent {
 
   addNewLibrary(): void {
     this.gatewayService.addNewLibrary(+sessionStorage.getItem('accountId'), this.newLibraryName).subscribe(
-          (library: Library) => {console.log(library)}, error => console.log(`Error: ${error}`));
+      (library: Library) => {
+        console.log(library);
+      },
+      error => console.log(`Error: ${JSON.stringify(error)}`));
   }
 
 }
