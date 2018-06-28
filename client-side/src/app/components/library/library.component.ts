@@ -61,7 +61,7 @@ export class LibraryComponent implements OnInit, OnDestroy {
     this.library.questions.push(question);
   }
 
-  submitNewQuestion(): voide {
+  submitNewQuestion(): void {
 
   }
 
@@ -141,11 +141,11 @@ export class LibraryDialogComponent {
         console.log(x.answerId, x.value, x.isCorrect, this.data.question.questionId);
         this.gatewayService.addNewAnswer(x.value, x.isCorrect, this.data.question.questionId).subscribe(
           (answer:Answer) => {console.log(answer)}, error => console.log(`Error: ${error}`);
-
         );
       }
       else {
-
+        this.gatewayService.editAnswer(x.answerId, x.value, x.isCorrect, this.data.question.questionId).subscribe(
+          (answer:Answer) => {console.log(answer)}, error => console.log(`Error: ${error}`);
       }
     }
   }

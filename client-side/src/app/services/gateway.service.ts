@@ -53,11 +53,11 @@ export class GatewayService {
   }
 
   public getAttemptsById(id: number): Observable<Attempt[]> {
-    return this.httpClient.get<Attempt[]>(`${this.backendUrl}/attempt/byAccount/${id}`);
+    return this.httpClient.get<Attempt[]>(`${this.zuulUrl}/attempt/byAccount/${id}`);
   }
 
   public getAccountById(id: number): Observable<Account> {
-    return this.httpClient.get<Account>(`${this.backendUrl}/account/${id}`);
+    return this.httpClient.get<Account>(`${this.zuulUrl}/account/user/${id}`);
   }
 
   public accountLogin(email: string, password: string): Observable<Account> {
@@ -85,11 +85,26 @@ export class GatewayService {
     return this.httpClient.get<Question>(`${this.backendUrl}/question/${id}`);
   }
 
+  public updateFirstName(accountId: number, firstName: string): Observable<Account> {
+    let p = (new HttpParams()).set('firstName', firstName);
+    return this.httpClient.patch<Account[]>(`${this.zuulUrl}/account/firstname/${accountId}`, null, { params: p });
+  }
+
+  public updateLastName(accountId: number, lastName: string): Observable<Account> {
+    let p = (new HttpParams()).set('lastName', lastName);
+    return this.httpClient.patch<Account[]>(`${this.zuulUrl}/account/lastname/${accountId}`, null, { params: p });
+  }
+
   public addNewAnswer(value: string, isCorrect: boolean, questionId: number): Observable<Answer> {
-    console.log('gateway' value isCorrect questionId);
     let h = new HttpHeaders().set('Content-Type': 'application/x-www-form-urlencoded');
     let p = (new HttpParams()).set('content', value).set('isCorrect', isCorrect.toString()).set('question_id', questionId.toString());
     return this.httpClient.post<Question>(`${this.zuulUrl}/quiz/answer/add`, null, {'headers': h, 'params': p });
+  }
+
+  public editAnswer(answerId: number, value: string, isCorrect: boolean): observable<Answer> {
+    let h = new HttpHeaders().set('Content-Type': 'application/x-www-form-urlencoded');
+    let p = (new HttpParams()).set('value', value).set('isCorrect', isCorrect.toString()));
+    return this.httpClient.put<Question>(`${this.zuulUrl}/quiz/answer/edit/${answerId}`, null, {'headers': h, 'params': p });
   }
 
   // WRITE HTTPCLIENT PATCH METHOD TO DEACTIVATE ACCOUNT
@@ -97,10 +112,9 @@ export class GatewayService {
     return null;
   }
 
-  // Service is up, why isn't this working?
   public addNewLibrary(accountId: number, name: string): Observable<Library> {
     console.log('got to service');
-    return this.httpClient.post<Library>(`${this.zuulUrl}/library/new`, {'libraryId': 0, 'accountId': accountId, 'name': name, 'numberOfQuestions': 10, 'status': 'PRIVATE' });
+    return this.httpClient.post<Library>(`${this.zuulUrl}/library/new`, {'libraryId': 0, 'accountId': accountId, 'name': name, 'numberOfQuestions': 0, 'status': 'PRIVATE' });
   }
 
 
