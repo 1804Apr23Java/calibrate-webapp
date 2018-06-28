@@ -21,10 +21,10 @@ export class AttemptComponent implements OnInit {
 
   // THIS NEEDS TO BE "GET ATTEMPTS BY ID WHERE isComplete IS TRUE"
   getAttemptsById(id: number): void {
-    this.gatewayService.getAttemptsById(id).subscribe(
+    this.gatewayService.getCompleteAttemptsById(id).subscribe(
       (attempts: Attempt[]) => {
-        this.attempts = attempts.sort((attempt1, attempt2) => attempt1.createdDate - attempt2.createdDate);
         this.dataSource = new MatTableDataSource(attempts);
+        console.log(attempts);
       },
       error => console.log(`Error: ${error}`)
     );

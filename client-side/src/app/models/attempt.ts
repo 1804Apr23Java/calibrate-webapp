@@ -1,12 +1,10 @@
-import { Question } from './question';
-
 export class Attempt {
 
+    id: number;
+    accountId: number;
     quizId: number;
-    name: string;
-    questions: Question[];
-    createdDate: number;
-    numberOfQuestions: number;
-    numCorrect: number;
+    dateCreated: Date;
+    score: number;
+    isComplete: boolean;
 
 }
