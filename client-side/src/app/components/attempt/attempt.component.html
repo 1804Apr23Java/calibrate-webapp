@@ -5,11 +5,6 @@
 <div *ngIf="dataSource">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 attempt-table">
 
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Quiz Name </th>
-      <td mat-cell *matCellDef="let attempt"> {{attempt.name}} </td>
-    </ng-container>
-
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef> Date Taken </th>
       <td mat-cell *matCellDef="let attempt"> {{attempt.dateCreated | date:'short'}} </td>
@@ -17,7 +12,7 @@
 
     <ng-container matColumnDef="score">
       <th mat-header-cell *matHeaderCellDef> Score </th>
-      <td mat-cell *matCellDef="let attempt"> {{score}} </td>
+      <td mat-cell *matCellDef="let attempt"> {{attempt.score}} </td>
     </ng-container>
 
     <ng-container matColumnDef="view">

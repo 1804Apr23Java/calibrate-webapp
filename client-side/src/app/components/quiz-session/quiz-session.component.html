@@ -28,7 +28,7 @@
           <!-- IF this is a radio button question -->
           <mat-radio-group *ngIf="!checkForMultipleCorrectAnswers(question); else checkboxQuestion">
             <mat-selection-list role="list" (selectionChange)="updateAnsweredQuestionsSet($event, question); handleRadioSelection($event); updateSelectedAnswersSet($event.option)">
-                <mat-list-option checkboxPosition="before" *ngFor="let answer of question.answers" class="checkbox-to-radio" [value]=[answer.answerId] [selected]="selectedAnswersSet.has(answer.answerId)">
+                <mat-list-option checkboxPosition="before" *ngFor="let answer of question.answers" class="checkbox-to-radio" [value]=[answer] [selected]="selectedAnswersSet.has(answer.answerId)">
                   <p>
                     <span>{{answer.value}}</span>
                     <br>
@@ -40,7 +40,7 @@
           <!-- ELSE if this is a checkbox question -->
           <ng-template #checkboxQuestion>
               <mat-selection-list role="list" (selectionChange)="updateAnsweredQuestionsSet($event, question); updateSelectedAnswersSet($event.option)">
-                  <mat-list-option checkboxPosition="before" *ngFor="let answer of question.answers" [value]=[answer.answerId] [selected]="selectedAnswersSet.has(answer.answerId)">
+                  <mat-list-option checkboxPosition="before" *ngFor="let answer of question.answers" [value]=[answer] [selected]="selectedAnswersSet.has(answer.answerId)">
                     <p>
                       <span>{{answer.value}}</span>
                       <br>

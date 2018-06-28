@@ -160,4 +160,8 @@ export class GatewayService {
     return this.httpClient.get<Attempt[]>(`${this.zuulUrl}/attempt/attempt/incomplete/${accountId}`);
   }
 
+  public scoreAttempt(attemptId: number): Observable<Attempt> {
+    return this.httpClient.put<Attempt>(`${this.zuulUrl}/attempt/attempt/score/${attemptId}`, null);
+  }
+
 }
