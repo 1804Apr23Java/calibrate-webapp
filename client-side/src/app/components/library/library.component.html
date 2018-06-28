@@ -15,6 +15,19 @@
   </mat-toolbar>
   <br>
 </div>
+<mat-card class="center" *ngIf="this.isPending">
+    <div class="center">
+      <span>
+        <button mat-button (click)="this.makeLibraryPublic(library.libraryId)" routerLink="/admin/pending-library-list"> Approve
+          <mat-icon class="success">check_circle_outline</mat-icon>
+        </button>
+      </span>
+      <button mat-button (click)="this.makeLibraryPrivate(library.libraryId)" routerLink="/admin/pending-library-list"> Deny
+    <!--  <button mat-button (click)="this.makeLibraryPrivate(library.libraryId)" routerLink="/admin/pending-library-list"> Deny-->
+        <mat-icon color="warn">highlight_off</mat-icon>
+      </button>
+    </div>
+  </mat-card>
 
 <div class="entrapment">
   <mat-accordion class="headers-align mat-elevation-z8 libraryTable">
@@ -50,7 +63,7 @@
   </mat-accordion>
 </div>
 
-  <mat-card class="center" *ngIf="this.isPending">
+  <!-- <mat-card class="center" *ngIf="this.isPending">
     <div class="center">
       <span>
         <button mat-button routerLink="/admin/pending-library-list"> Approve
@@ -61,12 +74,12 @@
         <mat-icon color="warn">highlight_off</mat-icon>
       </button>
     </div>
-  </mat-card>
+  </mat-card> -->
 
     <div *ngIf="!this.isPending && this.isPrivate == 'false'" (click)="addNewQuestion()">
             <mat-action-row>
         <button mat-button color="primary" (click)="addNewQuestion()">Add new question</button>
-         <button mat-button color="primary" *ngIf = "this.isPrivate == 'true'"(click)="submitForApproval()">Submit For Approval</button>
+         <button mat-button color="primary" *ngIf = "this.isPrivate == 'true'"(click)="this.submitForApproval(library.libraryId)">Submit For Approval</button>
       </mat-action-row>
     </div>
 
