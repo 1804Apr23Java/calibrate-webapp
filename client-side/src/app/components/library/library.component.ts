@@ -98,7 +98,7 @@ export class LibraryComponent implements OnInit, OnDestroy {
       data: { question }
     });
   }
-
+  
   submitForApproval(libraryId: number) {
     sessionStorage.setItem('libraryId', libraryId.toString());
     this.gatewayService.makeLibraryPending(libraryId).subscribe(
@@ -111,7 +111,7 @@ export class LibraryComponent implements OnInit, OnDestroy {
   }
   ngOnInit() {
     this.getLibraryById(+sessionStorage.getItem('libraryId'));
-    this.getQuestionsByLibraryId(56);
+    this.getQuestionsByLibraryId(+sessionStorage.getItem('libraryId'));
     this.isPending = sessionStorage.getItem('isPending') === 'true';
     this.isPrivate = sessionStorage.getItem('getUserLibraries');
   }
@@ -132,8 +132,10 @@ export class LibraryDialogComponent {
   public difficultyMax = 5;
   public newAnswer: Boolean = false;
   public newIndex: number;
+  public difficulty = 1;
 
   constructor(
+    private gatewayService: GatewayService,
     public dialogRef: MatDialogRef<LibraryDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
       this.newIndex = 0;
@@ -158,9 +160,32 @@ export class LibraryDialogComponent {
     this.data.question.answers.push(answer);
   }
 
-  saveEdit(): void {
-    console.log(this.data.question);
-    console.log('Question Edited');
+  saveEdit(questionId, questionValue): void {
+    if (questionId) {
+      this.gatewayService.updateQuestion(questionId, questionValue).subscribe((question: Question) => {}, error => console.log(`Error: ${error}`));
+      this.saveOrUpdateAnswers();
+    } else {
+      this.gatewayService.submitNewQuestion(questionValue, +sessionStorage.getItem('libraryId'), this.difficulty).subscribe(
+      (question: Question) => {
+        this.data.question.questionId = question.questionId;
+        this.saveOrUpdateAnswers();
+      },
+      error => console.log(`Error: ${error}`)
+      );
+    }
+
+  }
+
+  saveOrUpdateAnswers() {
+    for (let x of this.data.question.answers) {
+      if (x.answerId == null) {
+        this.gatewayService.addNewAnswer(x.value, x.isCorrect).subscribe(
+            (answer: Answers) => {console.log(answer)}, error => console.log(`Error: ${error}`));
+      } else {
+        this.gatewayService.editAnswer(x.answerId, x.value, x.isCorrect, this.data.question.questionId).subscribe(
+                (answer: Answers) => {console.log(answer)}, error => console.log(`Error: ${error}`));
+      }
+    }
   }
 
 }

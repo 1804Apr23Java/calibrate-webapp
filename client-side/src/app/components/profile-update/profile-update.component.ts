@@ -25,16 +25,18 @@ export class ProfileUpdateComponent implements OnInit {
     );
   }
 
+  updateProfile(): void {
+    console.log(this.accountId, this.account.firstName, this.account.lastName);
+    this.gatewayService.updateFirstName(+this.accountId, this.account.firstName).subscribe(
+          (account: Account) => {console.log(account)}, error => console.log(`Error: ${error}`));
+    this.gatewayService.updateLastName(+this.accountId, this.account.lastName).subscribe(
+          (account: Account) => {console.log(account)}, error => console.log(`Error: ${error}`));
+  }
+
   ngOnInit() {
     this.getAccountById(+this.accountId);
   }
-/*
-  updateProfile(): void {
-    this.gatewayService.updateProfileInfo().subscribe(
-      (account: Account) => {
 
-      }
-    )
-  }
-*/
+
+
 }

@@ -19,7 +19,10 @@ export class QuizSessionComponent implements OnInit {
   constructor(private gatewayService: GatewayService, private logicService: QuizLogicService) {}
 
   ngOnInit() {
-    this.getQuizById(1);
+    const currentQuizId = localStorage.getItem('currentQuizId');
+    console.log(currentQuizId);
+    this.getQuizById(+currentQuizId);
+    console.log(this.quiz);
     this.currentQuestionIndex = 0;
   }
 
@@ -29,7 +32,7 @@ export class QuizSessionComponent implements OnInit {
       (quiz: Quiz) => {
         this.quiz = quiz;
       },
-      error => console.log(`Error: ${error}`)
+      error => console.log(`Get Quiz By Id Error: ${error}`)
     );
   }
 

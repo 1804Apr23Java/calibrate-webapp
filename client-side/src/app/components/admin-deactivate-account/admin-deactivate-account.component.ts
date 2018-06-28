@@ -18,6 +18,7 @@ export class AdminDeactivateAccountComponent implements OnInit {
   dataSource: MatTableDataSource<Account>;
 
 
+
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
@@ -39,7 +40,7 @@ export class AdminDeactivateAccountComponent implements OnInit {
       error => console.log(`Error: ${error}`)
     );
   }
-
+  
   ngOnInit() {
     this.getAllAccounts();
   }
