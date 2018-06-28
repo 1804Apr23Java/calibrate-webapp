@@ -30,12 +30,7 @@ export class LibraryListComponent implements OnInit {
     } */
    }
 
-/*
-  ngDoCheck() {
-    sessionStorage.removeItem('getUserLibraries');
-    sessionStorage.removeItem('getPublicLibraries');
-  }
-*/
+
   getUserLibraries(accountId: number): void {
     this.gatewayService.getLibrariesByAccountId(accountId).subscribe(
       (libraryList: Library[]) => {
@@ -72,7 +67,6 @@ export class LibraryListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
     });
   }
 

@@ -16,30 +16,65 @@ export class GatewayService {
 
   private backendUrl = 'http://ec2-174-129-59-140.compute-1.amazonaws.com:8080/CalibrateBackend';
   private zuulUrl = 'http://ec2-35-171-24-66.compute-1.amazonaws.com:8765';
-  private backendLoginUrl = 'http://ec2-35-171-24-66.compute-1.amazonaws.com:8764';
 
-  public getQuizById(id: number): Observable<Quiz> {
-    return this.httpClient.get<Quiz>(`${this.backendUrl}/quiz/${id}`);
+
+/*---------------------------- Attempt Services ----------------------------*/
+  public getAttemptsById(id: number): Observable<Attempt[]> {
+    return this.httpClient.get<Attempt[]>(`${this.zuulUrl}/attempt/byAccount/${id}`);
   }
 
+/*---------------------------- Account Services ----------------------------*/
+  public getAccountById(id: number): Observable<Account> {
+    return this.httpClient.get<Account>(`${this.zuulUrl}/account/user/${id}`);
+  }
+
+  public accountLogin(email: string, password: string): Observable<Account> {
+    return this.httpClient.post<Account>(`${this.zuulUrl}/account/login`,
+      { 'email': email, 'password': password });
+  }
+
+  public getAllAccounts(): Observable<Account[]> {
+    return this.httpClient.get<Account[]>(`${this.zuulUrl}/account/all`);
+  }
+
+  public addNewAccount(email: string, password: string, firstName: string, lastName: string): Observable<Account> {
+    let account = new Account();
+    return this.httpClient.post<Account>(`${this.zuulUrl}/account/register`, 
+      {'accountId': 0, 'email': email, 'password': password, 'firstName': firstName, 'lastName': lastName });
+  }
+
+  public updateFirstName(accountId: number, firstName: string): Observable<Account> {
+    let p = (new HttpParams()).set('firstName', firstName);
+    return this.httpClient.patch<Account[]>(`${this.zuulUrl}/account/firstname/${accountId}`, null, { params: p });
+  }
+
+  public updateLastName(accountId: number, lastName: string): Observable<Account> {
+    let p = (new HttpParams()).set('lastName', lastName);
+    return this.httpClient.patch<Account[]>(`${this.zuulUrl}/account/lastname/${accountId}`, null, { params: p });
+  }
+
+  // WRITE HTTPCLIENT PATCH METHOD TO DEACTIVATE ACCOUNT
+  public deactivateAccount(): Observable<boolean> {
+    return null;
+  }
+
+/*---------------------------- Library Services ----------------------------*/
   public getLibraryById(libraryId: number): Observable<Library> {
     return this.httpClient.get<Library>(`${this.zuulUrl}/library/libraryid/${libraryId}`);
-  }
-
-  public getQuestionsByLibraryId(libraryId: number): Observable<Question[]> {
-    return this.httpClient.get<Question[]>(`${this.zuulUrl}/quiz/question/lib/${libraryId}`);
   }
 
   public getLibrariesByAccountId(accountId: number): Observable<Library[]> {
     return this.httpClient.get<Library[]>(`${this.zuulUrl}/library/byAccountId/${accountId}`);
   }
-// admin approve/deny
+
   public makeLibraryPending(libraryId: number): Observable<Library> {
     return this.httpClient.patch<Library>(`${this.backendUrl}/library/makePending/`, libraryId);
   }
+
   public makeLibraryPublic(libraryId: number): Observable<Library> {
     return this.httpClient.patch<Library>(`${this.backendUrl}/library/makePublic/`, libraryId);
   }
+
   public makeLibraryPrivate(libraryId: number): Observable<Library> {
     return this.httpClient.patch<Library>(`${this.backendUrl}/library/makePrivate/`, libraryId);
   }
@@ -52,47 +87,16 @@ export class GatewayService {
     return this.httpClient.get<Library[]>(`${this.zuulUrl}/library/status/pending`);
   }
 
-  public getAttemptsById(id: number): Observable<Attempt[]> {
-    return this.httpClient.get<Attempt[]>(`${this.zuulUrl}/attempt/byAccount/${id}`);
+  public addNewLibrary(accountId: number, name: string): Observable<Library> {
+    console.log('got to service');
+    return this.httpClient.post<Library>(`${this.zuulUrl}/library/new`, {'libraryId': 0, 'accountId': accountId, 'name': name, 'numberOfQuestions': 0, 'status': 'PRIVATE' });
   }
 
-  public getAccountById(id: number): Observable<Account> {
-    return this.httpClient.get<Account>(`${this.zuulUrl}/account/user/${id}`);
-  }
 
-  public accountLogin(email: string, password: string): Observable<Account> {
-    return this.httpClient.post<Account>(`${this.zuulUrl}/account/login`,
-      { 'email': email, 'password': password });
-  }
-
-  public addNewAccount(email: string, password: string, firstName: string, lastName: string): Observable<Account> {
-    console.log(email, password, firstName, lastName);
-    let account = new Account();
-    return this.httpClient.post<Account>(`${this.zuulUrl}/account/register`, 
-      {'accountId': 0, 'email': email, 'password': password, 'firstName': firstName, 'lastName': lastName });
-  }
-
-  public submitNewQuestion(id: number, value: string): Observable<Question> {
-    let h = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
-    let p = (new HttpParams()).set('content', value);
-    return this.httpClient.put<Question>(`${this.zuulUrl}/quiz/question/update/${id}`, null, {'headers': h, 'params': p});
-  }
-  public getAllAccounts(): Observable<Account[]> {
-    return this.httpClient.get<Account[]>(`${this.zuulUrl}/account/all`);
-  }
+/*---------------------------- Quiz Services ----------------------------*/
 
   public getQuestionById(id: number): Observable<Question> {
-    return this.httpClient.get<Question>(`${this.backendUrl}/question/${id}`);
-  }
-
-  public updateFirstName(accountId: number, firstName: string): Observable<Account> {
-    let p = (new HttpParams()).set('firstName', firstName);
-    return this.httpClient.patch<Account[]>(`${this.zuulUrl}/account/firstname/${accountId}`, null, { params: p });
-  }
-
-  public updateLastName(accountId: number, lastName: string): Observable<Account> {
-    let p = (new HttpParams()).set('lastName', lastName);
-    return this.httpClient.patch<Account[]>(`${this.zuulUrl}/account/lastname/${accountId}`, null, { params: p });
+    return this.httpClient.get<Question>(`${this.zuulUrl}/quiz/question/${id}`);
   }
 
   public addNewAnswer(value: string, isCorrect: boolean, questionId: number): Observable<Answer> {
@@ -107,16 +111,23 @@ export class GatewayService {
     return this.httpClient.put<Question>(`${this.zuulUrl}/quiz/answer/edit/${answerId}`, null, {'headers': h, 'params': p });
   }
 
-  // WRITE HTTPCLIENT PATCH METHOD TO DEACTIVATE ACCOUNT
-  public deactivateAccount(): Observable<boolean> {
-    return null;
+  public getQuizById(id: number): Observable<Quiz> {
+    return this.httpClient.get<Quiz>(`${this.backendUrl}/quiz/${id}`);
   }
 
-  public addNewLibrary(accountId: number, name: string): Observable<Library> {
-    console.log('got to service');
-    return this.httpClient.post<Library>(`${this.zuulUrl}/library/new`, {'libraryId': 0, 'accountId': accountId, 'name': name, 'numberOfQuestions': 0, 'status': 'PRIVATE' });
+    public getQuestionsByLibraryId(libraryId: number): Observable<Question[]> {
+    return this.httpClient.get<Question[]>(`${this.zuulUrl}/quiz/question/lib/${libraryId}`);
   }
 
+  public submitNewQuestion(value: string, libraryId: number, difficulty: number): Observable<Question> {
+    let p = (new HttpParams()).set('content', value).set('difficulty', difficulty).set('library_id', libraryId);
+    return this.httpClient.post<Question>(`${this.zuulUrl}/quiz/question/add`, null, { 'params': p });
+  }
 
+  public updateQuestion(id: number, value: string): Observable<Question> {
+    let h = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
+    let p = (new HttpParams()).set('content', value);
+    return this.httpClient.put<Question>(`${this.zuulUrl}/quiz/question/update/${id}`, null, {'headers': h, 'params': p});
+  }
 
 }
