@@ -30,5 +30,5 @@
 
 <mat-action-row>
   <button mat-button color="primary" (click)="appendAnswer()">Additional Answer</button>
-  <button mat-button color="primary" (click)="saveEdit()">Save</button>
+  <button mat-button color="primary" (click)="saveEdit(data.question.questionId, data.question.value)">Save</button>
 </mat-action-row>

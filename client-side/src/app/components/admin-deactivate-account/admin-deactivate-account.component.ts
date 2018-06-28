@@ -18,6 +18,7 @@ export class AdminDeactivateAccountComponent implements OnInit {
   dataSource: MatTableDataSource<Account>;
 
 
+
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
@@ -39,20 +40,7 @@ export class AdminDeactivateAccountComponent implements OnInit {
       error => console.log(`Error: ${error}`)
     );
   }
-
-  // isAllSelected() {
-  //   const numSelected = this.selection.selected.length;
-  //   const numRows = this.dataSource.data.length;
-  //   return numSelected === numRows;
-  // }
-
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-  // masterToggle() {
-  //   this.isAllSelected() ?
-  //       this.selection.clear() :
-  //       this.dataSource.data.forEach(row => this.selection.select(row));
-  // }
-
+  
   ngOnInit() {
     this.getAllAccounts();
   }
