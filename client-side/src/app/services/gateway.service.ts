@@ -103,15 +103,15 @@ export class GatewayService {
       { 'libraryIds': libraryIds, 'name': name, 'numQuestions': numQuestions });
     }
 
-  public addNewAnswer(value: string, isCorrect: boolean): Observable<Answers> {
+  public addNewAnswer(value: string, isCorrect: boolean, questionId: number): Observable<Answers> {
     let h = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
-    let p = (new HttpParams()).set('content', value).set('isCorrect', isCorrect.toString());
+    let p = (new HttpParams()).set('content', value).set('isCorrect', isCorrect.toString()).set('question_id', questionId.toString());
     return this.httpClient.post<Answers>(`${this.zuulUrl}/quiz/answer/add`, null, {'headers': h, 'params': p });
   }
 
-  public editAnswer(answerId: number, value: string, isCorrect: boolean, questionId: number): Observable<Answers> {
+  public editAnswer(answerId: number, value: string, isCorrect: boolean): Observable<Answers> {
     let h = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
-    let p = (new HttpParams()).set('value', value).set('isCorrect', isCorrect.toString()).set('question_id', questionId.toString());
+    let p = (new HttpParams()).set('value', value).set('isCorrect', isCorrect.toString());
     return this.httpClient.put<Answers>(`${this.zuulUrl}/quiz/answer/edit/${answerId}`, null, {'headers': h, 'params': p });
   }
 
