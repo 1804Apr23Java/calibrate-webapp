@@ -100,6 +100,7 @@ export class GatewayService {
   }
 
   public generateQuiz(libraryIds: number[], name: string, numQuestions: number ): Observable<Quiz> {
+    console.log(JSON.stringify({ 'libraryIds': libraryIds, 'name': name, 'numQuestions': numQuestions }));
     return this.httpClient.post<Quiz>(`${this.zuulUrl}/quiz/quiz/generate`,
       { 'libraryIds': libraryIds, 'name': name, 'numQuestions': numQuestions });
     }
@@ -120,7 +121,7 @@ export class GatewayService {
   //   return this.httpClient.post<Account>(`${this.backendUrl}/account/add`, new Account(email, firstName, lastName, password));
   // }
   public getQuizById(id: number): Observable<Quiz> {
-    return this.httpClient.get<Quiz>(`${this.backendUrl}/quiz/${id}`);
+    return this.httpClient.get<Quiz>(`${this.zuulUrl}/quiz/quiz/${id}`);
   }
 
     public getQuestionsByLibraryId(libraryId: number): Observable<Question[]> {

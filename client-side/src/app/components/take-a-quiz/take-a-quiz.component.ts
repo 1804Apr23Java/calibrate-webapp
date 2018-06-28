@@ -65,10 +65,11 @@ export class TakeAQuizComponent implements OnInit {
   }
 
   generateNewQuiz(): void {
-    const idArray = new Array();
+    let idArray = new Array();
     for (const library of this.selectedLibrarySet) {
       idArray.push(library.libraryId);
     }
+    idArray = [56]; //comment out later
     console.log('idArray ' + idArray + ' quizName ' + this.quizName + ' desired# ' + this.desiredNumberOfQuestions);
     this.gatewayService.generateQuiz(idArray, this.quizName, this.desiredNumberOfQuestions).subscribe(
       (quiz: Quiz) => {
