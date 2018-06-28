@@ -35,7 +35,6 @@ export class AdminDeactivateAccountComponent implements OnInit {
       (returnedAccountsList: Account[]) => {
         this.allAccountsList = returnedAccountsList;
         this.dataSource = new MatTableDataSource(returnedAccountsList);
-        console.log(this.allAccountsList);
       },
       error => console.log(`Error: ${error}`)
     );

@@ -20,9 +20,7 @@ export class QuizSessionComponent implements OnInit {
 
   ngOnInit() {
     const currentQuizId = localStorage.getItem('currentQuizId');
-    console.log(currentQuizId);
     this.getQuizById(+currentQuizId);
-    console.log(this.quiz);
     this.currentQuestionIndex = 0;
   }
 
