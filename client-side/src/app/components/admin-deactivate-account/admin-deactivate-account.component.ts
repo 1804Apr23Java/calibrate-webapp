@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GatewayService } from '../../services/gateway.service';
 import { Account } from '../../models/account';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatRow } from '@angular/material';
 
 
 @Component({
@@ -40,7 +40,12 @@ export class AdminDeactivateAccountComponent implements OnInit {
       error => console.log(`Error: ${error}`)
     );
   }
-  
+
+  deactivate(selectedAccount: MatRow): void {
+
+
+  }
+
   ngOnInit() {
     this.getAllAccounts();
   }

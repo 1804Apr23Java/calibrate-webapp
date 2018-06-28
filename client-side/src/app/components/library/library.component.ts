@@ -22,11 +22,17 @@ import { Router } from '@angular/router';
 export class LibraryComponent implements OnInit, OnDestroy {
 
   public library = new Library();
-  private isPending: boolean;
-  private isPrivate: string;
-  private libraryTemp: Library;
+  public isPending: boolean;
+  public isPrivate: string;
+  public libraryTemp: Library;
+
+
+  public step = 0;
+  public questionNumber = 1;
+  public customCollapsedHeight: String = '80px';
 
   constructor(private gatewayService: GatewayService, public dialog: MatDialog, private router: Router) { }
+
   clickConfirm() {
     if (confirm('Are you sure to delete ' + name)) {
       console.log('Implement delete functionality here');
@@ -38,10 +44,11 @@ export class LibraryComponent implements OnInit, OnDestroy {
     this.gatewayService.makeLibraryPublic(libraryId).subscribe(
       (libraryTemp: Library) => {
         this.libraryTemp = libraryTemp;
+        this.router.navigate(['admin/pending-library-list']);
       },
          error => console.log(`Error: ${error}`)
     );
-    this.router.navigate(['admin/pending-library-list']);
+
   }
   }
   makeLibraryPrivate(libraryId: number) {
@@ -58,6 +65,7 @@ export class LibraryComponent implements OnInit, OnDestroy {
     // location.reload();
   }
   }
+
   getLibraryById(libraryId: number): void {
     this.gatewayService.getLibraryById(libraryId).subscribe(
       (library: Library) => {
@@ -98,7 +106,7 @@ export class LibraryComponent implements OnInit, OnDestroy {
       data: { question }
     });
   }
-  
+
   submitForApproval(libraryId: number) {
     sessionStorage.setItem('libraryId', libraryId.toString());
     this.gatewayService.makeLibraryPending(libraryId).subscribe(
@@ -162,7 +170,8 @@ export class LibraryDialogComponent {
 
   saveEdit(questionId, questionValue): void {
     if (questionId) {
-      this.gatewayService.updateQuestion(questionId, questionValue).subscribe((question: Question) => {}, error => console.log(`Error: ${error}`));
+      this.gatewayService.updateQuestion(questionId, questionValue).subscribe(
+        (question: Question) => {}, error => console.log(`Error: ${error}`));
       this.saveOrUpdateAnswers();
     } else {
       this.gatewayService.submitNewQuestion(questionValue, +sessionStorage.getItem('libraryId'), this.difficulty).subscribe(
@@ -179,10 +188,10 @@ export class LibraryDialogComponent {
   saveOrUpdateAnswers() {
     for (let x of this.data.question.answers) {
       if (x.answerId == null) {
-        this.gatewayService.addNewAnswer(x.value, x.isCorrect).subscribe(
+        this.gatewayService.addNewAnswer(x.value, x.isCorrect, this.data.question.questionId).subscribe(
             (answer: Answers) => {console.log(answer)}, error => console.log(`Error: ${error}`));
       } else {
-        this.gatewayService.editAnswer(x.answerId, x.value, x.isCorrect, this.data.question.questionId).subscribe(
+        this.gatewayService.editAnswer(x.answerId, x.value, x.isCorrect).subscribe(
                 (answer: Answers) => {console.log(answer)}, error => console.log(`Error: ${error}`));
       }
     }

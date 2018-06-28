@@ -92,7 +92,7 @@ export class NewLibraryDialogComponent {
 
   addNewLibrary(): void {
     this.gatewayService.addNewLibrary(+sessionStorage.getItem('accountId'), this.newLibraryName).subscribe(
-          (library: Library) => {console.log(library)}, error => console.log(`Error: ${error}`));;
+          (library: Library) => {console.log(library)}, error => console.log(`Error: ${error}`));
   }
 
 }

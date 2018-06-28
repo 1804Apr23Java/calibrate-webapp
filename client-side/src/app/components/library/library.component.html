@@ -76,7 +76,7 @@
     </div>
   </mat-card> -->
 
-    <div *ngIf="!this.isPending" (click)="addNewQuestion">
+    <div *ngIf="!this.isPending && this.isPrivate == 'true'">
             <mat-action-row>
         <button mat-button color="primary" (click)="addNewQuestion()">Add new question</button>
          <button mat-button color="primary" *ngIf = "this.isPrivate == 'true'"(click)="this.submitForApproval(library.libraryId)">Submit For Approval</button>

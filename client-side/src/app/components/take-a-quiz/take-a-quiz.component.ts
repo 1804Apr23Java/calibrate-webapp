@@ -30,7 +30,7 @@ export class TakeAQuizComponent implements OnInit {
   ngOnInit() {
   }
 
-  openDialog(dataSet): void {
+  openDialog(): void {
     const dialogRef = this.dialog.open(TakeAQuizAddDialogComponent, {
       width: '60%',
       height: '60%',
