@@ -23,7 +23,6 @@ export class GatewayService {
     return this.httpClient.get<Attempt[]>(`${this.zuulUrl}/attempt/byAccount/${id}`);
   }
 
-/*---------------------------- Account Services ----------------------------*/
   public getAccountById(id: number): Observable<Account> {
     return this.httpClient.get<Account>(`${this.zuulUrl}/account/user/${id}`);
   }
@@ -67,15 +66,15 @@ export class GatewayService {
   }
 
   public makeLibraryPending(libraryId: number): Observable<Library> {
-    return this.httpClient.patch<Library>(`${this.backendUrl}/library/makePending/`, libraryId);
+    return this.httpClient.patch<Library>(`${this.zuulUrl}/library/makePending/`, libraryId);
   }
 
   public makeLibraryPublic(libraryId: number): Observable<Library> {
-    return this.httpClient.patch<Library>(`${this.backendUrl}/library/makePublic/`, libraryId);
+    return this.httpClient.patch<Library>(`${this.zuulUrl}/library/makePublic/`, libraryId);
   }
 
   public makeLibraryPrivate(libraryId: number): Observable<Library> {
-    return this.httpClient.patch<Library>(`${this.backendUrl}/library/makePrivate/`, libraryId);
+    return this.httpClient.patch<Library>(`${this.zuulUrl}/library/makePrivate/`, libraryId);
   }
 
   public getPublicLibraries(): Observable<Library[]> {
@@ -115,6 +114,9 @@ export class GatewayService {
     return this.httpClient.put<Answers>(`${this.zuulUrl}/quiz/answer/edit/${answerId}`, null, {'headers': h, 'params': p });
   }
 
+  // public submitLibraryForApproval(libraryId: number): Observable<Library> {
+  //   return this.httpClient.post<Account>(`${this.backendUrl}/account/add`, new Account(email, firstName, lastName, password));
+  // }
   public getQuizById(id: number): Observable<Quiz> {
     return this.httpClient.get<Quiz>(`${this.backendUrl}/quiz/${id}`);
   }

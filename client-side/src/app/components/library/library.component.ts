@@ -10,6 +10,7 @@ import { PageEvent } from '@angular/material';
 import { GatewayService } from '../../services/gateway.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MatSliderModule } from '@angular/material/slider';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -23,10 +24,40 @@ export class LibraryComponent implements OnInit, OnDestroy {
   public library = new Library();
   private isPending: boolean;
   private isPrivate: string;
+  private libraryTemp: Library;
 
-  constructor(private gatewayService: GatewayService, public dialog: MatDialog) { }
-
-
+  constructor(private gatewayService: GatewayService, public dialog: MatDialog, private router: Router) { }
+  clickConfirm() {
+    if (confirm('Are you sure to delete ' + name)) {
+      console.log('Implement delete functionality here');
+    }
+  }
+  makeLibraryPublic(libraryId: number) {
+    sessionStorage.setItem('libraryId', libraryId.toString());
+    if (confirm('Are you sure to approve this library?')) {
+    this.gatewayService.makeLibraryPublic(libraryId).subscribe(
+      (libraryTemp: Library) => {
+        this.libraryTemp = libraryTemp;
+      },
+         error => console.log(`Error: ${error}`)
+    );
+    this.router.navigate(['admin/pending-library-list']);
+  }
+  }
+  makeLibraryPrivate(libraryId: number) {
+    sessionStorage.setItem('libraryId', libraryId.toString());
+    //
+    if (confirm('Are you sure to deny this library?')) {
+    this.gatewayService.makeLibraryPrivate(libraryId).subscribe(
+      (libraryTemp: Library) => {
+        this.libraryTemp = libraryTemp;
+      },
+         error => console.log(`Error: ${error}`)
+    );
+    this.router.navigate(['admin/pending-library-list']);
+    // location.reload();
+  }
+  }
   getLibraryById(libraryId: number): void {
     this.gatewayService.getLibraryById(libraryId).subscribe(
       (library: Library) => {
@@ -67,11 +98,17 @@ export class LibraryComponent implements OnInit, OnDestroy {
       data: { question }
     });
   }
-
-  submitForApproval(): void {
-
+  
+  submitForApproval(libraryId: number) {
+    sessionStorage.setItem('libraryId', libraryId.toString());
+    this.gatewayService.makeLibraryPending(libraryId).subscribe(
+      (libraryTemp: Library) => {
+        this.libraryTemp = libraryTemp;
+      },
+         error => console.log(`Error: ${error}`)
+    );
+    this.router.navigate(['quizzes/my-libraries']);
   }
-
   ngOnInit() {
     this.getLibraryById(+sessionStorage.getItem('libraryId'));
     this.getQuestionsByLibraryId(+sessionStorage.getItem('libraryId'));
