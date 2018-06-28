@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Quiz } from '../models/quiz';
-import { Library } from '../models/library';
+import { Library, Status } from '../models/library';
 import { Attempt } from '../models/attempt';
 import { Account } from '../models/account';
 import { Question, Answers } from '../models/question';
@@ -84,8 +84,10 @@ export class GatewayService {
 
   public addNewLibrary(accountId: number, name: string): Observable<Library> {
     console.log('got to service');
+    const library: Library = {'libraryId': 0, 'accountId': accountId,
+                              'name': name, 'numberOfQuestions': 0, 'status': Status.PRIVATE, 'questions' : null };
     return this.httpClient.post<Library>(`${this.zuulUrl}/library/new`,
-      {'accountId': accountId, 'name': name, 'numberOfQuestions': 0, 'status': 'PRIVATE' });
+      library);
   }
 
 
