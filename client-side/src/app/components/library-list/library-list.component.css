@@ -12,3 +12,9 @@ mat-card {
   width: 80%;
   margin: 20px 0 20px 10%;
 }
+
+.libraryListBlock {
+  margin-top: 20px;
+  max-height: 500px;
+  overflow: auto;
+}
