@@ -24,18 +24,13 @@ export class LibraryComponent implements OnInit, OnDestroy {
   private isPending: boolean;
   private isPrivate: string;
 
-
   constructor(private gatewayService: GatewayService, public dialog: MatDialog) { }
 
-  step = 0;
-  questionNumber = 1;
-  customCollapsedHeight: String = '80px';
 
   getLibraryById(libraryId: number): void {
     this.gatewayService.getLibraryById(libraryId).subscribe(
       (library: Library) => {
         this.library = library;
-        console.log('libraries' this.library library);
       },
       error => console.log(`Error: ${error}`)
     );
@@ -45,13 +40,13 @@ export class LibraryComponent implements OnInit, OnDestroy {
     this.gatewayService.getQuestionsByLibraryId(libraryId).subscribe(
       (listOfQuestions: Question[]) => {
         this.library.questions = listOfQuestions;
+        console.log(this.library.questions);
       },
       error => console.log(`Error: ${error}`)
     );
   }
 
   deleteQuestion(index) {
-    console.log(index);
     this.library.questions.splice(index, 1);
   }
 
@@ -75,7 +70,7 @@ export class LibraryComponent implements OnInit, OnDestroy {
   }
 
   submitForApproval(): void {
-    
+
   }
 
   ngOnInit() {
@@ -87,7 +82,6 @@ export class LibraryComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     sessionStorage.removeItem('isPending');
-    console.log('destry' this.library);
   }
 }
 
@@ -122,11 +116,10 @@ export class LibraryDialogComponent {
       answerId: null,
       isCorrect: false,
       value: '',
-      questionId: this.data.question.questionId
+      questionId: this.data.question.questionId,
       isSelected: false,
     };
     this.data.question.answers.push(answer);
-    console.log(this.data.question.answers);
   }
 
   saveEdit(): void {

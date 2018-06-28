@@ -12,7 +12,7 @@
          </mat-toolbar-row>
 
         <mat-toolbar-row style="border: 1px solid #aaa; background-color: white;" *ngFor="let library of selectedLibrarySet; let i = index">
-          <span>{{library.name}}</span><span> {{library.questions.length}} Questions</span>
+          <span>{{library.name}}</span><span> {{library.numberOfQuestions}} Questions</span>
           <button mat-button color="warn" (click)="deleteSelectedLibrary(i, library)"><mat-icon color="warn">highlight_off</mat-icon></button>
         </mat-toolbar-row>
 
@@ -32,12 +32,12 @@
         <mat-toolbar-row style="border: 1px solid #aaa; background-color: white;">
           <span>Customize New Quiz</span><br>
         </mat-toolbar-row>
-      </mat-toolbar> 
+      </mat-toolbar>
       <mat-form-field style="margin-left: 20px;">
-        <input matInput placeholder="Quiz Name">
+        <input matInput placeholder="Quiz Name" (input)="quizName=$event.target.value">
       </mat-form-field><br>
       <mat-form-field style="margin-left: 20px;">
-        <input matInput placeholder="Max Number of Questions: {{maxQuestions}}" [formControl]="questionFormControl">
+        <input matInput placeholder="Max Number of Questions: {{maxQuestions}}" [formControl]="questionFormControl" (input)="desiredNumberOfQuestions=$event.target.value">
         <mat-error>Incorrect Number of Questions!
         </mat-error>
       </mat-form-field>
@@ -54,11 +54,11 @@
         <mat-toolbar-row style="border: 1px solid #aaa; background-color: white;">
           <span>New Quiz Review</span>
         </mat-toolbar-row>
-      </mat-toolbar>  
+      </mat-toolbar>
       <mat-chip-list>
         <mat-chip *ngFor="let library of selectedLibrarySet">{{library.name}}</mat-chip>
       </mat-chip-list>
-      <button mat-button routerLink="../../quiz-session"> Start New Quiz</button>
+      <button mat-button (click)="generateNewQuiz()"> Start New Quiz</button>
       <mat-toolbar style="margin-top: 20px;">
         <mat-toolbar-row style="border: 1px solid #aaa; background-color: white;">
           <span>Existing Quiz</span>
@@ -66,8 +66,8 @@
       </mat-toolbar>
       <mat-form-field style="margin-left: 20px;">
         <input matInput placeholder="Existing Quiz Id">
-      </mat-form-field>  
-      <button mat-button routerLink="../../quiz-session"> Start Existing Quiz</button>
+      </mat-form-field>
+      <button mat-button (click)="continueExistingQuiz()"> Start Existing Quiz</button>
     </div>
     <button mat-button matStepperPrevious>Back</button>
   </mat-step>

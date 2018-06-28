@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { QuizlogicService } from './quizlogic.service';
+import { QuizLogicService } from './quizlogic.service';
 
-describe('QuizlogicService', () => {
+describe('QuizLogicService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [QuizlogicService]
+      providers: [QuizLogicService]
     });
   });
 
-  it('should be created', inject([QuizlogicService], (service: QuizlogicService) => {
+  it('should be created', inject([QuizLogicService], (service: QuizLogicService) => {
     expect(service).toBeTruthy();
   }));
 });
