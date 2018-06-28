@@ -43,10 +43,9 @@ export class AttemptComponent implements OnInit {
       width: '80%', height: '90%',
       data: { selectedAttempt }
     });
-    console.log(selectedAttempt);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+
     });
   }
 }

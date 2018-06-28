@@ -21,11 +21,6 @@ export class AdminAddAccountComponent implements OnInit {
     this.gatewayService.addNewAccount(this.email, this.password, this.firstname, this.lastname).subscribe(
       (returnedAccount: Account) => {
         this.account = returnedAccount;
-        console.log('Account posted!  Check database.');
-        console.log(this.account);
-
-      //   this.router.navigate(['profile/' + this.account.accountId.toString()]);
-
       }, error => { console.log(`Error: ${JSON.stringify(error)}`); }
     );
   }

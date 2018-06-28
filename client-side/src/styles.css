@@ -9,3 +9,8 @@
 .full-width {
   width: 100%;
 }
+
+.page-header-label {
+  font-size: 2em;
+  color: white;
+}
