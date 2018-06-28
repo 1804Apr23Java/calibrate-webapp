@@ -6,6 +6,7 @@ import { GatewayService } from '../../services/gateway.service';
 import { QuizLogicService } from '../../services/quizlogic.service';
 import { Attempt } from '../../models/attempt';
 import { AttemptAnswer } from '../../models/attemptanswer';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quiz-session',
@@ -20,7 +21,7 @@ export class QuizSessionComponent implements OnInit {
   private accountId: number;
   private quizId: number;
 
-  constructor(private gatewayService: GatewayService, private logicService: QuizLogicService) {}
+  constructor(private gatewayService: GatewayService, private logicService: QuizLogicService, private router: Router) {}
 
   ngOnInit() {
     this.accountId = +sessionStorage.getItem('accountId');
@@ -33,16 +34,18 @@ export class QuizSessionComponent implements OnInit {
   }
 
   submitCompleteAttempt() {
+    console.log('selected answers ' + JSON.stringify(Array.from(this.selectedAnswersSet)));
     this.gatewayService.submitAttempt(this.accountId, this.quizId, true).subscribe(
       (attempt: Attempt) => {
         const attemptId: number = attempt.id;
         for (const answer of Array.from(this.selectedAnswersSet)) {
-          this.gatewayService.submitAttemptAnswer(answer.id, attemptId, answer.isSelected).subscribe(
-            (attemptAnswer: AttemptAnswer) => {}, error => {console.log(`Submit AttemptAnswer Error: ${error}`);}
-          );
+          this.gatewayService.submitAttemptAnswer(answer, attemptId, false).subscribe(
+            (attemptAnswer: AttemptAnswer) => {}, error => {console.log(`Submit AttemptAnswer Error: ${error}`);
+          });
         }
-      }, error => {console.log(`Submit Attempt Error: ${error}`);}
-    );
+      }, error => {console.log(`Submit Attempt Error: ${error}`);
+    });
+    this.router.navigate(['/profile']);
   }
 
   // Service accessor

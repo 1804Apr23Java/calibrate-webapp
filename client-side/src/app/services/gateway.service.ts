@@ -16,13 +16,8 @@ export class GatewayService {
 
   constructor(private httpClient: HttpClient) { }
 
-  private zuulUrl = 'http://ec2-35-171-24-66.compute-1.amazonaws.com:8765';
+  private zuulUrl = 'http://ec2-54-86-6-122.compute-1.amazonaws.com:8765';
 
-
-/*---------------------------- Attempt Services ----------------------------*/
-  public getAttemptsById(id: number): Observable<Attempt[]> {
-    return this.httpClient.get<Attempt[]>(`${this.zuulUrl}/attempt/byAccount/${id}`);
-  }
 
 /*---------------------------- Attempt Services ----------------------------*/
   public getAccountById(id: number): Observable<Account> {
@@ -140,15 +135,27 @@ export class GatewayService {
     return this.httpClient.put<Question>(`${this.zuulUrl}/quiz/question/update/${id}`, null, {'headers': h, 'params': p});
   }
 
+  /*---------------------------- Attempt Services ----------------------------*/
+
   public submitAttempt(accountId: number, quizId: number, isComplete: boolean): Observable<Attempt> {
     const attempt: Attempt = {'id': 0, 'accountId': accountId, 'quizId': quizId, 'dateCreated': null, 'score': 0, 'isComplete': isComplete};
+    console.log(JSON.stringify(attempt));
     return this.httpClient.post<Attempt>(`${this.zuulUrl}/attempt/attempt/add`, attempt);
   }
 
   public submitAttemptAnswer(answerId: number, attemptId: number, isCorrect: boolean): Observable<AttemptAnswer> {
+    console.log(answerId + ' ' + attemptId + ' ' + isCorrect);
     const attemptAnswer: AttemptAnswer = {'id': 0, 'answerId': answerId, 'isCorrect': isCorrect, 'attemptId': attemptId};
+    console.log(JSON.stringify(attemptAnswer));
     return this.httpClient.post<AttemptAnswer>(`${this.zuulUrl}/attempt/attempt/add/attemptanswer`, attemptAnswer);
   }
 
+  public getCompleteAttemptsById(accountId: number): Observable<Attempt[]> {
+    return this.httpClient.get<Attempt[]>(`${this.zuulUrl}/attempt/attempt/complete/${accountId}`);
+  }
+
+  public getIncompleteAttemptsById(accountId: number): Observable<Attempt[]> {
+    return this.httpClient.get<Attempt[]>(`${this.zuulUrl}/attempt/attempt/incomplete/${accountId}`);
+  }
 
 }
