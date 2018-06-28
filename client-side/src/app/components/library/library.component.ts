@@ -61,6 +61,10 @@ export class LibraryComponent implements OnInit, OnDestroy {
     this.library.questions.push(question);
   }
 
+  submitNewQuestion(): voide {
+
+  }
+
   openDialog(question: Question): void {
     const dialogRef = this.dialog.open(LibraryDialogComponent, {
       width: '80%',
@@ -98,6 +102,7 @@ export class LibraryDialogComponent {
   public newIndex: number;
 
   constructor(
+    private gatewayService: GatewayService,
     public dialogRef: MatDialogRef<LibraryDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
       this.newIndex = 0;
@@ -122,9 +127,27 @@ export class LibraryDialogComponent {
     this.data.question.answers.push(answer);
   }
 
-  saveEdit(): void {
-    console.log(this.data.question);
-    console.log('Question Edited');
+  saveEdit(questionId, questionValue): void {
+    console.log(questionId, questionValue)
+    this.gatewayService.submitNewQuestion(questionId, questionValue).subscribe(
+      (question: Question) => {
+        console.log(question);
+      },
+      error => console.log(`Error: ${error}`)
+    );
+
+    for (let x of this.data.question.answers) {
+      if (x.answerId == null) {
+        console.log(x.answerId, x.value, x.isCorrect, this.data.question.questionId);
+        this.gatewayService.addNewAnswer(x.value, x.isCorrect, this.data.question.questionId).subscribe(
+          (answer:Answer) => {console.log(answer)}, error => console.log(`Error: ${error}`);
+
+        );
+      }
+      else {
+
+      }
+    }
   }
 
 }
