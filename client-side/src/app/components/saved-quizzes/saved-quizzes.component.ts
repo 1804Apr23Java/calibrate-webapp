@@ -24,7 +24,6 @@ export class SavedQuizzesComponent implements OnInit {
   getAttemptsById(id: number): void {
     this.gatewayService.getAttemptsById(id).subscribe(
       (attempts: Attempt[]) => {
-        this.attempts = attempts.sort((attempt1, attempt2) => attempt1.createdDate - attempt2.createdDate);
         this.dataSource = new MatTableDataSource(attempts);
       },
       error => console.log(`Error: ${error}`)
