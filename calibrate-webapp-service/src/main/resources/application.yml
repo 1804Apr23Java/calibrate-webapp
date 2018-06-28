@@ -1,0 +1,12 @@
+endpoints:
+  mappings:
+    sensitive: false
+  beans:
+    sensitive: false
+    
+spring:
+  application:
+    name: calibrate-webapp-service
+    
+server:
+  port: 4200
