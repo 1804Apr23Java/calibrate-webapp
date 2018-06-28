@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Account } from '../../models/account';
 import { Router } from '@angular/router';
 import { GatewayService } from '../../services/gateway.service';
+import { DOCUMENT } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { GatewayService } from '../../services/gateway.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private gatewayService: GatewayService, private router: Router) { }
+  constructor(private gatewayService: GatewayService, private router: Router, @Inject(DOCUMENT) private document: any) { }
 
   email: string;
   password: string;
@@ -27,6 +28,10 @@ export class LoginComponent implements OnInit {
 
       }, error => { console.log(`Error: ${JSON.stringify(error)}`); }
     );
+  }
+
+  goToUrl(): void {
+    this.document.location.href = 'http://localhost:4201';
   }
 
   keyDownFunction(event) {

@@ -44,10 +44,11 @@ export class LibraryComponent implements OnInit, OnDestroy {
     this.gatewayService.makeLibraryPublic(libraryId).subscribe(
       (libraryTemp: Library) => {
         this.libraryTemp = libraryTemp;
+        this.router.navigate(['admin/pending-library-list']);
       },
          error => console.log(`Error: ${error}`)
     );
-    this.router.navigate(['admin/pending-library-list']);
+
   }
   }
   makeLibraryPrivate(libraryId: number) {

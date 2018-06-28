@@ -23,6 +23,7 @@ export class GatewayService {
     return this.httpClient.get<Attempt[]>(`${this.zuulUrl}/attempt/byAccount/${id}`);
   }
 
+/*---------------------------- Attempt Services ----------------------------*/
   public getAccountById(id: number): Observable<Account> {
     return this.httpClient.get<Account>(`${this.zuulUrl}/account/user/${id}`);
   }
@@ -87,7 +88,8 @@ export class GatewayService {
 
   public addNewLibrary(accountId: number, name: string): Observable<Library> {
     console.log('got to service');
-    return this.httpClient.post<Library>(`${this.zuulUrl}/library/new`, {'libraryId': 0, 'accountId': accountId, 'name': name, 'numberOfQuestions': 0, 'status': 'PRIVATE' });
+    return this.httpClient.post<Library>(`${this.zuulUrl}/library/new`,
+      {'accountId': accountId, 'name': name, 'numberOfQuestions': 0, 'status': 'PRIVATE' });
   }
 
 
