@@ -6,6 +6,8 @@ import { Library } from '../models/library';
 import { Attempt } from '../models/attempt';
 import { Account } from '../models/account';
 import { Question, Answers } from '../models/question';
+import { AttemptAnswer } from '../models/attemptanswer';
+import { AttemptComponent } from '../components/attempt/attempt.component';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,6 @@ export class GatewayService {
 
   constructor(private httpClient: HttpClient) { }
 
-  private backendUrl = 'http://ec2-174-129-59-140.compute-1.amazonaws.com:8080/CalibrateBackend';
   private zuulUrl = 'http://ec2-35-171-24-66.compute-1.amazonaws.com:8765';
 
 
@@ -136,5 +137,16 @@ export class GatewayService {
     let p = (new HttpParams()).set('content', value);
     return this.httpClient.put<Question>(`${this.zuulUrl}/quiz/question/update/${id}`, null, {'headers': h, 'params': p});
   }
+
+  public submitAttempt(accountId: number, quizId: number, isComplete: boolean): Observable<Attempt> {
+    const attempt: Attempt = {'id': 0, 'accountId': accountId, 'quizId': quizId, 'dateCreated': null, 'score': 0, 'isComplete': isComplete};
+    return this.httpClient.post<Attempt>(`${this.zuulUrl}/attempt/attempt/add`, attempt);
+  }
+
+  public submitAttemptAnswer(answerId: number, attemptId: number, isCorrect: boolean): Observable<AttemptAnswer> {
+    const attemptAnswer: AttemptAnswer = {'id': 0, 'answerId': answerId, 'isCorrect': isCorrect, 'attemptId': attemptId};
+    return this.httpClient.post<AttemptAnswer>(`${this.zuulUrl}/attempt/attempt/add/attemptanswer`, attemptAnswer);
+  }
+
 
 }
