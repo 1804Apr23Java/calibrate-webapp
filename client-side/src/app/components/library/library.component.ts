@@ -69,7 +69,7 @@ export class LibraryComponent implements OnInit, OnDestroy {
   }
 
   submitForApproval(): void {
-    
+
   }
 
   ngOnInit() {
