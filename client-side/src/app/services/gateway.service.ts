@@ -5,7 +5,7 @@ import { Quiz } from '../models/quiz';
 import { Library } from '../models/library';
 import { Attempt } from '../models/attempt';
 import { Account } from '../models/account';
-import { Question } from '../models/question';
+import { Question, Answers } from '../models/question';
 
 @Injectable({
   providedIn: 'root'
@@ -38,19 +38,18 @@ export class GatewayService {
   }
 
   public addNewAccount(email: string, password: string, firstName: string, lastName: string): Observable<Account> {
-    let account = new Account();
-    return this.httpClient.post<Account>(`${this.zuulUrl}/account/register`, 
+    return this.httpClient.post<Account>(`${this.zuulUrl}/account/register`,
       {'accountId': 0, 'email': email, 'password': password, 'firstName': firstName, 'lastName': lastName });
   }
 
   public updateFirstName(accountId: number, firstName: string): Observable<Account> {
     let p = (new HttpParams()).set('firstName', firstName);
-    return this.httpClient.patch<Account[]>(`${this.zuulUrl}/account/firstname/${accountId}`, null, { params: p });
+    return this.httpClient.patch<Account>(`${this.zuulUrl}/account/firstname/${accountId}`, null, { params: p });
   }
 
   public updateLastName(accountId: number, lastName: string): Observable<Account> {
     let p = (new HttpParams()).set('lastName', lastName);
-    return this.httpClient.patch<Account[]>(`${this.zuulUrl}/account/lastname/${accountId}`, null, { params: p });
+    return this.httpClient.patch<Account>(`${this.zuulUrl}/account/lastname/${accountId}`, null, { params: p });
   }
 
   // WRITE HTTPCLIENT PATCH METHOD TO DEACTIVATE ACCOUNT
@@ -99,16 +98,16 @@ export class GatewayService {
     return this.httpClient.get<Question>(`${this.zuulUrl}/quiz/question/${id}`);
   }
 
-  public addNewAnswer(value: string, isCorrect: boolean, questionId: number): Observable<Answer> {
+  public addNewAnswer(value: string, isCorrect: boolean): Observable<Answers> {
     let h = new HttpHeaders().set('Content-Type': 'application/x-www-form-urlencoded');
-    let p = (new HttpParams()).set('content', value).set('isCorrect', isCorrect.toString()).set('question_id', questionId.toString());
-    return this.httpClient.post<Question>(`${this.zuulUrl}/quiz/answer/add`, null, {'headers': h, 'params': p });
+    let p = (new HttpParams()).set('content', value).set('isCorrect', isCorrect.toString());
+    return this.httpClient.post<Answers>(`${this.zuulUrl}/quiz/answer/add`, null, {'headers': h, 'params': p });
   }
 
-  public editAnswer(answerId: number, value: string, isCorrect: boolean): observable<Answer> {
-    let h = new HttpHeaders().set('Content-Type': 'application/x-www-form-urlencoded');
-    let p = (new HttpParams()).set('value', value).set('isCorrect', isCorrect.toString()));
-    return this.httpClient.put<Question>(`${this.zuulUrl}/quiz/answer/edit/${answerId}`, null, {'headers': h, 'params': p });
+  public editAnswer(answerId: number, value: string, isCorrect: boolean, questionId: number): Observable<Answers> {
+    let h = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+    let p = (new HttpParams()).set('value', value).set('isCorrect', isCorrect.toString()).set('question_id', questionId.toString());
+    return this.httpClient.put<Answers>(`${this.zuulUrl}/quiz/answer/edit/${answerId}`, null, {'headers': h, 'params': p });
   }
 
   public getQuizById(id: number): Observable<Quiz> {
@@ -120,7 +119,7 @@ export class GatewayService {
   }
 
   public submitNewQuestion(value: string, libraryId: number, difficulty: number): Observable<Question> {
-    let p = (new HttpParams()).set('content', value).set('difficulty', difficulty).set('library_id', libraryId);
+    let p = (new HttpParams()).set('content', value).set('difficulty', difficulty.toString()).set('library_id', libraryId.toString());
     return this.httpClient.post<Question>(`${this.zuulUrl}/quiz/question/add`, null, { 'params': p });
   }
 
