@@ -11,7 +11,7 @@
   <div class="table-container">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 account-table">
 
-      <ng-container matColumnDef="select">
+      <!-- <ng-container matColumnDef="select">
         <th mat-header-cell *matHeaderCellDef>
           <mat-checkbox (change)="$event ? masterToggle() : null"
                     [checked]="selection.hasValue() && isAllSelected()"
@@ -24,7 +24,7 @@
                     [checked]="selection.isSelected(row)">
           </mat-checkbox>
         </td>
-      </ng-container>
+      </ng-container> -->
 
       <ng-container matColumnDef="Email">
         <th mat-header-cell *matHeaderCellDef> Email </th>

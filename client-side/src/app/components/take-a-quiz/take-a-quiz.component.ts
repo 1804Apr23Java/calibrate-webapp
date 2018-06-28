@@ -25,7 +25,7 @@ export class TakeAQuizComponent implements OnInit {
     Validators.required]);
   desiredNumberOfQuestions = 0;
 
-  constructor(private gatewayService: GatewayService, public dialog: MatDialog) { }
+  constructor(private gatewayService: GatewayService, public dialog: MatDialog, private router: Router) { }
 
   ngOnInit() {
   }
@@ -69,16 +69,20 @@ export class TakeAQuizComponent implements OnInit {
     for (const library of this.selectedLibrarySet) {
       idArray.push(library.libraryId);
     }
+    console.log('idArray ' + idArray + ' quizName ' + this.quizName + ' desired# ' + this.desiredNumberOfQuestions);
     this.gatewayService.generateQuiz(idArray, this.quizName, this.desiredNumberOfQuestions).subscribe(
       (quiz: Quiz) => {
-        sessionStorage.setItem('currentQuizId', JSON.stringify(quiz.quizId));
+        console.log('stringified quiz:' + JSON.stringify(quiz));
+        localStorage.setItem('currentQuizId', JSON.stringify(quiz.quizId));
+        this.router.navigate(['/quiz-session']);
       },
-      error => console.log(`Error: ${error}`)
+      error => console.log(`Save Quiz Id Error: ${error}`)
     );
   }
 
-  startNewQuiz() {
-    this.generateNewQuiz();
+  continueExistingQuiz() {
+    console.log('start existing quiz here');
+    return;
   }
 
 }

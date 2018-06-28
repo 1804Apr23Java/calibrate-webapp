@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Quiz } from '../models/quiz';
 import { Library } from '../models/library';
@@ -11,55 +11,82 @@ import { Question } from '../models/question';
   providedIn: 'root'
 })
 export class GatewayService {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) { }
-
-  private backendUrl = 'http://ec2-174-129-59-140.compute-1.amazonaws.com:8080/CalibrateBackend';
+  private backendUrl =
+    'http://ec2-174-129-59-140.compute-1.amazonaws.com:8080/CalibrateBackend';
   private zuulUrl = 'http://ec2-35-171-24-66.compute-1.amazonaws.com:8765';
-  private backendLoginUrl = 'http://ec2-35-171-24-66.compute-1.amazonaws.com:8764';
+  private backendLoginUrl =
+    'http://ec2-35-171-24-66.compute-1.amazonaws.com:8764';
 
   public getQuizById(id: number): Observable<Quiz> {
     return this.httpClient.get<Quiz>(`${this.zuulUrl}/quiz/quiz/${id}`);
   }
 
-  public generateQuiz(libraryIds: number[], name: string, numQuestions: number): Observable<Quiz> {
-    return this.httpClient.post<Quiz>(`${this.zuulUrl}/quiz/quiz/generate`,
+  public generateQuiz(
+    libraryIds: number[],
+    name: string,
+    numQuestions: number
+  ): Observable<Quiz> {
+    return this.httpClient.post<Quiz>(
+      `${this.zuulUrl}/quiz/quiz/generate`,
       { 'libraryIds': libraryIds, 'name': name, 'numQuestions': numQuestions }
     );
   }
 
   public getLibraryById(libraryId: number): Observable<Library> {
-    return this.httpClient.get<Library>(`${this.zuulUrl}/library/libraryid/${libraryId}`);
+    return this.httpClient.get<Library>(
+      `${this.zuulUrl}/library/libraryid/${libraryId}`
+    );
   }
 
   public getQuestionsByLibraryId(libraryId: number): Observable<Question[]> {
-    return this.httpClient.get<Question[]>(`${this.zuulUrl}/quiz/question/lib/${libraryId}`);
+    return this.httpClient.get<Question[]>(
+      `${this.zuulUrl}/quiz/question/lib/${libraryId}`
+    );
   }
 
   public getLibrariesByAccountId(accountId: number): Observable<Library[]> {
-    return this.httpClient.get<Library[]>(`${this.zuulUrl}/library/byAccountId/${accountId}`);
+    return this.httpClient.get<Library[]>(
+      `${this.zuulUrl}/library/byAccountId/${accountId}`
+    );
   }
-// admin approve/deny
+  // admin approve/deny
   public makeLibraryPending(libraryId: number): Observable<Library> {
-    return this.httpClient.patch<Library>(`${this.backendUrl}/library/makePending/`, libraryId);
+    return this.httpClient.patch<Library>(
+      `${this.backendUrl}/library/makePending/`,
+      libraryId
+    );
   }
   public makeLibraryPublic(libraryId: number): Observable<Library> {
-    return this.httpClient.patch<Library>(`${this.backendUrl}/library/makePublic/`, libraryId);
+    return this.httpClient.patch<Library>(
+      `${this.backendUrl}/library/makePublic/`,
+      libraryId
+    );
   }
   public makeLibraryPrivate(libraryId: number): Observable<Library> {
-    return this.httpClient.patch<Library>(`${this.backendUrl}/library/makePrivate/`, libraryId);
+    return this.httpClient.patch<Library>(
+      `${this.backendUrl}/library/makePrivate/`,
+      libraryId
+    );
   }
 
   public getPublicLibraries(): Observable<Library[]> {
-    return this.httpClient.get<Library[]>(`${this.zuulUrl}/library/status/public`);
+    return this.httpClient.get<Library[]>(
+      `${this.zuulUrl}/library/status/public`
+    );
   }
 
   public getPendingLibraries(): Observable<Library[]> {
-    return this.httpClient.get<Library[]>(`${this.zuulUrl}/library/status/pending`);
+    return this.httpClient.get<Library[]>(
+      `${this.zuulUrl}/library/status/pending`
+    );
   }
 
   public getAttemptsById(id: number): Observable<Attempt[]> {
-    return this.httpClient.get<Attempt[]>(`${this.backendUrl}/attempt/byAccount/${id}`);
+    return this.httpClient.get<Attempt[]>(
+      `${this.backendUrl}/attempt/byAccount/${id}`
+    );
   }
 
   public getAccountById(id: number): Observable<Account> {
@@ -67,14 +94,25 @@ export class GatewayService {
   }
 
   public accountLogin(email: string, password: string): Observable<Account> {
-    return this.httpClient.post<Account>(`${this.zuulUrl}/account/login`,
-      { 'email': email, 'password': password });
+    return this.httpClient.post<Account>(`${this.zuulUrl}/account/login`, {
+      email: email,
+      password: password
+    });
   }
 
-  public addNewAccount(email: string, password: string, firstName: string, lastName: string): Observable<Account> {
+  public addNewAccount(
+    email: string,
+    password: string,
+    firstName: string,
+    lastName: string
+  ): Observable<Account> {
     console.log(email, password, firstName, lastName);
-    return this.httpClient.post<Account>(`${this.zuulUrl}/account/register`,
-      { 'email': email, 'password': password, 'firstName': firstName, 'lastName': lastName });
+    return this.httpClient.post<Account>(`${this.zuulUrl}/account/register`, {
+      email: email,
+      password: password,
+      firstName: firstName,
+      lastName: lastName
+    });
   }
 
   public getAllAccounts(): Observable<Account[]> {
@@ -93,12 +131,14 @@ export class GatewayService {
   // working example of Zuul post
   public addNewLibrary(accountId: number, name: string): Observable<Library> {
     console.log('got to service');
-    console.log(`{ 'accountId': ${accountId}, 'name': ${name}, 'numberOfQuestions': 0, 'status': 'PRIVATE' }`);
-    return this.httpClient.post<Library>(`${this.zuulUrl}/library/new`, (
-      { 'accountId': accountId, 'name': name, 'numberOfQuestions': 0, 'status': 'PRIVATE' }
-    ));
+    console.log(
+      `{ 'accountId': ${accountId}, 'name': ${name}, 'numberOfQuestions': 0, 'status': 'PRIVATE' }`
+    );
+    return this.httpClient.post<Library>(`${this.zuulUrl}/library/new`, {
+      accountId: accountId,
+      name: name,
+      numberOfQuestions: 0,
+      status: 'PRIVATE'
+    });
   }
-
-
-
 }
