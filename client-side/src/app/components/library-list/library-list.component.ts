@@ -84,6 +84,7 @@ export class NewLibraryDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<NewLibraryDialogComponent>,
     private gatewayService: GatewayService,
+    private router: Router,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   onNoClick(): void {
@@ -93,9 +94,12 @@ export class NewLibraryDialogComponent {
   addNewLibrary(): void {
     this.gatewayService.addNewLibrary(+sessionStorage.getItem('accountId'), this.newLibraryName).subscribe(
       (library: Library) => {
+        sessionStorage.setItem('libraryId', library.libraryId.toString());
         console.log(library);
       },
       error => console.log(`Error: ${JSON.stringify(error)}`));
+      this.dialogRef.close();
+      this.router.navigate(['library']);
   }
 
 }
