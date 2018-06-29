@@ -182,7 +182,7 @@ export class LibraryDialogComponent {
       error => console.log(`Error: ${error}`)
       );
     }
-
+    this.dialogRef.close();
   }
 
   saveOrUpdateAnswers() {

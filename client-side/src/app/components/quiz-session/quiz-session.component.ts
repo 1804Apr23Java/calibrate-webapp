@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 export class QuizSessionComponent implements OnInit {
   public quiz: Quiz;
   public currentQuestionIndex: number;
-  public selectedAnswersSet = new Set();
+  public selectedAnswersSet = new Set<AttemptAnswer>();
   public answeredQuestionsSet = new Set();
   private accountId: number;
   private quizId: number;
@@ -36,10 +36,13 @@ export class QuizSessionComponent implements OnInit {
       (attempt: Attempt) => {
         const attemptId: number = attempt.id;
         for (const answer of Array.from(this.selectedAnswersSet)) {
-          this.gatewayService.submitAttemptAnswer(answer, attemptId, false).subscribe(
+          this.gatewayService.submitAttemptAnswer(answer.answerId, attemptId, answer.isCorrect).subscribe(
             (attemptAnswer: AttemptAnswer) => {}, error => {console.log(`Submit AttemptAnswer Error: ${error}`);
           });
         }
+        this.gatewayService.scoreAttempt(attemptId).subscribe(
+          (attempt: Attempt) => {console.log(JSON.stringify(attempt))}
+          , error => {});
       }, error => {console.log(`Submit Attempt Error: ${error}`);
     });
     this.router.navigate(['/profile']);
@@ -57,11 +60,14 @@ export class QuizSessionComponent implements OnInit {
 
   // Set manipulator
   updateSelectedAnswersSet(option): void {
+    let op: AttemptAnswer = {'id': 0, 'answerId': option.value[0].answerId, 'isCorrect': option.value[0].isCorrect, 'attemptId': 0};
+    console.log(JSON.stringify(op));
     if (option.selected) {
-      this.selectedAnswersSet.add(option.value[0]);
+      this.selectedAnswersSet.add(op);
     } else {
-      this.selectedAnswersSet.delete(option.value[0]);
+      this.selectedAnswersSet.delete(op);
     }
+    console.log(JSON.stringify(Array.from(this.selectedAnswersSet)));
   }
 
   // returns true if more than one correct answer (for checkbox)

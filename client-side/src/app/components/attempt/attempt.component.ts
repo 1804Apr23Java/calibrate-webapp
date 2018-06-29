@@ -16,7 +16,7 @@ export class AttemptComponent implements OnInit {
   constructor(private gatewayService: GatewayService, private logicService: QuizLogicService, public dialog: MatDialog) { }
 
   public attempts: Attempt[];
-  displayedColumns = ['name', 'date', 'score', 'view'];
+  displayedColumns = ['date', 'score', 'view'];
   dataSource: MatTableDataSource<Attempt>;
 
   // THIS NEEDS TO BE "GET ATTEMPTS BY ID WHERE isComplete IS TRUE"
