@@ -24,6 +24,7 @@ export class TakeAQuizComponent implements OnInit {
     Validators.min(0),
     Validators.required]);
   desiredNumberOfQuestions = 0;
+  quizId: number;
 
   constructor(private gatewayService: GatewayService, public dialog: MatDialog, private router: Router) { }
 
@@ -77,13 +78,24 @@ export class TakeAQuizComponent implements OnInit {
         localStorage.setItem('currentQuizId', JSON.stringify(quiz.quizId));
         this.router.navigate(['/quiz-session']);
       },
-      error => console.log(`Save Quiz Id Error: ${error}`)
+      error => console.log(`Save Quiz Id Error: ${JSON.stringify(error)}`)
     );
   }
 
+  keyUp(quizId: String) {
+    this.quizId = +quizId;
+    console.log(quizId);
+  }
+
   continueExistingQuiz() {
-    console.log('start existing quiz here');
-    return;
+    this.gatewayService.getQuizById(this.quizId).subscribe(
+      (quiz: Quiz) => {
+        console.log('stringified quiz:' + JSON.stringify(quiz));
+        localStorage.setItem('currentQuizId', JSON.stringify(quiz.quizId));
+        this.router.navigate(['/quiz-session']);
+      },
+      error => console.log(`Save Quiz Id Error: ${JSON.stringify(error)}`)
+    );
   }
 
 }
