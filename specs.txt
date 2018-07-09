@@ -1,0 +1,43 @@
+checkboxes clunky
+previous next - maybe outside of box, maybe make it vertical
+either radio buttons or checkboxes (should look the same)
+pending/public libraries should show user
+
+-----
+
+notes:
+
+parent components -
+quizzes, admin, profile
+
+quizzes
+	- quizzes
+		- take a quiz -> quiz session
+		- review previous quizzes -> attempt (dialog, looks like quiz session)
+	- libraries
+		- my libraries
+		- public libraries
+		- library view (after clicking from above two)
+
+
+admin
+	- add account
+	- deactivate account
+	- approve/deny library
+
+profile
+	- view profile
+	- edit information
+
+displaying questions:
+like "quiz session" for active quiz
+accordion for attempts/library
+edit buttons in library view
+
+------
+
+move profile-navbar to components
+rename classes to models
+consolidate services
+
+console logs need to be cleaned up - in staging

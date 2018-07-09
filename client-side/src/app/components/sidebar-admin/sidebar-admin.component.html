@@ -1,0 +1,19 @@
+<mat-card>
+  <mat-tab-group mat-stretch-tabs style="max-width: 800px;">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>build</mat-icon>
+        Admin
+      </ng-template>
+      <mat-nav-list>
+        <a mat-list-item routerLink="pending-library-list">Approve/Deny Library</a>
+      </mat-nav-list>
+      <mat-nav-list>
+        <a mat-list-item routerLink="admin-add-account">Add Account</a>
+      </mat-nav-list>
+      <mat-nav-list>
+        <a mat-list-item routerLink="admin-deactivate-account">Deactivate Account</a>
+      </mat-nav-list>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>

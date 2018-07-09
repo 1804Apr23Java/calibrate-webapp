@@ -1,0 +1,62 @@
+<!--
+<div>
+    <mat-slide-toggle [(ngModel)]="multi">Allow Multi Expansion</mat-slide-toggle>
+  </div>
+  <p>Accordion Actions <sup>('Multi Expansion' mode only)</sup></p>
+  <div>
+    <button mat-button (click)="accordion.openAll()" [disabled]="!multi">Expand All</button>
+    <button mat-button (click)="accordion.closeAll()" [disabled]="!multi">Collapse All</button>
+  </div>
+-->
+
+<div *ngIf=library>
+  <mat-toolbar color="primary" class="mat-elevation-z8">
+    {{library.name}}
+  </mat-toolbar>
+  <br>
+
+  <mat-accordion class="headers-align mat-elevation-z8 libraryTable">
+    <mat-expansion-panel *ngFor="let question of library.questions; let i = index" [attr.data-index]="i" [expanded]="step === i + 1"
+       hideToggle="true"><!--(opened)="setStep(i + 1)"-->
+      <mat-expansion-panel-header [collapsedHeight]="customCollapsedHeight">
+        <mat-panel-title class="shrinkMe">
+          Question {{i + 1}}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{question.value}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-radio-group>
+          <br>
+        <mat-radio-button class="questionButtons" *ngFor="let answer of question.answers; let j = index" [attr.data-index]="i">
+          <span *ngIf="answer.isCorrect">
+            <mat-icon>check_box</mat-icon>
+          </span>
+          {{answer.value}}
+        </mat-radio-button>
+        <br>
+      </mat-radio-group>
+
+      <mat-action-row>
+        <button mat-button color="primary">Delete</button>
+        <button mat-button color="primary" (click)="openDialog(question)">Edit</button>
+        <button mat-button color="primary">Delete</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <mat-card *ngIf= "this.isPending" class="center">
+    <div class="center">
+      <span>
+        <button mat-button routerLink="/admin/pending-library-list"> Approve
+          <mat-icon class="success">check_circle_outline</mat-icon>
+        </button>
+      </span>
+      <button mat-button routerLink="/admin/pending-library-list"> Deny
+        <mat-icon color="warn">highlight_off</mat-icon>
+      </button>
+    </div>
+    </mat-card>
+
+</div>

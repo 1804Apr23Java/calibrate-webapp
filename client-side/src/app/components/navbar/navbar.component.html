@@ -1,0 +1,15 @@
+<mat-toolbar>
+  <span routerLink="profile" class="navbar-logo">
+    <img src="../../assets/images/revature-navbar-logo.png" class="navbar-logo">
+  </span>
+
+  <span class="fill-remaining-space"></span>
+
+  <div *ngIf="accountId">
+    <button mat-button routerLink="quiz-session">Quiz Session</button>
+    <button mat-button routerLink="quizzes/take-a-quiz">Quizzes</button>
+    <button mat-button routerLink="admin/pending-library-list">Admin</button>
+    <button mat-button routerLink="profile">Profile</button>
+    <button mat-button (click)='logout()'>Logout</button>
+  </div>
+</mat-toolbar>

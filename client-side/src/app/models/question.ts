@@ -1,0 +1,21 @@
+export class Question {
+
+    constructor() {}
+    questionId: number;
+    difficulty: number;
+    value: string;
+    libraryId: number;
+    answers: Answers[];
+
+}
+
+export class Answers {
+
+
+
+    answerId: number;
+    isCorrect: boolean;
+    value: string;
+    questionId: number;
+    isSelected: boolean;
+}
